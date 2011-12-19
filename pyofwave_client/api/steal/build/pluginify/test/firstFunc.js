@@ -3,6 +3,6 @@ function(abc){
 	"abc(){};";
 	/* steal */
 	// steal
-	
-	boom	
+
+	boom
 }

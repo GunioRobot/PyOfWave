@@ -2,7 +2,7 @@
 //
 // LESS - Leaner CSS v1.0.34
 // http://lesscss.org
-// 
+//
 // Copyright (c) 2010, Alexis Sellier
 // Licensed under the Apache 2.0 License.
 //
@@ -2069,7 +2069,7 @@ tree.Ruleset.prototype = {
                     rules.push(rule.value.toString());
                 }
             }
-        } 
+        }
 
         rulesets = rulesets.join('');
 

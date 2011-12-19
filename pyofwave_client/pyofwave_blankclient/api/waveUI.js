@@ -63,7 +63,7 @@ $.WvWidget('BlipView', 'template/blip.ejs', {
    },
    /*Give a number of options when the status is clicked.*/
    '> .blip .status click' : function(evt) {
-      //generate menu. 
+      //generate menu.
       el = $(this.element '> .blip .status');
       createMenu({x : el.style('left'), y : el.style('bottom')}, {
          edit : function() {this.edit();},
@@ -81,7 +81,7 @@ $.WvWidget('BlipView', 'template/blip.ejs', {
          },
          'copy link' : function() {
             //Show the URL for this wave.
-            prompt("The URL for this blip is: ", 
+            prompt("The URL for this blip is: ",
                      "wave://"+this.options.get('blip').get('blipId'));
          }
    }
@@ -99,7 +99,7 @@ $.WvWidget('BlipView', 'template/blip.ejs', {
          var annotation = blip.get('annotations').get(i);
          var child = $('<span>').text(content.substr(annotation.range.start, annotation.range.end)
             ).data('start', annotation.get('range').get('start');
-         
+
          //apply style
          switch annotation.get('key') {
          case "style/background":
@@ -147,7 +147,7 @@ $.WvWidget('BlipView', 'template/blip.ejs', {
          //select element to add child to
          var parent;
          var start = annotation.get('range').get('start');
-         if (lastIndex > start) 
+         if (lastIndex > start)
             for (parent = prevChild; ! $(parent).data('start') <= start; parent = $(parent).parent()) {}
          else parent = el;
 
@@ -160,7 +160,7 @@ $.WvWidget('BlipView', 'template/blip.ejs', {
       //apply elements.
       for (i=0; i < this.blip.get('elements')._obj.length; i++) {
          var element = this.blip.get('elements').get(i);
-         el.replace(element.get('index'), element.get('index'), 
+         el.replace(element.get('index'), element.get('index'),
             EL_TYPES[element.get('type')](element));
       }
    },
@@ -194,13 +194,13 @@ $.WvWidget('BlipView', 'template/blip.ejs', {
             sendModifications({annotation : {name : 'style/underline', value : checked},});
          }),
          toolbarSeperator(),
-         toolbarColor("imgs/edit/text.png", "000000", function(color) {$(this, '[contenteditable]').editableText('selElement').style('color', color);}, 
+         toolbarColor("imgs/edit/text.png", "000000", function(color) {$(this, '[contenteditable]').editableText('selElement').style('color', color);},
             function(color) {
                sendModifications({annotation : {name : 'style/color', value : color},});
          }),
          toolbarColor("imgs/edit/background.png", "FFFFFF", function(color) {
                $(this, '[contenteditable]').editableText('selElement').style('background-color', color);
-            }, 
+            },
             function(color) {
                sendModifications({annotation : {name : 'style/color', value : color},});
          }),

@@ -16,13 +16,13 @@ load.loaders["text/javascript"] = function(script) {
       //Seperate content between curly brackets (they complicate regex)
       var curly = RegEx('^[.*({[.*|{.*}]*}).*]*$').exec(string);
       string = string.replace( /{.*}/, '{}');
-      
+
       args = RegEx('^'+pattern+'$').exec(string);
-      
+
       //If curly brackets in pattern, replace one level of curly brackets.
-      if (pattern.contains('{')) 
+      if (pattern.contains('{'))
          string.replace('{}', curly);
-      
+
       callback.apply(self, args);
    }  //TODO: Implement internal replacement and replacement.
    function process(pattern, callback) {
@@ -35,7 +35,7 @@ load.loaders["text/javascript"] = function(script) {
       var unmatched = text.match("(").length - text.match(")").length;
       return ";"+text+(")" * unmatched)+";";
    });
-   
+
    //retrieve all shared method names
    var shared = sharedMethods.keys();
    process("sharedMethod.(\w+)\w*=\w*function\((.*)\)\w*{(.*)}",
@@ -45,13 +45,13 @@ load.loaders["text/javascript"] = function(script) {
          "if(this."+method+"!=undefined) return this."+method+"("+args+");"
          +code+"}"
     });
-    
+
     //correct calls to sharedMethods
     var methRegex = shared.join("|");
     process(";\w*(.+).(["+methRegex+"])\((.*)\)", function(obj, method, args) {
       return ";sharedMethods."+method+".apply("+obj+",["+args+"])";
     });
-   
+
    return self;
 }
 
@@ -60,7 +60,7 @@ var sharedMethods = {}
 /*Get all keys of an object.*/
 sharedMethods.keys = function() {
    if (this.keys != undefined) this.keys();  //Don't overwrite children.
-   
+
    var keys = ["keys",];
    for (var key in this) keys.push(key);
    return keys;

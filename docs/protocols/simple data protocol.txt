@@ -25,57 +25,57 @@ Methods:
 ---
  Method					Description
  ------					-----------
- auth.authMethod			Returns how containing an array containing a 
-					selection of ("Oauth", "SSL") appropriately for 
-					the methods of authentication the server 
+ auth.authMethod			Returns how containing an array containing a
+					selection of ("Oauth", "SSL") appropriately for
+					the methods of authentication the server
 					supports. (Note: The list may be expanded.)
- auth.logout				Cancels authentication.	
+ auth.logout				Cancels authentication.
 
- robot.notifyCapabilitiesHash		Sends an XML file to the server registering 
+ robot.notifyCapabilitiesHash		Sends an XML file to the server registering
    (cababilitiesHash : String)		the client for events identified.
- robot.createWavelet			Creates a new wavelet from waveletData and 
-   (waveletData : WaveletData,		identifies with message. (NOTE: TBD_ prefix may 
+ robot.createWavelet			Creates a new wavelet from waveletData and
+   (waveletData : WaveletData,		identifies with message. (NOTE: TBD_ prefix may
       message : String)			be used for temporary ID's)
- robot.fetchFolders			Responds with a list of objects containing icon 
-					& children with an optional search property 
-					(defaults to "in:"key). Icon is a URL, and 
-					children is an Array of the same objects. 
- robot.fetchwavelet(waveID : String,	Responds with data in identified wave in 
-   waveletId:String, message:String)	properties wavelet of type WaveletData and 
+ robot.fetchFolders			Responds with a list of objects containing icon
+					& children with an optional search property
+					(defaults to "in:"key). Icon is a URL, and
+					children is an Array of the same objects.
+ robot.fetchwavelet(waveID : String,	Responds with data in identified wave in
+   waveletId:String, message:String)	properties wavelet of type WaveletData and
 					blips Array of BlipData.
- robot.search(query : String, 		Interprets query as described later, and 
-   index:Integer, numResults:Integer)	responds with an Array of results in range of 
-					index and numResults with properties title, 
-					snippet, waveId, lastModified, unreadCount, 
+ robot.search(query : String, 		Interprets query as described later, and
+   index:Integer, numResults:Integer)	responds with an Array of results in range of
+					index and numResults with properties title,
+					snippet, waveId, lastModified, unreadCount,
 					blipCount, and participants.
  robot.folderAction(modifyHow : String,	Performs selected action of actions (markAsRead,
-   waveId : String)			markAsUnread, mute, and archive <default>) on 
+   waveId : String)			markAsUnread, mute, and archive <default>) on
 					identified wave.
  robot.getUserData(user : String)          Returns the avatar, note, and name of user as Strings.
 
- wavelet.appendBlip(waveId : String,	Appends blipData to selected wavelet of selected 
+ wavelet.appendBlip(waveId : String,	Appends blipData to selected wavelet of selected
   waveletId:String, blipData:BlipData)	wave.
- wavelet.setTitle(waveId : String,	Sets the title of selected wavelet of selected 
+ wavelet.setTitle(waveId : String,	Sets the title of selected wavelet of selected
    waveletId : String, 			wave.
    waveletTitle : String)
- wavelet.addParticipant(waveId:String,	Adds selected participant to selected wavelet 
+ wavelet.addParticipant(waveId:String,	Adds selected participant to selected wavelet
    waveletId : String, 			of selected wave.
    participant : String)
- wavelet.setDataDoc(waveId : String,	Sets selected dataDocument of selected wavelet 
+ wavelet.setDataDoc(waveId : String,	Sets selected dataDocument of selected wavelet
    waveletId : String, 			of selected wave to dataDocValue.
-   dataDocName : String, 
+   dataDocName : String,
    dataDocValue : Object)
 
- blip.createChild(waveId : String,	Appends blipData to the identified blip of the 
+ blip.createChild(waveId : String,	Appends blipData to the identified blip of the
    waveletId:String, blipdid:String,	identified wavelet of the identified wave.
    blipData : BlipData)
- blip.delete(waveId : String, 		Deletes the identified blip of the identified 
+ blip.delete(waveId : String, 		Deletes the identified blip of the identified
    waveletId: String, blipdid: String)	wavelet of the identified wave.
 
- document.appendMarkup(waveId : String,	Appends content translated from HTML to Wave to 
-   waveletId: String, blipdid: String,	identified blip to identified wavelet of 
+ document.appendMarkup(waveId : String,	Appends content translated from HTML to Wave to
+   waveletId: String, blipdid: String,	identified blip to identified wavelet of
    content : String)			identified wave.
- document.modify(waveId : String,	Replaces content selected by either range or 
+ document.modify(waveId : String,	Replaces content selected by either range or
    waveletId : String, blipId : String,	index with modifyAction inside the identified
    range : Range, index : Integer, 	blip of the identified wavelet of the identified
    modifyAction : ModifyAction)		wave.
@@ -92,31 +92,31 @@ Types
  		waveletId		The waveletId of the root wavelet.
  		dataDocuments		Object associating document IDs to objects of
 					their data.
- BlipData	blipId			contains the ID of blip in which the event 
+ BlipData	blipId			contains the ID of blip in which the event
 					occurred.
- 		childBlipIds		contains an array of blip IDs for each of the 
+ 		childBlipIds		contains an array of blip IDs for each of the
 					blip's children.
  		content			contains the textual content of this blip.
  		waveId			contains the Wave ID associated with this blip.
- 		waveletId		contains the wavelet ID associated with this 
-					blip. 
+ 		waveletId		contains the wavelet ID associated with this
+					blip.
 
  		(optional:)
- 		annotations		array of annotations associated with the blip. 						The annotation is represented by an object with 
-					range (containing start and end properties), 	
+ 		annotations		array of annotations associated with the blip. 						The annotation is represented by an object with
+					range (containing start and end properties),
 					key, and value.
- 		elements		contains gadgets, controls, and attachments 
+ 		elements		contains gadgets, controls, and attachments
 					associated with the blip.
  Range		start			Integer of the start index.
 		end			Integer of the end index.
  ModifyAction	content			String representing content.
-		annotations		key:value object representing the annotations 
+		annotations		key:value object representing the annotations
 					applied.
-		elements		contains gadgets, controls, and attachments to 
+		elements		contains gadgets, controls, and attachments to
 					add to the blip.
  Element	type			"gadget", "control", or "attachment"
 		index			Integer index in it's blip.
-		(further identified by type, as in gadget has url & state, controls has 
+		(further identified by type, as in gadget has url & state, controls has
 		name & value, and attachments has url & caption)
 
 Query Syntax
@@ -137,4 +137,3 @@ Search should be interpreted as a list of words to search either wave bodies and
  dfrom		All waves by search directly to you.
  dto		All waves to search directly from you.
  is		"note" search gives waves where you are the only participant.
- 

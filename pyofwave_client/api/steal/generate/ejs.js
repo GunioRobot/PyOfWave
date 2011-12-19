@@ -38,7 +38,7 @@ steal.then(function( steal ) {
 			options = typeof options === "string" ? {
 				view: options
 			} : options;
-			
+
 			this.set_options(options);
 			if ( options.precompiled ) {
 				this.template = {};
@@ -50,7 +50,7 @@ steal.then(function( steal ) {
 				if ( typeof options.element === 'string' ) {
 					var name = options.element;
 					options.element = document.getElementById(options.element);
-					
+
 					if ( options.element == null ){
 						throw name + 'does not exist!';
 					}
@@ -70,15 +70,15 @@ steal.then(function( steal ) {
 				var template = vEJS.get(this.name
 				/*url*/
 				, this.cache);
-				
+
 				if ( template ){
 					return template;
 				}
-				
+
 				if ( template === vEJS.INVALID_PATH ){
 					return null;
 				}
-				
+
 				try {
 					this.text = vEJS.request(url + (this.cache ? '' : '?' + Math.random()));
 				} catch (e) {}
@@ -88,7 +88,7 @@ steal.then(function( steal ) {
 				}
 				//this.name = url;
 			}
-			
+
 			var template = new vEJS.Compiler(this.text, this.type);
 
 			template.compile(options, this.name);
@@ -125,12 +125,12 @@ steal.then(function( steal ) {
 				params = {};
 				params.url = options;
 				_template = this;
-				
+
 				params.onComplete = function( request ) {
 					var object = eval(request.responseText);
 					vEJS.prototype.update.call(_template, element, object);
 				};
-				
+
 				vEJS.ajax_request(params);
 			} else {
 				element.innerHTML = this.render(options);
@@ -172,8 +172,8 @@ steal.then(function( steal ) {
 			left_comment: left + '%#'
 		});
 
-		this.SplitRegexp = left === '[' 
-							? /(\[%%)|(%%\])|(\[%=)|(\[%#)|(\[%)|(%\]\n)|(%\])|(\n)/ 
+		this.SplitRegexp = left === '['
+							? /(\[%%)|(%%\])|(\[%=)|(\[%#)|(\[%)|(%\]\n)|(%\])|(\n)/
 							: new RegExp('(' + this.double_left + ')|(%%' + this.double_right + ')|(' + this.left_equal + ')|(' + this.left_comment + ')|(' + this.left_delimiter + ')|(' + this.right_delimiter + '\n)|(' + this.right_delimiter + ')|(\n)');
 
 		this.source = source;
@@ -185,15 +185,15 @@ steal.then(function( steal ) {
 		if ( input == null || input === undefined ){
 			return '';
 		}
-		
+
 		if ( input instanceof Date ) {
 			return input.toDateString();
 		}
-		
+
 		if ( input.toString ) {
 			return input.toString();
 		}
-		
+
 		return '';
 	};
 
@@ -410,11 +410,11 @@ steal.then(function( steal ) {
 			if ( cache == false ){
 				return null;
 			}
-			
-			if ( templates_directory[path] ){ 
+
+			if ( templates_directory[path] ){
 				return templates_directory[path];
 			}
-			
+
 			return null;
 		};
 
@@ -422,7 +422,7 @@ steal.then(function( steal ) {
 			if ( path == null ) {
 				return;
 			}
-			
+
 			templates_directory[path] = template;
 		};
 
@@ -451,22 +451,22 @@ steal.then(function( steal ) {
 			if ( !data ){
 				data = this._data;
 			}
-			
+
 			return new vEJS(options).render(data, helpers);
 		},
 		to_text: function( input, null_text ) {
 			if ( input == null || input === undefined ) {
 				return null_text || '';
 			}
-			
+
 			if ( input instanceof Date ) {
 				return input.toDateString();
 			}
-			
+
 			if ( input.toString ) {
 				return input.toString().replace(/\n/g, '<br />').replace(/''/g, "'");
 			}
-			
+
 			return '';
 		}
 	};
@@ -483,7 +483,7 @@ steal.then(function( steal ) {
 				var request = factories[i]();
 				if ( request != null ) {
 					return request;
-				} 
+				}
 			}
 			catch (e) {
 				continue;
@@ -493,7 +493,7 @@ steal.then(function( steal ) {
 
 	vEJS.request = function( path ) {
 		var request = new vEJS.newRequest();
-		
+
 		request.open("GET", path, false);
 
 		try {
@@ -505,16 +505,16 @@ steal.then(function( steal ) {
 
 		if ( request.status == 404 || request.status == 2 || (request.status == 0 && request.responseText == '') ){
 			return null;
-		} 
+		}
 
 		return request.responseText;
 	};
-	
+
 	vEJS.ajax_request = function( params ) {
 		params.method = (params.method ? params.method : 'GET');
 
 		var request = new vEJS.newRequest();
-		
+
 		request.onreadystatechange = function() {
 			if ( request.readyState == 4 ) {
 				if ( request.status == 200 ) {
@@ -524,7 +524,7 @@ steal.then(function( steal ) {
 				}
 			}
 		};
-		
+
 		request.open(params.method, params.url);
 		request.send(null);
 	};

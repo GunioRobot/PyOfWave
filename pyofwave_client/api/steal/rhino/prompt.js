@@ -11,7 +11,7 @@ steal(function( steal ) {
 		return response;
 	}
 	/**
-	 * 
+	 *
 	 * @param {String} question
 	 * @param {Boolean} true or false
 	 */

@@ -7,8 +7,8 @@ if (uri.querykey.css) steal().css(uri.querykey.css);
 if (uri.querykey.alias) loginAlias(uri.querykey.alias);
 
 if (uri.host == "__new__") {
-   // Send operations to create a new wave with URI options. 
-   var wavelet = {} // TODO: fill out. 
+   // Send operations to create a new wave with URI options.
+   var wavelet = {} // TODO: fill out.
    sendOperations(["robot.createWavelet", {waveletData : wavelet, message : "URL create"}, handleResponse]);
 }
 else {
@@ -18,7 +18,7 @@ else {
 });
 
 function loginAlias(alias) {
-   
+
 }
 
 function handleResponse(data) {

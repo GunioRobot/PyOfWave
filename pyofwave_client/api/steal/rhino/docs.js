@@ -8,7 +8,7 @@ that make building, packaging, sharing and consuming JavaScript applications eas
 <h2>Tools</h2>
 
 <h3>Dependency Management</h3>
-The [steal steal script] (steal/steal.js) is a script loader and 
+The [steal steal script] (steal/steal.js) is a script loader and
 dependency management tool.  Features:
 <ul>
 	<li>Loads JavaScript, CSS, Less, CoffeeScript, and a variety of client-side templates.</li>
@@ -19,7 +19,7 @@ dependency management tool.  Features:
 steal.plugins('jquery/controller','jquery/view/ejs');
 @codeend
 <h3>JS/CSS Concatenation and Compression</h3>
-The steal [steal.build build] plugin makes compressing an application into a single compressed 
+The steal [steal.build build] plugin makes compressing an application into a single compressed
 JavaScript and CSS file extremely easy.  Features:
 <ul>
 	<li>Works with any application, even ones not using the steal script.</li>
@@ -59,7 +59,7 @@ Steal [steal.get get] is a simple JavaScript version of [http://rubygems.org/ ru
 js steal/getjs http://github.com/jupiterjs/mxui/
 @codeend
 <h3>Code Cleaner</h3>
-Steal [steal.clean clean] cleans your code and checks it against JSLint. 
+Steal [steal.clean clean] cleans your code and checks it against JSLint.
 
 @codestart text
 js steal/clean path/to/page.html

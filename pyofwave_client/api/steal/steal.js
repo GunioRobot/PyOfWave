@@ -1,7 +1,7 @@
 /*
  * JavaScriptMVC - steal.js
  * (c) 2010 Jupiter JavaScript Consulting
- * 
+ *
  * steal provides dependency management
  * steal('path/to/file').then(function(){
  *   //do stuff with file
@@ -60,7 +60,7 @@
 		},
 		// writes a steal to the page in a way that steal.end gets called after the script gets run
 		insert = function( options ) {
-			// source we need to know how to get to steal, then load 
+			// source we need to know how to get to steal, then load
 			// relative to path to steal
 			options = extend({
 				id: options.src && steal.cleanId(options.src)
@@ -116,11 +116,11 @@
 	 * @class steal
 	 * @parent stealjs
 	 * <p>Steal makes JavaScript dependency management and resource loading easy.</p>
-	 * <p>This page details the steal script (<code>steal/steal.js</code>), 
-	 * and steal function which are used to load files into your page.  
+	 * <p>This page details the steal script (<code>steal/steal.js</code>),
+	 * and steal function which are used to load files into your page.
 	 * For documentation of other Steal projects, read [stealjs StealJS].</p>
 	 * <h3>Quick Overview</h3>
-	 * 
+	 *
 	 * <p>To start using steal, add the steal script to your page, and tell it the first
 	 * file to load:</p>
 	 * </p>
@@ -128,8 +128,8 @@
 	 *&lt;script type='text/javascript'
 	 *        src='public/steal/steal.js?<u><b>myapp/myapp.js</b></u>'>&lt;/script>
 	 * @codeend
-	 * 
-	 * <p>In the file (<code>public/myapp/myapp.js</code>), 
+	 *
+	 * <p>In the file (<code>public/myapp/myapp.js</code>),
 	 * 'steal' all other files that you need like:</p>
 	 * @codestart
 	 * steal("anotherFile")           //loads myapp/anotherFiles.js
@@ -148,20 +148,20 @@
 	 * <h2>Use</h2>
 	 * Use of steal.js is broken into 5 parts:
 	 * <ul>
-	 * <li>Loading steal.js </li> 
+	 * <li>Loading steal.js </li>
 	 *  <li>Loading your 'application' file.</li>
 	 *    <li>"Stealing" scripts</li>
 	 *    <li>Building (Concatenating+Compressing) the app</li>
 	 *    <li>Switching to the production build</li>
 	 * </ul>
-	 * 
-	 * 
+	 *
+	 *
 	 * <h3>Loading <code>steal.js</code></h3>
 	 * <p>First, you need to [download download JavaScriptMVC] (or steal standalone) and unzip it into a
 	 *    public folder on your server.  For this example, lets assume you have the steal script in
-	 *    <code>public/steal/steal.js</code>.   
+	 *    <code>public/steal/steal.js</code>.
 	 * </p>
-	 * <p>Next, you need to load the <code>steal.js</code> script in your html page.  We suggest 
+	 * <p>Next, you need to load the <code>steal.js</code> script in your html page.  We suggest
 	 *    [http://developer.yahoo.com/performance/rules.html#js_bottom bottom loading] your scripts.
 	 *    For example, if your page is in <code>pages/myapp.html</code>, you can get steal like:
 	 * </p>
@@ -187,10 +187,10 @@
 	 * @codestart
 	 * steal.options.startFile = 'myapp/myapp.js'
 	 * @codeend
-	 * 
-	 * ... and results in steal loading 
+	 *
+	 * ... and results in steal loading
 	 * <code>public/myapp/myapp.js</code>.</p>
-	 * 
+	 *
 	 * <div class='whisper'>
 	 *    TIP: If startFile doesn't end with <code>.js</code> (ex: myapp), steal assumes
 	 *    you are using JavaScriptMVC's folder pattern and will load:
@@ -199,8 +199,8 @@
 	 * <h3>Stealing Scripts</h3>
 	 * In your files, use the steal function and its helpers
 	 *  to load dependencies then describe your functionality.
-	 * Typically, most of the 'stealing' is done in your application file.  Loading 
-	 * jQuery and jQuery.UI from google, a local helpers.js 
+	 * Typically, most of the 'stealing' is done in your application file.  Loading
+	 * jQuery and jQuery.UI from google, a local helpers.js
 	 * and then adding tabs might look something like this:
 	 * @codestart
 	 * steal( 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js',
@@ -210,54 +210,54 @@
 	 *   $('#tabs').tabs();
 	 * });
 	 * @codeend
-	 * 
+	 *
 	 * There's a few things to notice:
-	 * 
-	 *   - the steal function can take multiple arguments.  Each argument 
-	 *    can be a string, object, or function.  Learn more about what can be passed to 
-	 *    steal in the [steal.prototype.init] documentation. 
+	 *
+	 *   - the steal function can take multiple arguments.  Each argument
+	 *    can be a string, object, or function.  Learn more about what can be passed to
+	 *    steal in the [steal.prototype.init] documentation.
 	 *   - steal can load cross domain</li>
 	 *   - steal loads relative to the current file</li>
 	 *   - steal adds .js if not present</li>
 	 *   - steal is chainable (most function return steal)
-     * 
+     *
 	 * ### Building the app
-	 * 
+	 *
 	 * Building the app means combining and compressing your apps JavaScript and CSS into a single file.
-	 * A lot more details can be found on building in the 
+	 * A lot more details can be found on building in the
 	 * [steal.build steal.build documentation].  But, if you used JavaScriptMVC's app or plugin
 	 * generator, you can build
 	 * your app's JS and CSS with:
-	 * 
-	 * 
+	 *
+	 *
 	 * @codestart no-highlight
 	 * js myapp\scripts\compress.js
 	 * @codeend
-	 * 
+	 *
 	 * Or if you are using steal without JavaScriptMVC:
-	 * 
+	 *
 	 * @codestart no-highlight
 	 * js steal/buildjs pages/myapp.html -to public/myapp
 	 * @codeend
-	 * 
+	 *
 	 * This creates <code>public/myapp/production.js</code> and <code>public/myapp/production.css</code>.
-	 * 
+	 *
 	 * ### Switching to the production build
-	 * 
+	 *
 	 * To use the production files, load steal.production.js instead of steal.js in your html file:
-	 * 
+	 *
 	 * @codestart html
 	 * &lt;script type='text/javascript'
 	 *         src='../public/steal/<u><b>steal.production.js</b></u>?myapp/myapp.js'>
 	 * &lt;/script>
 	 * @codeend
-	 * 
+	 *
 	 * ## Steal helpers
-	 * 
+	 *
 	 * There are a number of steal helper functions that can be used to load files in a particular location
 	 * or of a type other than JavaScript:
-	 * 
-	 *  * [steal.static.coffee] - loads  
+	 *
+	 *  * [steal.static.coffee] - loads
 	 *     [http://jashkenas.github.com/coffee-script/ CoffeeScript] scripts.
 	 *  * [steal.static.controllers] - loads controllers relative to the current path.
 	 *  * [steal.static.css] - loads a css file.
@@ -266,10 +266,10 @@
 	 *  * [steal.static.plugins] - loads JavaScript files relative to steal's root folder.
 	 *  * [steal.static.resources] - loads a script in a relative resources folder.
 	 *  * [steal.static.views] - loads a client side template to be compiled into the production build.
-	 * 
+	 *
 	 * ## Script Load Order
-	 * 
-	 * The load order for your scripts follows a consistent last-in first-out order across all browsers. 
+	 *
+	 * The load order for your scripts follows a consistent last-in first-out order across all browsers.
 	 * This is the same way the following document.write would work in msie, Firefox, or Safari:
 	 * @codestart
 	 * document.write('&lt;script type="text/javascript" src="some_script.js"></script>')
@@ -307,7 +307,7 @@
 	 * <td class="right">6.js</td>
 	 * </tr>
 	 *</tbody></table>
-	 * @constructor 
+	 * @constructor
 	 * Loads files or runs functions after all previous files and functions have been loaded.
 	 * @param {String|Object|Function+} resource Each argument represents a resource or function.
 	 * Arguments can be a String, Object, or Function.
@@ -316,14 +316,14 @@
 	 *  <th>Type</th><th>Description</th>
 	 *  </tr>
 	 *  <tr><td>String</td>
-	 * <td>A path to a JavaScript file.  The path can optionally end in '.js'.<br/>  
+	 * <td>A path to a JavaScript file.  The path can optionally end in '.js'.<br/>
 	 * Paths are typically assumed to be relative to the current JavaScript file. But paths, that start
-	 * with: 
+	 * with:
 	 * <ul>
 	 * <li><code>http(s)://</code> are absolutely referenced.</li>
 	 * <li><code>/</code> are referenced from the current domain.</li>
 	 * <li><code>//</code> are referenced from the ROOT folder.</li>
-	 * 
+	 *
 	 * </td></tr>
 	 *  <tr><td>Object</td>
 	 *  <td>An Object with the following properties:
@@ -332,7 +332,7 @@
 	 *  <li>type {optional:String} - Script type (defaults to text/javascript)</li>
 	 *  <li>skipInsert {optional:Boolean} - Include not added as script tag</li>
 	 *  <li>compress {optional:String} - "false" if you don't want to compress script</li>
-	 *  <li>package {optional:String} - Script package name (defaults to production.js)</li> 
+	 *  <li>package {optional:String} - Script package name (defaults to production.js)</li>
 	 *  </ul>
 	 *  </td></tr>
 	 *  <tr><td>Function</td><td>A function to run after all the prior steals have finished loading</td></tr>
@@ -475,7 +475,7 @@
 	 * Used for getting information out of a path
 	 * @constructor
 	 * Takes a path
-	 * @param {String} path 
+	 * @param {String} path
 	 */
 	steal.File = function( path ) {
 		if ( this.constructor != steal.File ) {
@@ -531,7 +531,7 @@
 		 * @codeend
 		 * @param {String} url
 		 * @param {Boolean} expand if the path should be expanded
-		 * @return {String} 
+		 * @return {String}
 		 */
 		joinFrom: function( url, expand ) {
 			var u = File(url);
@@ -565,7 +565,7 @@
 				var urls = url.split('/'),
 					paths = this.path.split('/'),
 					path = paths[0];
-				
+
 				//if we are joining from a folder like cookbook/, remove the last empty part
 				if ( url.match(/\/$/) ) {
 					urls.pop();
@@ -574,11 +574,11 @@
 				while ( path == '..' && paths.length > 0 ) {
 					// if we've emptied out, folders, just break
 					// leaving any additional ../s
-					if(! urls.pop() ){ 
+					if(! urls.pop() ){
 						break;
 					}
 					paths.shift();
-					
+
 					path = paths[0];
 				}
 				return urls.concat(paths).join('/');
@@ -608,7 +608,7 @@
 		 * new steal.File('a/b/c/x/y').toReferenceFromSameDomain('a/b/c/d/e')//-> ../../x/y
 		 * @codeend
 		 * @param {Object} url
-		 * @return {String} 
+		 * @return {String}
 		 */
 		toReferenceFromSameDomain: function( url ) {
 			var parts = this.path.split('/'),
@@ -637,7 +637,7 @@
 			return match && match[0];
 		},
 		/**
-		 * For a given path, a given working directory, and file location, update the path so 
+		 * For a given path, a given working directory, and file location, update the path so
 		 * it points to a location relative to steal's root.
 		 */
 		normalize: function() {
@@ -646,7 +646,7 @@
 				//if you are cross domain from the page, and providing a path that doesn't have an domain
 				path = this.path;
 
-			if (/^\/\//.test(this.path) ) { //if path is rooted from steal's root 
+			if (/^\/\//.test(this.path) ) { //if path is rooted from steal's root
 				path = this.path.substr(2);
 
 			} else if ( this.relative() || (steal.isCurrentCrossDomain() && //if current file is on another domain and
@@ -681,12 +681,12 @@
 	 * <tr><td>env</td><td>development</td><td>Which environment is currently running</td></tr>
 	 * <tr><td>encoding</td><td>utf-8</td><td>What encoding to use for script loading</td></tr>
 	 * <tr><td>cacheInclude</td><td>true</td><td>true if you want to let browser determine if it should cache script; false will always load script</td></tr>
-	 * 
+	 *
 	 * <tr><td>done</td><td>null</td><td>If a function is present, calls function when all steals have been loaded</td></tr>
-	 * <tr><td>documentLocation</td><td>null</td><td>If present, ajax request will reference this instead of the current window location.  
+	 * <tr><td>documentLocation</td><td>null</td><td>If present, ajax request will reference this instead of the current window location.
 	 * Set this in run_unit, to force unit tests to use a real server for ajax requests. </td></tr>
 	 * <tr><td>logLevel</td><td>0</td><td>0 - Log everything<br/>1 - Log Warnings<br/>2 - Log Nothing</td></tr>
-	 * <tr><td>startFile</td><td>null</td><td>This is the first file to load.  It is typically determined from the first script option parameter 
+	 * <tr><td>startFile</td><td>null</td><td>This is the first file to load.  It is typically determined from the first script option parameter
 	 * in the inclue script. </td></tr>
 	 * </table>
 	 * <ul>
@@ -704,13 +704,13 @@
 	 *    <li><code>window.location.hash</code></li>
 	 * </ul>
 	 * <p>
-	 *    The steal.js script tag is by far the most common approach. 
+	 *    The steal.js script tag is by far the most common approach.
 	 *    For the other methods,
 	 *    check out [steal.static.options] documentation.
-	 *    To load <code>myapp/myapp.js</code> in development mode, your 
+	 *    To load <code>myapp/myapp.js</code> in development mode, your
 	 *    script tag would look like:
 	 * </p>
-	 * 
+	 *
 	 * @codestart
 	 * &lt;script type='text/javascript'
 	 *     src='path/to/steal.js?<u><b>myapp/myapp.js</b></u>,<u><b>development</b></u>'>
@@ -719,7 +719,7 @@
 	 * <div class='whisper'>
 	 * Typically you want this script tag right before the closing body tag (<code>&lt;/body></code>) of your page.
 	 * </div>
-	 * <p>Note that the path to <code>myapp/myapp.js</code> 
+	 * <p>Note that the path to <code>myapp/myapp.js</code>
 	 * is relative to the 'steal' folder's parent folder.  This
 	 * is typically called the JavaScriptMVC root folder or just root folder if you're cool.</p>
 	 * <p>And since JavaScriptMVC likes folder structures like:</p>
@@ -729,14 +729,14 @@
 	 * \steal
 	 *    \steal.js
 	 * @codeend
-	 * <p>If your path doesn't end with <code>.js</code>, JavaScriptMVC assumes you are loading an 
+	 * <p>If your path doesn't end with <code>.js</code>, JavaScriptMVC assumes you are loading an
 	 * application and will add <code>/myapp.js</code> on for you.  This means that this does the same thing too:</p>
 	 * @codestart
 	 * &lt;script type='text/javascript'
 	 *        src='path/to/steal.js?<u><b>myapp</b></u>'>&lt;/script>
 	 * @codeend
 	 * <div class='whisper'>Steal, and everything else in JavaScriptMVC, provide these little shortcuts
-	 * when you are doing things 'right'.  In this case, you save 9 characters 
+	 * when you are doing things 'right'.  In this case, you save 9 characters
 	 * (<code>/myapp.js</code>) by organizing your app the way, JavaScriptMVC expects.</div>
 	 * </div>
 	 */
@@ -759,7 +759,7 @@
 		cur = null,
 		//where we are currently including
 		steals = [],
-		//    
+		//
 		current_steals = [],
 		//steals that are pending to be steald
 		total = []; //
@@ -938,10 +938,10 @@
 				current_steals.unshift(newInclude); //add to the front
 				return;
 			}
-			var cur = steal.cur(), 
+			var cur = steal.cur(),
 				existing = steal.exists(newInclude);
 
-			
+
 			//if we have already performed loads, insert new steals in head
 			//now we should check if it has already been steald or added earlier in this file
 			if ( !existing ) {
@@ -1017,7 +1017,7 @@
 		/**
 		 * Starts loading files.  This is useful when steal is being used without providing an initial file or app to load.
 		 * You can steal files, but then call steal.start() to start actually loading them.
-		 * 
+		 *
 		 * <h3>Example:</h3>
 		 * @codestart html
 		 * &lt;script src='steal/steal.js'>&lt;/script>
@@ -1041,7 +1041,7 @@
 		 * @return {steal} steal for chaining
 		 */
 		css: function() {
-			//if production, 
+			//if production,
 			if ( steal.options.env == 'production' ) {
 				if ( steal.loadedProductionCSS ) {
 					return steal;
@@ -1077,7 +1077,7 @@
 		},
 		/**
 		 * @hide
-		 * Synchronously requests a file.  This is here to read a file for other types.	 * 
+		 * Synchronously requests a file.  This is here to read a file for other types.	 *
 		 * @param {String} path path of file you want to load
 		 * @param {optional:String} content_type optional content type
 		 * @return {String} text of file
@@ -1193,29 +1193,29 @@
 		/**
 		 * @function plugins
 		 * Loads a list of plugins given a path relative to steal's ROOT folder.
-		 * 
-		 * Steal.plugins is used to load relative to ROOT no matter where the current file is 
+		 *
+		 * Steal.plugins is used to load relative to ROOT no matter where the current file is
 		 * located.  For example, if you want to load the 'foo/bar' plugin that is located like:
-		 * 
+		 *
 		 * @codestart
 		 * steal\
 		 * foo\
 		 *    bar\
 		 *       bar.js
 		 * @codeend
-		 * 
+		 *
 		 * You can load it like:
-		 * 
+		 *
 		 * @codestart
 		 * steal.plugins('foo/bar');
 		 * @codeend
-		 * 
+		 *
 		 * It should be noted that plugins always looks for a JS file that shares the name of the
 		 * plugin's folder (bar.js is in bar).
-		 * 
+		 *
 		 * @param {String} plugin_location location of a plugin, ex: jquery/dom/history.
 		 * @return {steal} a new steal object
-		 * 
+		 *
 		 */
 		plugins: steal.callOnArgs(stealPlugin),
 
@@ -1231,12 +1231,12 @@
 		 * <br>
 		 * If you want to load controllers/recipe_controller.js and controllers/ingredient_controller.js,
 		 * write:
-		 * @codestart 
+		 * @codestart
 		 *  steal.controllers('recipe',
 		 *                    'ingredient')
 		 * @codeend
 		 * @param {String+} controller the name of of the {NAME}_controller.js file to load. You can pass multiple controller names.
-		 * @return {steal} the steal function for chaining.    
+		 * @return {steal} the steal function for chaining.
 		 */
 		controllers: steal.applier(function( i ) {
 			if ( i.match(/^\/\//) ) {
@@ -1255,7 +1255,7 @@
 		 * <br>
 		 * If you want to include models/recipe.js and models/ingredient.js,
 		 * write:
-		 * @codestart 
+		 * @codestart
 		 *  steal.models('recipe',
 		 *               'ingredient')
 		 * @codeend
@@ -1278,7 +1278,7 @@
 		 * Example:
 		 * <br>
 		 * If you want to load resources/i18n.js, write:
-		 * @codestart 
+		 * @codestart
 		 *  steal.resources('i18n')
 		 * @codeend
 		 * @param {String+} resource The name of the resource file you want to load.  You can pass multiple model names.
@@ -1300,12 +1300,12 @@
 		 * Example:
 		 * <br>
 		 * The following loads, coookbook/views/recipe/show.ejs and coookbook/views/recipe/list.ejs:
-		 * @codestart 
+		 * @codestart
 		 *  steal.views('//coookbook/views/recipe/show.ejs',
 		 *              '//coookbook/views/recipe/list.ejs')
 		 * @codeend
 		 * @param {String} path The view's path rooted from steal's root folder.
-		 * @return {steal} the steal function for chaining.   
+		 * @return {steal} the steal function for chaining.
 		 */
 		views: function() {
 			// Only includes views for compression and docs (when running in rhino)

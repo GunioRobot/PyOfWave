@@ -10,26 +10,26 @@ div.tableContainer {
 	overflow: auto;
 	width: 756px   /*ergonomic*/
 }
- 
+
 /* Reset overflow value to hidden for all non-IE browsers. */
 html>body div.tableContainer {
 	overflow: hidden;
 	width: 756px
 }
- 
- 
+
+
 /* define width of table. Add 16px to width for scrollbar.           */
 /* All other non-IE browsers.                                        */
 div.tableContainer table {
 	width: 756px
 }
- 
+
 /* set THEAD element to have block level attributes. All other non-IE browsers            */
 /* this enables overflow to work on TBODY element. All other non-IE, non-Mozilla browsers */
 thead.fixedHeader tr {
 	display: block
 }
- 
+
 /* define the table content to be scrollable                                              */
 /* set TBODY element to have block level attributes. All other non-IE browsers            */
 /* this enables overflow to work on TBODY element. All other non-IE, non-Mozilla browsers */

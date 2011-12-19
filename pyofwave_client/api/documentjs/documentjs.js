@@ -37,7 +37,7 @@
 			options = typeof options === "string" ? {
 				view: options
 			} : options;
-			
+
 			this.set_options(options);
 			if ( options.precompiled ) {
 				this.template = {};
@@ -49,7 +49,7 @@
 				if ( typeof options.element === 'string' ) {
 					var name = options.element;
 					options.element = document.getElementById(options.element);
-					
+
 					if ( options.element == null ){
 						throw name + 'does not exist!';
 					}
@@ -69,15 +69,15 @@
 				var template = vEJS.get(this.name
 				/*url*/
 				, this.cache);
-				
+
 				if ( template ){
 					return template;
 				}
-				
+
 				if ( template === vEJS.INVALID_PATH ){
 					return null;
 				}
-				
+
 				try {
 					this.text = vEJS.request(url + (this.cache ? '' : '?' + Math.random()));
 				} catch (e) {}
@@ -87,7 +87,7 @@
 				}
 				//this.name = url;
 			}
-			
+
 			var template = new vEJS.Compiler(this.text, this.type);
 
 			template.compile(options, this.name);
@@ -124,12 +124,12 @@
 				params = {};
 				params.url = options;
 				_template = this;
-				
+
 				params.onComplete = function( request ) {
 					var object = eval(request.responseText);
 					vEJS.prototype.update.call(_template, element, object);
 				};
-				
+
 				vEJS.ajax_request(params);
 			} else {
 				element.innerHTML = this.render(options);
@@ -171,8 +171,8 @@
 			left_comment: left + '%#'
 		});
 
-		this.SplitRegexp = left === '[' 
-							? /(\[%%)|(%%\])|(\[%=)|(\[%#)|(\[%)|(%\]\n)|(%\])|(\n)/ 
+		this.SplitRegexp = left === '['
+							? /(\[%%)|(%%\])|(\[%=)|(\[%#)|(\[%)|(%\]\n)|(%\])|(\n)/
 							: new RegExp('(' + this.double_left + ')|(%%' + this.double_right + ')|(' + this.left_equal + ')|(' + this.left_comment + ')|(' + this.left_delimiter + ')|(' + this.right_delimiter + '\n)|(' + this.right_delimiter + ')|(\n)');
 
 		this.source = source;
@@ -184,15 +184,15 @@
 		if ( input == null || input === undefined ){
 			return '';
 		}
-		
+
 		if ( input instanceof Date ) {
 			return input.toDateString();
 		}
-		
+
 		if ( input.toString ) {
 			return input.toString();
 		}
-		
+
 		return '';
 	};
 
@@ -409,11 +409,11 @@
 			if ( cache == false ){
 				return null;
 			}
-			
-			if ( templates_directory[path] ){ 
+
+			if ( templates_directory[path] ){
 				return templates_directory[path];
 			}
-			
+
 			return null;
 		};
 
@@ -421,7 +421,7 @@
 			if ( path == null ) {
 				return;
 			}
-			
+
 			templates_directory[path] = template;
 		};
 
@@ -450,22 +450,22 @@
 			if ( !data ){
 				data = this._data;
 			}
-			
+
 			return new vEJS(options).render(data, helpers);
 		},
 		to_text: function( input, null_text ) {
 			if ( input == null || input === undefined ) {
 				return null_text || '';
 			}
-			
+
 			if ( input instanceof Date ) {
 				return input.toDateString();
 			}
-			
+
 			if ( input.toString ) {
 				return input.toString().replace(/\n/g, '<br />').replace(/''/g, "'");
 			}
-			
+
 			return '';
 		}
 	};
@@ -482,7 +482,7 @@
 				var request = factories[i]();
 				if ( request != null ) {
 					return request;
-				} 
+				}
 			}
 			catch (e) {
 				continue;
@@ -492,7 +492,7 @@
 
 	vEJS.request = function( path ) {
 		var request = new vEJS.newRequest();
-		
+
 		request.open("GET", path, false);
 
 		try {
@@ -504,16 +504,16 @@
 
 		if ( request.status == 404 || request.status == 2 || (request.status == 0 && request.responseText == '') ){
 			return null;
-		} 
+		}
 
 		return request.responseText;
 	};
-	
+
 	vEJS.ajax_request = function( params ) {
 		params.method = (params.method ? params.method : 'GET');
 
 		var request = new vEJS.newRequest();
-		
+
 		request.onreadystatechange = function() {
 			if ( request.readyState == 4 ) {
 				if ( request.status == 200 ) {
@@ -523,7 +523,7 @@
 				}
 			}
 		};
-		
+
 		request.open(params.method, params.url);
 		request.send(null);
 	};
@@ -938,7 +938,7 @@
 			text = text.replace(/^(<(p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math)\b[^\r]*?.*<\/\2>[ \t]*(?=\n+)\n)/gm, hashElement);
 
 			// Special case just for <hr />. It was easier to make a special case than
-			// to make the other regex more complicated.  
+			// to make the other regex more complicated.
 /*
 		text = text.replace(/
 		(						// save in $1
@@ -946,7 +946,7 @@
 			[ ]{0,3}
 			(<(hr)				// start tag = $2
 			\b					// word break
-			([^<>])*?			// 
+			([^<>])*?			//
 			\/?>)				// the matching end tag
 			[ \t]*
 			(?=\n{2,})			// followed by a blank line
@@ -1072,7 +1072,7 @@
 			// Within tags -- meaning between < and > -- encode [\ ` * _] so they
 			// don't conflict with their use in Markdown for code, italics and strong.
 			//
-			// Build a regex to find HTML tags and comments.  See Friedl's 
+			// Build a regex to find HTML tags and comments.  See Friedl's
 			// "Mastering Regular Expressions", 2nd Ed., pp. 200-201.
 			var regex = /(<[a-z\/!$]("[^"]*"|'[^']*'|[^'">])*>|<!(--.*?--\s*)+>)/gi;
 
@@ -1317,7 +1317,7 @@
 			// Setext-style headers:
 			//	Header 1
 			//	========
-			//  
+			//
 			//	Header 2
 			//	--------
 			//
@@ -1502,7 +1502,7 @@
 		var _DoCodeBlocks = function( text ) {
 			//
 			//  Process Markdown `<pre><code>` blocks.
-			//  
+			//
 /*
 		text = text.replace(text,
 			/(?:\n\n|^)
@@ -1547,26 +1547,26 @@
 		var _DoCodeSpans = function( text ) {
 			//
 			//   *  Backtick quotes are used for <code></code> spans.
-			// 
+			//
 			//   *  You can use multiple backticks as the delimiters if you want to
 			//	 include literal backticks in the code span. So, this input:
-			//	 
+			//
 			//		 Just type ``foo `bar` baz`` at the prompt.
-			//	 
+			//
 			//	   Will translate to:
-			//	 
+			//
 			//		 <p>Just type <code>foo `bar` baz</code> at the prompt.</p>
-			//	 
+			//
 			//	There's no arbitrary limit to the number of backticks you
 			//	can use as delimters. If you need three consecutive backticks
 			//	in your code, use four for delimiters, etc.
 			//
 			//  *  You can use spaces to get literal backticks at the edges:
-			//	 
+			//
 			//		 ... type `` `bar` `` ...
-			//	 
+			//
 			//	   Turns to:
-			//	 
+			//
 			//		 ... type <code>`bar`</code> ...
 			//
 /*
@@ -1921,74 +1921,74 @@
 	if(typeof DocumentJS != 'undefined'){
 		return;
 	}
-	
+
 	/**
 	 * @class DocumentJS
 	 * @tag core, documentation
      * There are several reasons why documentation is important:
-     * 
+     *
      * * As apps grow, source code becomes complex and difficult to maintain.
      * * It's beneficial for customers because it helps to educate them on a product.
      * * Perhaps most importantly, it keeps a project going by bringing new developers up to speed - while also keeping the whole team on the same page.
-	 * 
+	 *
 	 * DocumentJS is a new documentation solution for JavaScript applications. It makes creating, viewing, and maintaining documentation easy and fun. Out of the box, it features:
-	 * 
+	 *
      * * Fexible organization of your documentation
      * * An integrated documentation viewer where you can search your API
      * * Markdown support
      * * An extensible architecture
-     * 
+     *
 	 * DocumentJS provides powerful and easy to extend documentation functionality.
-	 * It's smart enough to guess 
-	 * at things like function names and parameters, but powerful enough to generate 
+	 * It's smart enough to guess
+	 * at things like function names and parameters, but powerful enough to generate
 	 * <span class='highlight'>JavaScriptMVC's entire website</span>!
-	 * 
+	 *
 	 * ###Organizing your documentation
 	 *
-	 * Let's use an hypothetical little CRM system as an example of how easy it is to organize your documentation with DocumentJS. 
-	 * 
+	 * Let's use an hypothetical little CRM system as an example of how easy it is to organize your documentation with DocumentJS.
+	 *
 	 * First let's create our CRM documentation home page by creating a folder name __crm__. Paste this code into a file named __crm.js__ inside __crm__ folder.
-	 * 
+	 *
 	 * @codestart
 	 * /*
      *  * @@page crm CRM
      *  * @@tag home
      *  *
      *  * ###Little CRM
-     *  *  
+     *  *
      *  * Our little CRM only has two classes:
-     *  *  
-     *  * * Customer 
-     *  * * Order 
+     *  *
+     *  * * Customer
+     *  * * Order
      *  *|
 	 * @codeend
-	 * 
+	 *
 	 * Run the documentjs script to generate the docs:
-	 * 
+	 *
 	 * @codestart
 	 * documentjs/doc.bat crm
 	 * @codeend
-	 * 
+	 *
 	 * This is what you should see when you open __crm\docs.html__:
-	 * 
+	 *
 	 * @image jmvc/images/crm_doc_demo_1.png
-	 * 
-	 * 
+	 *
+	 *
 	 * There are a few things to notice:
-	 * 
+	 *
 	 * * The example closes comments with _*|_.  You should close them with / instead of |.
-	 * * We create a link to another class with _[Animal | here]_. 
-	 * * We used the @@page directive to create the crm documentation home page. Don't worry about the @@tag directive for now, we'll get back to it later. 
+	 * * We create a link to another class with _[Animal | here]_.
+	 * * We used the @@page directive to create the crm documentation home page. Don't worry about the @@tag directive for now, we'll get back to it later.
 	 * * In all the examples in this walkthrough we use markdown markup instead of html to make the documentation more maintainable and easier to read .
-	 * 
+	 *
 	 * Next we document the two classes that make our little crm system. Paste each snippet of code into two files with names __customer.js__ and __order.js__:
-	 * 
+	 *
 	 * __customer.js__
-	 * 
+	 *
 	 * @codestart
      * /*
      *  * @@class Customer
-     *  * @@parent crm 
+     *  * @@parent crm
      *  * @@constructor
      *  * Creates a new customer.
      *  * @@param {String} name
@@ -1996,14 +1996,14 @@
      *  var Customer = function(name) {
 	 *     this.name = name;
      *  }
-	 * @codeend 
-	 * 
+	 * @codeend
+	 *
 	 * __order.js__
-	 * 
+	 *
 	 * @codestart
      * /*
      *  * @@class Order
-     *  * @@parent crm 
+     *  * @@parent crm
      *  * @@constructor
      *  * Creates a new order.
      *  * @@param {String} id
@@ -2011,22 +2011,22 @@
      *  var Order = function(id) {
 	 *     this.id = id;
      *  }
-	 * @codeend 
-	 * 
+	 * @codeend
+	 *
 	 * After runnig the documentjs script once again you should be able to see this:
-	 * 
+	 *
 	 * @image jmvc/images/crm_doc_demo_2.png
-	 * 
-	 * 
+	 *
+	 *
 	 * We want to be able to both look for our customer's orders and dispatch them so let's add a _findById_ method to our Order class
 	 * and a _dispatch_ method to our Order's prototype:
-	 * 
+	 *
 	 * __order.js__
-	 * 
+	 *
 	 * @codestart
-	 * /*  
-     *  * @class Order 
-     *  * @parent crm 
+	 * /*
+     *  * @class Order
+     *  * @parent crm
      *  * @@constructor
      *  * Creates a new order.
      *  * @@param {String} id
@@ -2060,17 +2060,17 @@
 	 *      * @@return {Boolean} Returns true if order dispatched successfully.
 	 *      *|
 	 *      dispatch: function() {
-	 *     
+	 *
 	 *      }
      * });
 	 * @codeend
-	 * 
+	 *
 	 * Go ahead and produce the docs by running the documentjs script. You should see your Order methods organized by static and protoype categories.
-	 * 
+	 *
 	 * There's one last thing we need to cover - customizing the document viewer template. The default viewer template file name is __summary.ejs__ and it's
-	 * located in __documentjs/jmvcdoc/summary.ejs__. You can use a customized template by copying __summary__.ejs into the __crm__ folder and changing it 
+	 * located in __documentjs/jmvcdoc/summary.ejs__. You can use a customized template by copying __summary__.ejs into the __crm__ folder and changing it
 	 * according to your needs. Let's try changing the navigation menu __core__ item to __crm__:
-	 * 
+	 *
 	 * @codestart
 	 * &lt;li class="ui-menu-item"&gt;
 	 *     &lt;a class="menuLink" href="#&amp;search=crm"&gt;&lt;span class="menuSpan"&gt;CRM&lt;/span&gt;&lt;/a&gt;
@@ -2079,34 +2079,34 @@
 	 *
 	 * Remember the @@tag directive? We can now change it in our examples from _core_ to _crm_. You will notice that our crm page will show up
 	 * every time you click the CRM menu item or type _crm_ in the documentation viewer search box.
-	 * 
-	 * If you need for DocumentJS not to document a particular script you can do that by adding the @document-ignore directive to the top of the file. 
-	 * 
+	 *
+	 * If you need for DocumentJS not to document a particular script you can do that by adding the @document-ignore directive to the top of the file.
+	 *
 	 * As you see DocumentJS makes it super easy and fun to organize your documentation!
-	 * 
+	 *
 	 * ###How DocumentJS works
-	 * 
-	 * DocumentJS architecture is organized around the concepts of [DocumentJS.types | types] and [DocumentJS.tags | tags]. Types are meant to represent every javascript construct 
+	 *
+	 * DocumentJS architecture is organized around the concepts of [DocumentJS.types | types] and [DocumentJS.tags | tags]. Types are meant to represent every javascript construct
 	 * you might want to comment like classes, functions and attributes. Tags add aditional information to the comments of the type being processed.
-	 * 
-	 * DocumentJS works by loading a set of javascript files, then by spliting each file into type/comments pairs 
-	 * and finally parsing each type's comments tag directives to produce a set of jsonp files (one per type) 
+	 *
+	 * DocumentJS works by loading a set of javascript files, then by spliting each file into type/comments pairs
+	 * and finally parsing each type's comments tag directives to produce a set of jsonp files (one per type)
 	 * that are used by the document viewer (jmvcdoc) to render the documentation.
-	 * 
-	 * DocumentJS was written thinking of extensibility and it's very easy to add custom type/tag directives to handle your specific documentation needs.   
-	 * 
+	 *
+	 * DocumentJS was written thinking of extensibility and it's very easy to add custom type/tag directives to handle your specific documentation needs.
+	 *
 	 * ###Type directives
-	 * 
+	 *
 	 * * [DocumentJS.types.page | @page] -  add a standalone page.
 	 * * [DocumentJS.types.attribute | @attribute] -  document values on an object.
 	 * * [DocumentJS.types.function | @function] - document functions.
-	 * * [DocumentJS.types.class| @class] - document a class. 
+	 * * [DocumentJS.types.class| @class] - document a class.
 	 * * [DocumentJS.types.prototype | @prototype] - add to the previous class or constructor's prototype functions.
 	 * * [DocumentJS.types.static | @static] - add to the previous class or constructor's static functions.
 	 * * [DocumentJS.types.add |@add] - add docs to a class or construtor described in another file.
-	 * 
+	 *
 	 * ###Tag directives
-	 * 
+	 *
 	 * * [DocumentJS.tags.alias|@alias] - another commonly used name for Class or Constructor.
 	 * * [DocumentJS.tags.author|@author] - author of class.
 	 * * [DocumentJS.tags.codestart|@codestart] -> [DocumentJS.tags.codeend|@codeend] - insert highlighted code block.
@@ -2116,7 +2116,7 @@
 	 * * [DocumentJS.tags.iframe|@iframe] - adds an iframe with example code.
 	 * * [DocumentJS.tags.hide|@hide] - hide in Class view.
 	 * * [DocumentJS.tags.inherits|@inherits] - what the Class or Constructor inherits.
-	 * * [DocumentJS.tags.parent|@parent] - says under which parent the current type should be located. 
+	 * * [DocumentJS.tags.parent|@parent] - says under which parent the current type should be located.
 	 * * [DocumentJS.tags.param|@param] - A function's parameter.
 	 * * [DocumentJS.tags.plugin|@plugin] - by which plugin this object gets steald.
 	 * * [DocumentJS.tags.return|@return] - what a function returns.
@@ -2125,19 +2125,19 @@
 	 * * [DocumentJS.tags.test|@test] - link for test cases.
 	 * * [DocumentJS.tags.type|@type] - sets the type for the current commented code.
 	 * * [DocumentJS.tags.image|@image] - adds an image.
-	 * 
-	 * 
+	 *
+	 *
 	 * ###Inspiration
-	 * 
+	 *
 	 * DocumentJS was inspired by the [http://api.jquery.com/ jQuery API Browser] by [http://remysharp.com/ Remy Sharp]
-	 * 
-	 * 
+	 *
+	 *
 	 * @param {Array|String} scripts an array of script objects that have src and text properties like:
 	 * @codestart
 	 * [{src: "path/to/file.js", text: "var a= 1;"}, { ... }]
 	 * @codeend
 	 * @param {Object} options an options hash including
-	 * 
+	 *
 	 *   . name - the name of the application
 	 *   . out - where to generate the documentation files
 	 */
@@ -2155,17 +2155,17 @@
 
 			scripts = DocumentJS.getScripts(scripts)
 		}
-		
+
  		//all the objects live here, have a unique name
 		DocumentJS.objects = {};
-		
+
 		//create each Script, which will create each class/constructor, etc
 		print("PROCESSING SCRIPTS\n")
 		for ( var s = 0; s < scripts.length; s++ ) {
 			DocumentJS.Script.process(scripts[s])
 		}
 		print('\nGENERATING DOCS -> '+options.out+'\n')
-		
+
 		// generate individual JSONP forms of individual comments
 		DocumentJS.generate(options)
 
@@ -2174,13 +2174,13 @@
 
 		//make summary page (html page to load it all)
 		DocumentJS.summaryPage(options);
-		
+
 	};
-	
+
 	var extend = steal.extend,
 		build = steal.build,
 		docJS = DocumentJS;
-	
+
 	extend(docJS, {
 		// gets scripts from a path
 		getScripts : function(file){
@@ -2215,7 +2215,7 @@
 				};
 				getJSFiles(file);
 			}
-					
+
 			return scripts;
 		},
 		generate : function(options){
@@ -2228,15 +2228,15 @@
 					//get a copy of the object (we will modify it with children)
 					var obj = docJS.extend({}, docJS.objects[name]),
 						toJSON;
-					
+
 					// eventually have an option allow scripts
 					if ( obj.type == 'script' || typeof obj != "object" ) {
 						continue;
 					}
-					
-					//get all children					
+
+					//get all children
 					obj.children = this.listedChildren(obj);
-	
+
 					var converted = name.replace(/ /g, "_")
 										.replace(/&#46;/g, ".")
 										.replace(/&gt;/g, "_gt_")
@@ -2244,7 +2244,7 @@
 					toJSON = this.out(obj);
 					new docJS.File(output + converted + ".json").save(toJSON);
 				}
-	
+
 			}
 		},
 		// takes an object and returns how DocumentJS likes to save data
@@ -2303,16 +2303,16 @@
 		}
 	})
 	//Add things to StealJS we like, then remove them from the global namespace
-	
-	
+
+
 	extend(docJS, steal); //even if we delete steal, we still have it's goodness
 	DocumentJS.EJS = steal.EJS;
 	DocumentJS.JSONparse = JSONparse;
 	DocumentJS.toJSON = toJSON;
 	DocumentJS.extend = extend;
-	
+
 	DocumentJS.converter = new Showdown.converter();
-	
+
 	delete Showdown;
 	delete JSONparse;
 
@@ -2373,19 +2373,19 @@
 	}
 })(steal);
 (function(){
-	
+
 	// Makes a JSON object for search data
 	DocumentJS.searchData = function(options){
-		
+
 		var searchData = {
 				list: {}
 		};
 
 		addToSearchData(DocumentJS.objects, searchData)
-		
+
 		return new DocumentJS.File(options.out + "/searchData.json").save(DocumentJS.out(searchData, false));
 	}
-	
+
 	// goes through list and adds to search data
 	var addToSearchData = function( list, searchData ) {
 		var c, parts, part, p, fullName;
@@ -2455,35 +2455,35 @@
 			}
 			return -1;
 		}
-	
 
-	
-	
+
+
+
 })(steal);
 (function() {
-	
-	
+
+
 	/**
 	 * @attribute DocumentJS.tags
 	 * @parent DocumentJS
 	 * A tag adds additional information to the comment being processed.
 	 * For example, if you want the current comment to include the author,
 	 * include an @@author tag.
-	 * 
+	 *
 	 * ## Creating your own tag
-	 * 
+	 *
 	 * To create a tag, you need to add to DocumentJS.tags an object with an add and an optional
 	 * addMore method like:
-	 * 
+	 *
 	 * @codestart
 	 * DocumentJS.tags.mytag = {
 	 *   add : function(line){ ... },
 	 *   addMore : function(line, last){ ... }
 	 * }
-	 * @codeend 
+	 * @codeend
 	 */
-	
-	
+
+
 	DocumentJS.tags = {};
 
 })(steal);
@@ -2491,18 +2491,18 @@
 	/**
 	 * @class DocumentJS.tags.alias
 	 * @tag documentation
-	 * @parent DocumentJS.tags 
+	 * @parent DocumentJS.tags
 	 * The Class or Constructor is known by another name.
-	 * 
+	 *
 	 * ###Example:
-	 *  
+	 *
 	 * @codestart
 	 * /*
 	 *  * @alias WidgetFactory
 	 *  *|
 	 *  $.Class.extend("jQuery.Controller",
 	 *  ...
-	 * @codeend 
+	 * @codeend
 	 */
 	DocumentJS.tags.alias = {
 		add: function( line ) {
@@ -2517,11 +2517,11 @@
 	/**
 	 * @class DocumentJS.tags.author
 	 * @tag documentation
-	 * @parent DocumentJS.tags 
+	 * @parent DocumentJS.tags
 	 * Describes who the author of a class is.
-	 * 
+	 *
 	 * ###Example:
-	 * 
+	 *
 	 * @codestart
 	 * /*
 	 *  * @author Justin Meyer
@@ -2542,18 +2542,18 @@
 	/**
 	 * @class DocumentJS.tags.codeend
 	 * @tag documentation
-	 * @parent DocumentJS.tags 
-	 * 
+	 * @parent DocumentJS.tags
+	 *
 	 * Stops a code block.
-	 * 
+	 *
 	 * ###Example:
-	 * 
+	 *
 	 * @codestart
 	 *
-	 *  /* 
+	 *  /*
 	 *   * @codestart
 	 *   *  /* @class
-	 *   *   * Person represents a human with a name.  Read about the 
+	 *   *   * Person represents a human with a name.  Read about the
 	 *   *   * animal class [Animal | here].
 	 *   *   * @constructor
 	 *   *   * You must pass in a name.
@@ -2570,7 +2570,7 @@
 	 *   *  })
 	 *   *  /* @Prototype *|
 	 *   *  Person.prototype = {
-	 *   *     /* Returns a formal name 
+	 *   *     /* Returns a formal name
 	 *   *      * @return {String} the name with "Mrs." added
 	 *   *      *|
 	 *   *      fancyName : function(){
@@ -2580,7 +2580,7 @@
 	 *   * @codeend
 	 *   *|
 	 *
-	 * @codeend 
+	 * @codeend
 	 */
 	DocumentJS.tags.codeend = {
 		add: function( line, data ) {
@@ -2604,24 +2604,24 @@
 	/**
 	 * @class DocumentJS.tags.codestart
 	 * @tag documentation
-	 * @parent DocumentJS.tags 
-	 * 
-	 * Starts a code block.  
-	 * 
+	 * @parent DocumentJS.tags
+	 *
+	 * Starts a code block.
+	 *
 	 * Looks for "@codestart codeType".
-	 *   
+	 *
 	 * Matches multiple lines.
-	 *   
+	 *
 	 * Must end with "@codeend".
-	 * 
+	 *
 	 * ###Example:
-	 * 
+	 *
 	 * @codestart
 	 *
-	 *  /* 
+	 *  /*
 	 *   * @codestart
 	 *   *  /* @class
-	 *   *   * Person represents a human with a name.  Read about the 
+	 *   *   * Person represents a human with a name.  Read about the
 	 *   *   * animal class [Animal | here].
 	 *   *   * @constructor
 	 *   *   * You must pass in a name.
@@ -2638,7 +2638,7 @@
 	 *   *  })
 	 *   *  /* @Prototype *|
 	 *   *  Person.prototype = {
-	 *   *     /* Returns a formal name 
+	 *   *     /* Returns a formal name
 	 *   *      * @return {String} the name with "Mrs." added
 	 *   *      *|
 	 *   *      fancyName : function(){
@@ -2648,7 +2648,7 @@
 	 *   * @codeend
 	 *   *|
 	 *
-	 * @codeend 
+	 * @codeend
 	 */
 	DocumentJS.tags.codestart = {
 		add: function( line, last ) {
@@ -2674,14 +2674,14 @@
 	/**
 	 * @class DocumentJS.tags.constructor
 	 * @parent DocumentJS.tags
-	 *   
-	 * Documents a constructor function and its parameters. 
-	 * 
+	 *
+	 * Documents a constructor function and its parameters.
+	 *
 	 * ###Example:
-	 * 
+	 *
 	 * @codestart
      * /*
-     *  * @@class Customer 
+     *  * @@class Customer
      *  * @@constructor
      *  * Creates a new customer.
      *  * @param {String} name
@@ -2709,20 +2709,20 @@
 	/**
 	 * @class DocumentJS.tags.demo
 	 * @tag documentation
-	 * @parent DocumentJS.tags 
-	 * 
+	 * @parent DocumentJS.tags
+	 *
 	 * Placeholder for an application demo.
-	 * 
+	 *
 	 * ###Demo Example:
-	 * 
+	 *
 	 * @codestart
 	 * /*
 	 *  * @demo jquery/controller/controller.html
 	 *  *|
 	 * @codeend
-	 * 
+	 *
 	 * ###End Result:
-	 *   
+	 *
 	 * @demo jquery/controller/controller.html
 	 */
 	DocumentJS.tags.demo = {
@@ -2739,12 +2739,12 @@
 	/**
 	 * @class DocumentJS.tags.download
 	 * @tag documentation
-	 * @parent DocumentJS.tags 
-	 * 
+	 * @parent DocumentJS.tags
+	 *
 	 * Adds a download link.
-	 * 
+	 *
 	 * ###Example:
-	 * 
+	 *
 	 * @codestart
 	 * /**
 	 *  * @constructor jQuery.Drag
@@ -2756,7 +2756,7 @@
 	 *  *|
 	 *  $.Drag = function(){}
 	 * @codeend
-	 * 
+	 *
 	 * You can click the example download link on this [jQuery.Drag | page]
      *
 	 */
@@ -2772,15 +2772,15 @@
 	/**
 	 * @class DocumentJS.tags.hide
 	 * @tag documentation
-	 * @parent DocumentJS.tags 
-	 * 
+	 * @parent DocumentJS.tags
+	 *
 	 * Hides this construct from the left hand side bar.
-	 * 
+	 *
 	 * ###Example:
-	 * 
+	 *
 	 * @codestart
 	 * /*
-	 *  * Checks if there is a set_<i>property</i> value.  
+	 *  * Checks if there is a set_<i>property</i> value.
 	 *  * If it returns true, lets it handle; otherwise saves it.
 	 *  * @@hide
 	 *  * @@param {Object} property
@@ -2802,20 +2802,20 @@
 	/**
 	 * @class DocumentJS.tags.iframe
 	 * @tag documentation
-	 * @parent DocumentJS.tags 
-	 * 
+	 * @parent DocumentJS.tags
+	 *
 	 * Adds an iframe to some page with example code.
-	 * 
+	 *
 	 * ###Example:
-	 * 
+	 *
 	 * @codestart
 	 * /*
 	 *  * @iframe jquery/view/view.html 700
 	 *  *|
 	 * @codeend
-	 * 
+	 *
 	 * ###End Result:
-	 * 
+	 *
 	 * @iframe jquery/view/view.html 700
 	 */
 	DocumentJS.tags.iframe = {
@@ -2836,12 +2836,12 @@
 	/**
 	 * @class DocumentJS.tags.inherits
 	 * @tag documentation
-	 * @parent DocumentJS.tags 
-	 * 
+	 * @parent DocumentJS.tags
+	 *
 	 * Says current class inherits from another class.
 	 *
 	 * ###Example:
-	 * 
+	 *
 	 * @codestart
 	 * /*
 	 *  * @class Client
@@ -2892,26 +2892,26 @@
 		/**
 		 * @class DocumentJS.tags.param
 		 * @tag documentation
-		 * @parent DocumentJS.tags 
-		 * 
+		 * @parent DocumentJS.tags
+		 *
 		 * Adds parameter information.
-		 * 
+		 *
 		 * ###Use cases:
-		 * 
+		 *
 		 * 1. Common use:
-		 * 
+		 *
 		 *      __@@params {TYPE} name description__
-		 * 
+		 *
 		 * 2. Optional parameters use case:
-		 * 
+		 *
          *     __@@params {TYPE} [name] description__
-         * 
+         *
          * 3. Default value use case:
-         * 
+         *
          *     __@@params {TYPE} [name=default] description__
 		 *
 		 * ###Example:
-		 * 
+		 *
 		 * @codestart
 	     * /*
 	     *  * Finds an order by id.
@@ -2920,10 +2920,10 @@
 	     *  *|
 	     *  findById: function(id, date) {
          *      // looks for an order by id
-	     *  }   
+	     *  }
     	 *  @codeend
-    	 *  
-    	 * 
+    	 *
+    	 *
 		 */
 		DocumentJS.tags.param = {
 
@@ -2994,12 +2994,12 @@
 		/**
 		 * @class DocumentJS.tags.parent
 		 * @tag documentation
-		 * @parent DocumentJS.tags 
-		 * 
+		 * @parent DocumentJS.tags
+		 *
 		 * Says under which parent the current type should be located.
-		 * 
+		 *
 		 * ###Example:
-		 * 
+		 *
 		 * @codestart
 		 * /**
 		 *  * @constructor jQuery.Drag
@@ -3008,9 +3008,9 @@
 		 *  *|
 		 *  $.Drag = function(){}
 		 * @codeend
-		 * 
+		 *
 		 * ###End Result:
-		 * 
+		 *
 		 * @image jmvc/images/parent_tag_example.png
 		 */
 		DocumentJS.tags.parent = {
@@ -3043,12 +3043,12 @@
 	/**
 	 * @class DocumentJS.tags.plugin
 	 * @tag documentation
-	 * @parent DocumentJS.tags 
-	 * 
-	 * Adds to another plugin. 
-	 * 
+	 * @parent DocumentJS.tags
+	 *
+	 * Adds to another plugin.
+	 *
 	 * ###Example:
-	 * 
+	 *
 	 * @codestart
 	 * /**
 	 *  * @tag core
@@ -3059,9 +3059,9 @@
 	 *  *|
 	 *  $.Class.extend("jQuery.Controller",
 	 * @codeend
-	 * 
+	 *
 	 * ###End Result:
-	 * 
+	 *
 	 * @image jmvc/images/plugin_tag_example.png
 	 */
 	DocumentJS.tags.plugin = {
@@ -3074,12 +3074,12 @@
 	/**
 	 * @class DocumentJS.tags.return
 	 * @tag documentation
-	 * @parent DocumentJS.tags 
-	 * 
+	 * @parent DocumentJS.tags
+	 *
 	 * Describes return data in the format.
-	 * 
+	 *
 	 * ###Example:
-	 * 
+	 *
 	 * @codestart
 	 *  /**
 	 *   * Capitalizes a string
@@ -3090,9 +3090,9 @@
 	 *       return s.charAt(0).toUpperCase() + s.substr(1);
 	 *   }
 	 * @codeend
-	 * 
+	 *
 	 * ###End Result:
-	 * 
+	 *
 	 * @image jmvc/images/return_tag_example.png
 	 */
 	DocumentJS.tags["return"] = {
@@ -3127,12 +3127,12 @@
 	/**
 	 * @class DocumentJS.tags.scope
 	 * @tag documentation
-	 * @parent DocumentJS.tags 
-	 * 
-	 * Forces the current type to start scope. 
-	 * 
+	 * @parent DocumentJS.tags
+	 *
+	 * Forces the current type to start scope.
+	 *
 	 * ###Example:
-	 * 
+	 *
 	 * @codestart
 	 * /**
      *  * @attribute convert
@@ -3153,7 +3153,7 @@
 	 *      }
 	 *  }
 	 * @codeend
-	 * 
+	 *
 	 * In the example above the use of @@scope forces __date__, __number__ and __boolean__ methods to be __convert's__ children.
 	 */
 	DocumentJS.tags.scope = {
@@ -3167,12 +3167,12 @@
 	/**
 	 * @class DocumentJS.tags.tag
 	 * @tag documentation
-	 * @parent DocumentJS.tags 
-	 * 
+	 * @parent DocumentJS.tags
+	 *
 	 * Tags for searching.
-	 * 
+	 *
 	 * ###Example:
-	 * 
+	 *
 	 * @codestart
 	 * /**
 	 *  * @tag core
@@ -3181,11 +3181,11 @@
 	 *  *`@test jquery/controller/qunit.html
 	 *  * ...
 	 *  *|
-	 *  $.Class.extend("jQuery.Controller", 
+	 *  $.Class.extend("jQuery.Controller",
 	 * @codeend
-	 * 
+	 *
 	 * ###End Result:
-	 * 
+	 *
 	 * @image jmvc/images/tag_tag_example.png
 	 */
 	DocumentJS.tags.tag = {
@@ -3207,12 +3207,12 @@
 	/**
 	 * @class DocumentJS.tags.test
 	 * @tag documentation
-	 * @parent DocumentJS.tags 
-	 * 
+	 * @parent DocumentJS.tags
+	 *
 	 * Link to test cases.
-	 * 
+	 *
 	 * #Example
-	 * 
+	 *
 	 * @codestart
 	 * /*
 	 *  * @constructor jQuery.Drag
@@ -3224,7 +3224,7 @@
 	 *  *|
 	 *  $.Drag = function(){}
 	 * @codeend
-	 * 
+	 *
 	 * ###End Result:
 	 * @image jmvc/images/test_tag_example.png
 	 * @image jmvc/images/test_tag_test_example.png
@@ -3239,12 +3239,12 @@
 	/**
 	 * @class DocumentJS.tags.type
 	 * @tag documentation
-	 * @parent DocumentJS.tags 
-	 * 
+	 * @parent DocumentJS.tags
+	 *
 	 * Sets the type for the current commented code.
-	 * 
+	 *
 	 * ###Example:
-	 * 
+	 *
 	 * @codestart
 	 * /**
 	 *  *
@@ -3265,7 +3265,7 @@
 	 *          return Boolean(val)
 	 *      }
 	 *  }
-	 * @codeend 
+	 * @codeend
 	 */
 	DocumentJS.tags.type = {
 		add: function( line ) {
@@ -3280,14 +3280,14 @@
 	/**
 	 * @class DocumentJS.tags.image
 	 * @tag documentation
-	 * @parent DocumentJS.tags 
-	 * 
+	 * @parent DocumentJS.tags
+	 *
 	 * Adds an image.
-	 * 
+	 *
 	 * ###Example:
-	 * 
+	 *
 	 * @codestart
-	 * /* 
+	 * /*
 	 *  * @image jmvc/images/page_type_example.png 640 480
 	 *  *|
 	 * @codeend
@@ -3311,20 +3311,20 @@
 	/**
 	 * @attribute DocumentJS.types
 	 * @parent DocumentJS
-	 * Type directives represent every possible javascript construct 
+	 * Type directives represent every possible javascript construct
 	 * you might want to document.
-	 * 
+	 *
 	 * ## How to create your own type directive
-	 * 
-     * All you have to do is create a file describing what your new directive tag looks like and does, 
+	 *
+     * All you have to do is create a file describing what your new directive tag looks like and does,
      * and just drop it into the "tags/types" directory - it's that easy.
      *
-     * A common documentation need in JavaScript projects is to document classes with non-standard syntax. 
+     * A common documentation need in JavaScript projects is to document classes with non-standard syntax.
      * Popular frameworks handle class creation using the following pattern:
-     * 
+     *
      * @codestart
-     * /* 
-     *  * we want to document this as being a class 
+     * /*
+     *  * we want to document this as being a class
      *  *|
      * var Person = makeClass(
      * {
@@ -3336,8 +3336,8 @@
      *   }
      * });
      * @codeend
-     *  
-     * Documentjs is flexible enough to let you do this with minimal effort. 
+     *
+     * Documentjs is flexible enough to let you do this with minimal effort.
      * All you have to do is to add a new type to the existing types folder (__documentjs/types__).  Let's name it __make_class.js__:
      *
      * @codestart
@@ -3364,20 +3364,20 @@
 	 *      }
      * }
      * @codeend
-     * 
-     * There's one final step you must follow to make your custom type work: add it to the list of 
+     *
+     * There's one final step you must follow to make your custom type work: add it to the list of
      * loaded types in __documentjs/types/types.js__.
-     * 
+     *
      * @codestart
      *  ...
      * '//documentjs/types/function', '//documentjs/types/page', '//documentjs/types/prototype',
      * '//documentjs/types/script', '//documentjs/types/static', '//documentjs/types/make_class');
      * @codeend
-     * 
-     * And that's it! Now you can write your code using your favorite framework 
+     *
+     * And that's it! Now you can write your code using your favorite framework
      * and know that all your classes will be documented correctly for you.
-     * 
-     * 
+     *
+     *
 	 */
 	DocumentJS.types = {};
 })(steal);
@@ -3385,7 +3385,7 @@
 	/**
 	 * @class
 	 * @tag documentation
-	 * Keeps track of types of directives in DocumentJS.  
+	 * Keeps track of types of directives in DocumentJS.
 	 * Each type is added to the types array.
 	 * @param {Object} type
 	 * @param {Object} props
@@ -3421,9 +3421,9 @@
 
 				var nameCheck = comment.match(/^\s*@(\w+)[ \t]+([\w\.]+)/m)
 
-			
+
 			props = type.code(code)
-			
+
 			if (!props && !nameCheck ) {
 				return null;
 			}
@@ -3442,7 +3442,7 @@
 				props = DocumentJS.objects[props.name];
 				DocumentJS.extend(props, newProps);
 			}
-			
+
 			if ( !props.type ) {
 				props.type = type.type;
 			}
@@ -3508,7 +3508,7 @@
 			return null;
 		},
 		suggestType : function(incorrect, line){
-			var lowest = 1000, 
+			var lowest = 1000,
 				suggest = "",
 				check = function(things){
 					for(var name in things){
@@ -3516,12 +3516,12 @@
 						if(dist < lowest ){
 							lowest = dist
 							suggest = name.toLowerCase()
-						} 
+						}
 					}
 				}
 			check(DocumentJS.types);
 			check(DocumentJS.tags);
-			
+
 			if(suggest){
 				print("\nWarning!!\nThere is no @"+incorrect+" directive. did you mean @"+suggest+" ?\n")
 			}
@@ -3556,7 +3556,7 @@
 							if(!DocumentJS.types[match[1].toLowerCase()]){
 								this.suggestType(match[1])
 							}
-							
+
 							if (!DocumentJS.types[match[1]] ) {
 								props.comment += line + "\n"
 							}
@@ -3614,7 +3614,7 @@
 						}
 					}
 			}
-			
+
 
 			try {
 				props.comment = DocumentJS.converter.makeHtml(props.comment);
@@ -3624,7 +3624,7 @@
 						DocumentJS.tags[tag].done.call(props);
 					}
 				}
-				
+
 			} catch (e) {
 				print("Error with converting to markdown")
 			}
@@ -3637,10 +3637,10 @@
 	 * @class DocumentJS.types.add
 	 * @tag documentation
 	 * @parent DocumentJS.types
-	 * Used to set scope to add to classes or methods in another file. 
-	 * 
+	 * Used to set scope to add to classes or methods in another file.
+	 *
 	 * ###Example:
-	 * 
+	 *
 	 * @codestart
 	 * /**
 	 * * @add jQuery.String.static
@@ -3653,11 +3653,11 @@
 	 * *|
 	 * rsplit = function( string, regex ) {
 	 * @codeend
-	 * 
+	 *
 	 * It's important to note that add must be in its own comment block.
-	 * 
+	 *
 	 * ###End Result:
-	 * 
+	 *
 	 * @image jmvc/images/add_tag_example.png 970
 	 */
 	DocumentJS.Type("add",
@@ -3695,9 +3695,9 @@
 	 * @tag documentation
 	 * @parent DocumentJS.types
 	 * Documents an attribute.
-	 * 
+	 *
 	 * ###Example:
-	 * 
+	 *
 	 * @codestart
 	 * /**
 	 * * @@attribute delay
@@ -3707,7 +3707,7 @@
 	 * *|
 	 * $.fixture.delay = 200
 	 * @codeend
-	 * 
+	 *
 	 * You can see the end result [jQuery.fixture.delay | here].
 	 */
 	DocumentJS.Type("attribute",
@@ -3726,7 +3726,7 @@
 	/*
 	 * Must return the name if from the code.
 	 * @param {String} code
-	 * @return {Object} type data 
+	 * @return {Object} type data
 	 */
 		code: function( code ) {
 			var parts = code.match(/(\w+)\s*[:=]\s*/);
@@ -3749,20 +3749,20 @@
 	 * @tag documentation
 	 * @parent DocumentJS.types
 	 * Documents a 'Class'.
-	 *  
+	 *
 	 * A class is typically a collection of static and prototype functions.
-	 *  
+	 *
 	 * DocumentJS can automatically detect classes created with jQuery.Class.
-	 *  
+	 *
 	 * However, you can make anything a class with the __@class__ _ClassName_ directive.
-	 * 
+	 *
 	 * ###Example:
-	 * 
+	 *
 	 * @codestart
 	 * /**
-	 *  * @@class 
-	 *  * Person represents a human with a name.  Read about the 
-	 *  * animal class [Animal | here]. 
+	 *  * @@class
+	 *  * Person represents a human with a name.  Read about the
+	 *  * animal class [Animal | here].
 	 *  *|
 	 * Person = Animal.extend(
 	 * /* @@Static *|
@@ -3776,7 +3776,7 @@
 	 *      this.name = name
 	 *      this._super({warmblood: true})
 	 *    },
-	 *    /* Returns a formal name 
+	 *    /* Returns a formal name
 	 *     * @return {String} the name with "Mrs." added
 	 *     *|
 	 *   fancyName : function(){
@@ -3828,16 +3828,16 @@
 	 * @tag documentation
 	 * @parent DocumentJS.types
 	 * Documents a function. Doc can guess at a functions name and params if the source following a comment matches something like:
-	 * 
+	 *
 	 * @codestart
 	 * myFuncOne : function(param1, param2){}  //or
-	 * myFuncTwo = function(param1, param2){}  
+	 * myFuncTwo = function(param1, param2){}
 	 * @codeend
-	 * 
+	 *
 	 * ###Directives
 	 *
 	 * Use the following directives to document a function.
-	 * 
+	 *
 	 * @codestart
 	 * [ DocumentJS.types.function | @function ] functionName                       -&gt; Forces a function
 	 * [ DocumentJS.tags.param | @param ] {optional:type} paramName Description -&gt; Describes a parameter
@@ -3845,15 +3845,15 @@
 	 * @codeend
 	 *
 	 * ###Example
-	 * 
+	 *
 	 * @codestart
 	 * /* Adds, Mr. or Ms. before someone's name
 	 *  * [ DocumentJS.tags.param | @param ] {String} name the persons name
 	 *  * [ DocumentJS.tags.param | @param ] {optional:Boolean} gender true if a man, false if female.  Defaults to true.
 	 *  * [ DocumentJS.tags.return | @return ] {String} returns the appropriate honorific before the person's name.
-	 *  *|  
+	 *  *|
 	 * honorific = function(name, gender){
-	 * @codeend 
+	 * @codeend
 	 */
 	DocumentJS.Type("function",
 	/**
@@ -3916,13 +3916,13 @@
 	 * @class DocumentJS.types.page
 	 * @tag documentation
 	 * @parent DocumentJS.types
-	 * 
+	 *
 	 * Defines a standalone documentation page.
-	 * 
+	 *
 	 * Used to organize your documentation in a flexible manner.
-	 * 
+	 *
 	 * ###Example:
-	 * 
+	 *
 	 * @codestart
 	 * /**
 	 *  * @page follow Follow JavaScriptMVC
@@ -3936,22 +3936,22 @@
 	 *  * ##Blog
 	 *  * [![blog][2]][1]
 	 *  * [1]: http://jupiterit.com/
-	 *  * [2]: http://wiki.javascriptmvc.com/wiki/images/e/e5/Blog.png  
+	 *  * [2]: http://wiki.javascriptmvc.com/wiki/images/e/e5/Blog.png
 	 *  *
 	 *  * Read [http://jupiterit.com/ JavaScriptMVC's Blog] for articles, techniques and ideas
 	 *  * on maintainable JavaScript.
 	 *  * ##Email List
 	 *  * [![email list][2]][1]
 	 *  * [1]: http://forum.javascriptmvc.com/
-	 *  * [2]: http://wiki.javascriptmvc.com/wiki/images/8/84/Discuss.png  
-	 *  
-	 *  * Discuss ideas to make the framework better or problems you are having on  [http://forum.javascriptmvc.com/ JavaScriptMVC's Forum] 
+	 *  * [2]: http://wiki.javascriptmvc.com/wiki/images/8/84/Discuss.png
+	 *
+	 *  * Discuss ideas to make the framework better or problems you are having on  [http://forum.javascriptmvc.com/ JavaScriptMVC's Forum]
 	 * .*
 	 *  *|
 	 * @codeend
-	 * 
+	 *
 	 * ###End Result:
-	 * 
+	 *
 	 * @image jmvc/images/page_type_example.png 970
 	 */
 	DocumentJS.Type("page", {
@@ -3972,9 +3972,9 @@
 	 * @tag documentation
 	 * @parent DocumentJS.types
 	 * Sets the following functions and attributes to be added to Class or Constructor prototype (instance) functions.
-	 * 
+	 *
 	 * ###Example
-	 * 
+	 *
 	 * @codestart
 	 * $.Controller.extend('Cookbook.Controllers.Recipe',
 	 * /* @Static *|
@@ -3987,7 +3987,7 @@
 	 *   * When the page loads, gets all recipes to be displayed.
 	 *   *|
 	 *   load: function(){
-	 *      if(!$("#recipe").length) 
+	 *      if(!$("#recipe").length)
 	 *          $(document.body).append($('&lt;div/&gt;').attr('id','recipe'))
 	 *      Cookbook.Models.Recipe.findAll({}, this.callback('list'));
 	 *    },
@@ -4029,7 +4029,7 @@
 
 		/**
 		 * Generates docs for a file.
-		 * @param {Object} docScript an object that has src and text attributes.  It can also just be 
+		 * @param {Object} docScript an object that has src and text attributes.  It can also just be
 		 * the path of a file.
 		 */
 		process: function( docScript ) {
@@ -4038,7 +4038,7 @@
 			}
 
 			var source = docScript.text || readFile(docScript.src);
-			
+
 			//check if the source has @documentjs-ignore
 			if (/\@documentjs-ignore/.test(source) ) {
 				return;
@@ -4064,7 +4064,7 @@
 					noSpace = /\S/g,
 					match,
 					l;
-					
+
 					for ( l = 0; l < lines.length; l++ ) {
 						match = noSpace.exec(lines[l]);
 						if ( match && lines[l] && noSpace.lastIndex < removeSpace ) {
@@ -4107,9 +4107,9 @@
 	 * @tag documentation
 	 * @parent DocumentJS.types
 	 * Sets the following functions and attributes to be added to Class or Constructor static (class) functions.
-	 * 
+	 *
 	 * ###Example
-	 * 
+	 *
 	 * @codestart
 	 * $.Model.extend('Cookbook.Models.Recipe',
 	 * /* @Static *|

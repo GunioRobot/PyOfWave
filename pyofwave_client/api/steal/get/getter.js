@@ -1,6 +1,6 @@
 /*  This is a port to JavaScript of Rail's plugin functionality.  It uses the following
  * license:
- *  This is Free Software, copyright 2005 by Ryan Tomayko (rtomayko@gmail.com) 
+ *  This is Free Software, copyright 2005 by Ryan Tomayko (rtomayko@gmail.com)
      and is licensed MIT: (http://www.opensource.org/licenses/mit-license.php)
  */
 
@@ -12,7 +12,7 @@ steal(function( steal ) {
 			this.init.apply(this, arguments);
 		}
 	};
-	
+
 	steal.get.getter.prototype = {
 		init: function( url, where, options, level ) {
 
@@ -20,11 +20,11 @@ steal(function( steal ) {
 			this.level = level || -1;
 			this.cwd = where || ".";
 			this.quite = options.quite;
-			this.ignore = 
-				(options.ignore && 
-					(steal.isArray(options.ignore) ? 
-						options.ignore : 
-						[options.ignore] )) 
+			this.ignore =
+				(options.ignore &&
+					(steal.isArray(options.ignore) ?
+						options.ignore :
+						[options.ignore] ))
 				|| [];
 			this.ignore.push(/\.jar$/);
 		},
@@ -71,7 +71,7 @@ steal(function( steal ) {
 		},
 		//downloads content from a url
 		download: function( link ) {
-			
+
 			//var text = readUrl( link);
 			var bn = new steal.File(link).basename(),
 				f = new steal.File(this.cwd).join(bn),
@@ -85,10 +85,10 @@ steal(function( steal ) {
 			}
 
 			oldsrc = readFile(f);
-			
+
 			new steal.File(f).download_from(link, true);
-			
-			
+
+
 			newsrc = readFile(f);
 
 			if ( oldsrc ) {
@@ -119,11 +119,11 @@ steal(function( steal ) {
 
 			var contents = readUrl(url);
 			this.fetch(this.links(url, contents));
-			
+
 			if ( this.level > 0 ){
 				this.pop_d();
 			}
-			
+
 			this.level--;
 		}
 	};

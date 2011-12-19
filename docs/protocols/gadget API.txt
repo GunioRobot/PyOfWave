@@ -2,7 +2,7 @@ Gadget API
 ----------
 
 Job: A minimal API for gadget developers to use and wave clients to implement.
-Existing Standards: ECMEAScript (a.k.a. JavaScript), browser API (derived), URL, 
+Existing Standards: ECMEAScript (a.k.a. JavaScript), browser API (derived), URL,
 		various W3C standards (inspiration).
 
 Overview
@@ -12,12 +12,12 @@ This standard makes the gadget a JavaScript (with some extensions) in it's own f
 
 Form
 ---
-A gadget is a script written in a derivative of "CoffeeScript" called "ObjectScript" (language designed to compile into JavaScript, but greatly simplifies the language for implementation as well) available via a URL. 
+A gadget is a script written in a derivative of "CoffeeScript" called "ObjectScript" (language designed to compile into JavaScript, but greatly simplifies the language for implementation as well) available via a URL.
 
 The language
 --
 
-Statements in ObjectScript are seperated by newlines or semicolons. Indentation is used to delaminate blocks, which is used in some syntax. 
+Statements in ObjectScript are seperated by newlines or semicolons. Indentation is used to delaminate blocks, which is used in some syntax.
 
 Hashes (#) at the beginning of a line makes the computer ignore the line.
 Parentheses in a line are executed first.
@@ -30,12 +30,12 @@ Syntax          description
 ------          -----------
 WORD            accesses a property on the current global object (local to a function/block).
 .WORD           Accesses a property on the previously accessed object.
-([comma seperated expressions])   Executes the accessed function, passing it the objects from each expression, with 
+([comma seperated expressions])   Executes the accessed function, passing it the objects from each expression, with
                                   the previous (before the executed function) object assigned to this.
 [WHITESPACE expression]*          Without parentheses, single arguments should always be passed to the function
                                   object immediately before it. Further actions are performed on final expression
-                                  in function. 
-\[expression\]  Looks up the index or property indicated by the value of the expression. 
+                                  in function.
+\[expression\]  Looks up the index or property indicated by the value of the expression.
 =               Shortcut to ".set "
 
 
@@ -50,7 +50,7 @@ String                  "TEXT"                        Newlines are included in t
 Number                  NUMBER                        N/A
 Function                (, SEP "ARGS") -> EXPRESSION  One expression per line.
 RegExp                  /REGEX/FLAGS                  N/A
-Array                   [, SEP EXPRESSIONS]           Separation inferred. 
+Array                   [, SEP EXPRESSIONS]           Separation inferred.
 object                  {KEY : VALUE, ETC.}           Curly braces and commas optional.
 
 Operators
@@ -128,106 +128,106 @@ Data Objects
 --
  Class		Property		Description
  -----		--------		-----------
- String		constructor		The constructor that created the object. 
-		prototype		Allows extensions of the class. 
+ String		constructor		The constructor that created the object.
+		prototype		Allows extensions of the class.
 		length			The number of charactors in the string.
 
 		charAt(x)		Get a string of the charactor at index x.
-		charCodeAt(x)		Returns the ASCII Integer of the 
+		charCodeAt(x)		Returns the ASCII Integer of the
 					charactor at x.
 		concat()		Concats all passed strings with this one.
-		fromCharCode(x)		Gets a String of length 1 from ASCII 
+		fromCharCode(x)		Gets a String of length 1 from ASCII
 					Integer.
 		indexOf(str)		Returns the Integer index of str in this.
 		lastIndexOf(str)	Returns the last reiteration of str.
-		match(regx)		Returns a Boolean for whether this 
+		match(regx)		Returns a Boolean for whether this
 					matches the pattern in regx.
 		replace(str1,value)	Replaces str1 with value inside this.
 		search(regx)		Returns Integer index of regx match.
-		slice(begin,end)	Returns string between begin and end 
+		slice(begin,end)	Returns string between begin and end
 					index.
-		split(sep)		Returns an array where each repitation of 
+		split(sep)		Returns an array where each repitation of
 					sep signals the end of a contained item.
 		substr(from,to)		Returns the str between from and to.
-		toLowerCase()		Returns String copy of this where every 
+		toLowerCase()		Returns String copy of this where every
 					charactor is lower case.
-		toUppercase()		Returns String copy of this where every 
+		toUppercase()		Returns String copy of this where every
 					charactor is upper case.
- Number		constructor		The constructor that created the object. 
-		prototype		Allows extensions of the class. 
+ Number		constructor		The constructor that created the object.
+		prototype		Allows extensions of the class.
 		MIN			The minimum possible number.
 		MAX			The maximum possible number.
 		POSITIVE_INFINITY	Number exceding maximum.
 		NEGETIVE_INFINITY	Number exceding minimum.
 
-		toExponential(x)	Returns String as this in Standard form 
+		toExponential(x)	Returns String as this in Standard form
 					to x significant figures.
-		toFixed(x)		Returns String as this to x significant 
+		toFixed(x)		Returns String as this to x significant
 					figures.
-		toPrecision(x)		Returns String as this to x decimal 
+		toPrecision(x)		Returns String as this to x decimal
 					places.
 		toString()		Returns String as this.
- Boolean	constructor		The constructor that created the object. 
-		prototype		Allows extensions of the class. 
-		toString()		Returns "true" or "false" based on value. 
- Array		constructor		The constructor that created the object. 
-		length			The number of objects in this. 
-		prototype		Allows extension of the class. 
+ Boolean	constructor		The constructor that created the object.
+		prototype		Allows extensions of the class.
+		toString()		Returns "true" or "false" based on value.
+ Array		constructor		The constructor that created the object.
+		length			The number of objects in this.
+		prototype		Allows extension of the class.
 
-                set(obj)                Assigns all contained objects to the values 
+                set(obj)                Assigns all contained objects to the values
                                         in Array obj, or default.
-		concat()		Concatenates all passed arrays to this one. 
-		join()			Joins all contained objects into a string. 
-		pop()			Removes and returns the last object. 
-		push()			Adds new elements to the end of this. 
-		reverse()		Reverses order of this. 
-		shift()			Removes and returns last objects. 
-		slice(start,end)	Returns identified part of this. 
-		sort(sorter)		Uses passed function to sort objects in this. 
-		splice(index,		Replaces range from index of length with 
-		length, . . .)		passed objects. 
-		toString()		Return string representation. 
-                unShift()		Adds passed objects to beginning of array. 
-					Returns length. 
- Date()					Returns current date or generates one from a 
-					number of milliseconds, string, or big endian 
+		concat()		Concatenates all passed arrays to this one.
+		join()			Joins all contained objects into a string.
+		pop()			Removes and returns the last object.
+		push()			Adds new elements to the end of this.
+		reverse()		Reverses order of this.
+		shift()			Removes and returns last objects.
+		slice(start,end)	Returns identified part of this.
+		sort(sorter)		Uses passed function to sort objects in this.
+		splice(index,		Replaces range from index of length with
+		length, . . .)		passed objects.
+		toString()		Return string representation.
+                unShift()		Adds passed objects to beginning of array.
+					Returns length.
+ Date()					Returns current date or generates one from a
+					number of milliseconds, string, or big endian
 					values. (NOTE: the methods starting with get/
 					set are 2 methods, get. . . and set. . .)
-		constructor		The constructor that created the object. 
-		prototype		Allows extending the class. 
+		constructor		The constructor that created the object.
+		prototype		Allows extending the class.
 
-		day()		The day of the week. 
-		date()		The day of the month. 
-		year()	The year. 
-		hours()		The hour of the day. 
-		minutes()	The minutes of the hour. 
-		seconds()	The seconds of the minute. 
-		milliseconds()	The millisecond of the second. 
-		month()		The month of the year as a number. 
-		time()		The number of milliseconds since the epoch. 
-		timezoneOffset() The number of hours different from GMT. 
+		day()		The day of the week.
+		date()		The day of the month.
+		year()	The year.
+		hours()		The hour of the day.
+		minutes()	The minutes of the hour.
+		seconds()	The seconds of the minute.
+		milliseconds()	The millisecond of the second.
+		month()		The month of the year as a number.
+		time()		The number of milliseconds since the epoch.
+		timezoneOffset() The number of hours different from GMT.
 
-		UTCDay()	The day of the week at GMT. 
-		UTCDate()	The day of the month at GMT. 
-		UTCFullYear()	The year at GMT. 
-		UTCHours()	The hour of the day at GMT. 
-		UTCMinutes()	The minutes of the hour at GMT. 
-		UTCSeconds()	The seconds of the minute at GMT. 
-		UTCMilliseconds() The millisecond of the second at GMT. 
-		UTCMonth()	The month of the year as a number at GMT. 
-		UTC()			The number of milliseconds since the epoch at 
-					GMT. 
+		UTCDay()	The day of the week at GMT.
+		UTCDate()	The day of the month at GMT.
+		UTCFullYear()	The year at GMT.
+		UTCHours()	The hour of the day at GMT.
+		UTCMinutes()	The minutes of the hour at GMT.
+		UTCSeconds()	The seconds of the minute at GMT.
+		UTCMilliseconds() The millisecond of the second at GMT.
+		UTCMonth()	The month of the year as a number at GMT.
+		UTC()			The number of milliseconds since the epoch at
+					GMT.
 
-                 parse(datestring)	Returns a date from the string. 
-                 toDateString()		Returns a readable date as a string. 
-                 toLocalDateString()	Returns a readable date as a string using 
-					local format. 
-                 toTimeString()		Returns a readable time as a string. 
-                 toLocalTimeString()	Returns a readable time as a string using 
-					local format. 
-                 toUTCString()		Returns a readable date as a string using the 
-					UTC time. 
-                 toString()		Returns this as a string. 
+                 parse(datestring)	Returns a date from the string.
+                 toDateString()		Returns a readable date as a string.
+                 toLocalDateString()	Returns a readable date as a string using
+					local format.
+                 toTimeString()		Returns a readable time as a string.
+                 toLocalTimeString()	Returns a readable time as a string using
+					local format.
+                 toUTCString()		Returns a readable date as a string using the
+					UTC time.
+                 toString()		Returns this as a string.
  Math		E			Euler's Number (approx. 2.718)
 		LN2			The natural logarithm of 2 (approx. 0.693)
 		LN10			The natural logarithm of 10 (approx. 2.302)
@@ -240,9 +240,9 @@ Data Objects
 		abs(x)			Returns the absolute value of x.
 		atan(x)			Returns the arccosine of x, in radians.
 		asin(x)			Returns the arcsine of x, in radians.
-		acos(x)			Returns the arctangent of x as a numeric value 
+		acos(x)			Returns the arctangent of x as a numeric value
 					between -PI/2 and PI/2 radians.
-		atan2(x,y)		Returns the arctangent of the quotient of its 
+		atan2(x,y)		Returns the arctangent of the quotient of its
 					arguments.
 		ciel(x)			Returns x rounded up.
 		floor(x)		Returns x rounded down.
@@ -261,61 +261,61 @@ Data Objects
                                         Already contains constructor as the function object and length as the number of args.
                 apply(this, args)       Executes the function with more control of arguments and this.
                 bind()                  Returns a function which calls itself with the current this from the caller.
- sharedMethods	getKeys()		Returns an array of all property names. 
-		getValues()		Returns an array of all property values. 
+ sharedMethods	getKeys()		Returns an array of all property names.
+		getValues()		Returns an array of all property values.
 		length()		Returns the number of objects
-		set(value)		Replaces all references to this with value. 
-		observe(callbk)		Registers a function to be called whenever 
-					this changes. Returns an ID of any type. 
-		unobserve(id)		Removes the function registered with ID from 
-					getting notified. 
+		set(value)		Replaces all references to this with value.
+		observe(callbk)		Registers a function to be called whenever
+					this changes. Returns an ID of any type.
+		unobserve(id)		Removes the function registered with ID from
+					getting notified.
                 sub(superObject)        Returns a copy of this with properties of superObject
                                         that are not provided by this.
 
 Rendering
 --
-This part of the API may be implemented as far as what has meaning to your client, and it's the same for Roles and positioning. However, the Node, NodeStyle, NodeEvents, ARIA, and controls must be defined if not implemented or have their properties defined. 
+This part of the API may be implemented as far as what has meaning to your client, and it's the same for Roles and positioning. However, the Node, NodeStyle, NodeEvents, ARIA, and controls must be defined if not implemented or have their properties defined.
  Class		Property	Description
  -----		--------	-----------
  Node(style, aria, content)	A node in the presentation of the gadget.
-		content		The contained children of the node as an Array of Nodes 
+		content		The contained children of the node as an Array of Nodes
 				and Strings.
 		style		The applied NodeStyle object.
 		aria		The applied ARIA role object, see Roles.
 		events		The applied NodeEvents object.
- NodeStyle()			The displayed/spoken presentation settings for attached 
+ NodeStyle()			The displayed/spoken presentation settings for attached
 				Node. May be provided as a partial literal object.
-		background	Represents the background content of the Node. Contains 
-				properties: attached (Boolean), image (Image), colour 
-				(Array<Integer> or String), repeatX (Boolean), repeatY 
+		background	Represents the background content of the Node. Contains
+				properties: attached (Boolean), image (Image), colour
+				(Array<Integer> or String), repeatX (Boolean), repeatY
 				(Boolean), Position (Array<2 Integers>).
-		border		Represents the border of the Node by 4 properties 
+		border		Represents the border of the Node by 4 properties
 				containing Borders: top, left, bottom, & right.
 		outline		Represents an outline around the Node with a Border.
 		size		The size of the Node as an Array<2 Integers>.
-		padding		The padding between size and border as 4 Integer 
+		padding		The padding between size and border as 4 Integer
 				properties, top, left, bottom, & right.
-		margin		Same format as padding, but space between border and 
+		margin		Same format as padding, but space between border and
 				other Nodes.
-		font		The font for which to render contained Strings. 
-				Contains the properties: color (Array<Integer> or 
-				String), size (Integer), italic (Boolean) , variant 
-				("smallCaps", "capitals", or "normal"), decor (String 
-				containing selection of substrings "underline", 
+		font		The font for which to render contained Strings.
+				Contains the properties: color (Array<Integer> or
+				String), size (Integer), italic (Boolean) , variant
+				("smallCaps", "capitals", or "normal"), decor (String
+				containing selection of substrings "underline",
 				"overline", and/or "strike").
-		position	Object containing three setable methods: position, 
+		position	Object containing three setable methods: position,
 				layout, and overflow.
 		zIndex		Integer representing the order in which to paint Nodes.
  				(or the order of overlap)
 
 		(for speach based clients:)
-		azimuth		The vertical angle of the sound from the center of the 
+		azimuth		The vertical angle of the sound from the center of the
 				screen as an Integer in degrees.
-		cue		Contain two sound media objects in properties before 
+		cue		Contain two sound media objects in properties before
 				and after.
-		elevation	The vertical angle of the sound from the center of the 
+		elevation	The vertical angle of the sound from the center of the
 				screen as an Integer in degrees.
-		pause		Contains two Integers in seconds as before and after 
+		pause		Contains two Integers in seconds as before and after
 				properties representing time to wait.
 		pitch		The pitch of the voice as an Integer.
 		pitchRange	The range of pitch in the voice as an integer.
@@ -330,35 +330,35 @@ This part of the API may be implemented as far as what has meaning to your clien
 		volume		Integer representing how loud the voice relatively.
  NodeEvents			The keyboard/mouse events for the applied Node.
 		blur		Called when the Node loses focus.
-		change		Called when the Control loses focus and it's value 
+		change		Called when the Control loses focus and it's value
 				changed.
-		click		Called when Node has been clicked, client's 
+		click		Called when Node has been clicked, client's
 				disgression.
-		dblclick	Called when Node has been double clicked, client's 
+		dblclick	Called when Node has been double clicked, client's
 				disgression.
 		focus		Called when Node gains focus.
 		keydown		Called when a key is pressed down when Node has focus.
 		keypress	Called when a key is held down when Node has focus.
 		keyup		Called when a key is unpressed when Node has focus.
-		mousedown	Called when the mouse button is pressed while the 
+		mousedown	Called when the mouse button is pressed while the
 				cursor is over Node.
 		mousemove	Called when the cursor moved over Node.
-		mouseout	Called when the cursor moves from over Node to outside 
+		mouseout	Called when the cursor moves from over Node to outside
 				Node.
-		mouseover	Called when the cursor moves from outside Node to over 
+		mouseover	Called when the cursor moves from outside Node to over
 				Node.
-		mouseup		Called when the mouse button is unpressed while the 
+		mouseup		Called when the mouse button is unpressed while the
 				cursor is over Node.
-		gesturestart	Called by multitouch clients when the user places 
+		gesturestart	Called by multitouch clients when the user places
 				fingers on Node.
-		gesturemoved	Called by multitouch clients when the user moves 
+		gesturemoved	Called by multitouch clients when the user moves
 				fingers over Node.
-		gestureended	Called by multitouch clients when the user lifts their 
+		gestureended	Called by multitouch clients when the user lifts their
 				fingers from touching Node.
-		gesturecanceled	Called by multitouch clients when the OS interrupts a 
+		gesturecanceled	Called by multitouch clients when the OS interrupts a
 				gesture.
  Control(type, name, value)	A Node representing a standard OS control.
-		type		A string donoting the type of control represented. 
+		type		A string donoting the type of control represented.
 				Possible values include ().
 		name		The name of the control.
 		value		The value of the control.
@@ -366,55 +366,55 @@ This part of the API may be implemented as far as what has meaning to your clien
 		style		As in Node.
 		aria		As in Node.
 		events		As in Node.
- document			Node object representing the root Node displayed by the 
+ document			Node object representing the root Node displayed by the
 				wave in the gadgets frame.
 Positioning
 --
  Class		Property	Description
  -----		--------	-----------
- Inline				(style.position.position)The object accepts Text 
+ Inline				(style.position.position)The object accepts Text
 				layout.
- Text				(style.position.layout)The object lays out it's content 
+ Text				(style.position.layout)The object lays out it's content
 				in lines of Nodes, as in typical text layout.
-		direction	The direction to draw the text out of "l"&"r". 
-		letterSpacing	How to space the letters as an Integer. 
-		lineHeight	How to space the lines as an Integer. 
+		direction	The direction to draw the text out of "l"&"r".
+		letterSpacing	How to space the letters as an Integer.
+		lineHeight	How to space the lines as an Integer.
 		textAlign	How to space the text in the line out of "l",
-				"r", "m", & "j". 
-		textIndent	How many pixels to indent text. 
-		verticalAlign	How to align the text vertically out of "t", "m",& "b". 
+				"r", "m", & "j".
+		textIndent	How many pixels to indent text.
+		verticalAlign	How to align the text vertically out of "t", "m",& "b".
 		whitespace	How to handle whitespace out of "preserve",
-				"wrap", & "collapse". 
-		wordspacing	How far to space words as an Integer. 
+				"wrap", & "collapse".
+		wordspacing	How far to space words as an Integer.
  Block				(position.position)Positions vertically.
  BlockContainer			(position.layout)Layouts children vertically.
- HorizontalContainer		(position.layout)Layouts Block positioned children 
+ HorizontalContainer		(position.layout)Layouts Block positioned children
 				horizontally.
  Float				(position.position)Positions to the side side.
 		side		The side of which to position the Node to.
- Position			(position.position)Positions to a location inside 
+ Position			(position.position)Positions to a location inside
 				containing Node.
 		pos		Array of 2 Integers representing x and y position.
- Relative			(position.position)Positions like another function, but 
+ Relative			(position.position)Positions like another function, but
 				moves some pixels.
 		delta		Array of 2 Integers representing x and y offset.
- TableCell			(position.position)Positions to match vertically one 
+ TableCell			(position.position)Positions to match vertically one
 				Node and horizontally another.
 		verticalMatch	Node to match width and x position of.
 		horizontalMatch	Node to match height and y position of.
  ClipOverflow			(position.overflow)Removes any overflown content.
- Scroll				(position.overflow)Behaves like ClipOverflow, but adds 
+ Scroll				(position.overflow)Behaves like ClipOverflow, but adds
 				a scrollbar.
- AddScroll			(position.overflow)Behaves like Scroll, but only adds 
+ AddScroll			(position.overflow)Behaves like Scroll, but only adds
 				scrollbar if neccessary.
 
  Border				Represents a border for NodeStyle.
-		thickness	Integer in pixels representing the thickness of the 
+		thickness	Integer in pixels representing the thickness of the
 				drawn border.
-		color		Array of Integers or String representing the colour of 
+		color		Array of Integers or String representing the colour of
 				the border.
-		style		String out of None, "solid", "inset", "outset", 
-				"dotted", "dashed", "double", "groove", and "ridge", or 
+		style		String out of None, "solid", "inset", "outset",
+				"dotted", "dashed", "double", "groove", and "ridge", or
 				an Image to be used.
 
 Roles
@@ -428,14 +428,14 @@ State
  -----		--------	-----------
  publicState			State accessible by all participants on this wave.
                                (All property values are Strings.)
- privateState			State accessible only by the participant the gadget is 
+ privateState			State accessible only by the participant the gadget is
 				running on behalf of (participants.viewer).
                                 (All property values are Strings.)
  participants	participants	All current participants on a wave.
 		viewer		The participant represented by the running client.
-		host		The paricipant who added this gadget to the wave, may 
+		host		The paricipant who added this gadget to the wave, may
 				no longer be in participants.
-                getConnection   Returns a Stream object which uses the specified 
+                getConnection   Returns a Stream object which uses the specified
                    (protocol)   transport technology. Handles creation/subscription
                                 to an IP multicast group.
  User				Represents a participant on the Wave/using the gadget.
@@ -444,8 +444,8 @@ State
 		avatar		The user's specified "avatar" Image.
 		note		The user's specified "note" String.
  Stream                         Represents a IP multicast stream you can use to message
-                                other active users. Nonactive or nonsupporting users will 
-                                never get this message and playback wont replay it. The 
+                                other active users. Nonactive or nonsupporting users will
+                                never get this message and playback wont replay it. The
                                 IP is stored in publicState as "streamIP".
                  set(obj)       Sends the String object to all other active users.
                  recieve        Callback which handles any recieved data from the IP group
@@ -455,34 +455,34 @@ Utilities
 --
  Class		Property	Description
  -----		--------	-----------
- bind(obj1, obj2)		Sets up the two objects so that when one changes, the 
+ bind(obj1, obj2)		Sets up the two objects so that when one changes, the
 				other does too.
  parseInt(str)			Parses an Integer out of a String.
  toString(obj)			Calls obj.toString().
- Worker(URL)			An object representing a concurrently running 
+ Worker(URL)			An object representing a concurrently running
 				JavaScript on a seperate "thread".
-		message(obj)	Passes a copy of obj to onMessage(obj) in the 
+		message(obj)	Passes a copy of obj to onMessage(obj) in the
 				concurrent script.
-		onMessage	Called whenever the concurrent script calls 
+		onMessage	Called whenever the concurrent script calls
 				message(obj), callback recieves copied object.
- getGeoLocation()		Returns an object representing the user's current 
-				location. The object includes: latitude (Integer), 
-				longitude (Integer), direction (Integer in bearings), 
+ getGeoLocation()		Returns an object representing the user's current
+				location. The object includes: latitude (Integer),
+				longitude (Integer), direction (Integer in bearings),
 				and spead (Integer in m/s).
- load(URL, type)		Returns an object representing a file of MIMEtype type 
+ load(URL, type)		Returns an object representing a file of MIMEtype type
 				loaded from URL.
-				If the object represents a script, it contains all 
-				global properties of that script. 
-				If the object is a movie or audio, the object has the 
-				properties: play(), pause(), seek (in milliseconds), 
+				If the object represents a script, it contains all
+				global properties of that script.
+				If the object is a movie or audio, the object has the
+				properties: play(), pause(), seek (in milliseconds),
 				playSpeed, and data().
 				The Image class referred throughout this standard does
- 				not have any standard methods, but is returned by load 
-				for image types. Also, the term media means an object 
+ 				not have any standard methods, but is returned by load
+				for image types. Also, the term media means an object
 				returned by this function.
  timer(milliseconds,    Sets a function to be called after milliseconds milliseconds.
    callback, repeat)     If repeat (default false), the function will be called repeatedly
-                                 on the interval after being called. Returns a function 
+                                 on the interval after being called. Returns a function
                                 which cancels the timer.
  media                          Stores standard icons. (more may be added)
                 nullAvatar      The avatar image to use as a placeholder.
@@ -501,27 +501,27 @@ Rendering
 		rotate(angle)	Rotates the canvas by angle in current state.
 		translate(x,y)	Moves the canvas by x & y in current state.
 		transform(m11,	scale, rotate, and translate in one.
-		   m12, m21, 
+		   m12, m21,
 		   m22, dx, dy)
 		setTransform(m11, Alternative scale, rotate, and translate in one.
-		   m12, m21, 
+		   m12, m21,
 		   m22, dx, dy)
 		drawImage(image, Draws an Image image at dx & dy scaled dw & dh.
 		   dx, dy,
 		   [dw, dh])
-		drawImage(image, Draws an Image image at dx & dy with scaling and 
+		drawImage(image, Draws an Image image at dx & dy with scaling and
 		   sx, sy, sw,	rotation.
 		   sh, dx, dy,
 		   dw, dh)
 
 		globalAlpha	Alpha value as Integer to use when drawing.
-		globalComposit	How to handle overlap of drawing out of ("source-over", 
+		globalComposit	How to handle overlap of drawing out of ("source-over",
 				"destination-over", etc.). Will be filled out.
 		lineWidth	The length to draw lines as an Integer in pixels.
 		lineCap		How to draw line ends out of (from Canvas standard).
 		lineJoin	How to join lines out of (from Canvas standard).
 		miterLimit	Integer of pixels to limit line joins to.
-		strokeStyle	The style of line out of ("solid", "dashed", etc.). 
+		strokeStyle	The style of line out of ("solid", "dashed", etc.).
 				Will be expanded.
 		fillStyle	The colour to use to fill shapes.
 		shadowOffsetX	Offset of drawn shadows in x.
@@ -538,7 +538,7 @@ Rendering
 		   x1, y1, r1)
 		createPattern(	Generates a Pattern to use as fillStyle.
 		   image, rep)
-		
+
 		beginPath()	Begins drawing a path.
 		closePath()	Closes drawing a path.
 		fill()		Fills drawn path.
@@ -553,17 +553,17 @@ Rendering
 		   cp1x, cp1y,
 		   cp2x, cp2y,
 		   x, y)
-		arcTo(x1, y1,	Draw an arc from x1,y1 to x2,y2 with rad radius in 
+		arcTo(x1, y1,	Draw an arc from x1,y1 to x2,y2 with rad radius in
 		   x2, y2, rad)	path.
 		arc(x,y,rad,	Draw an arc from x,y and startAngle to endAngle with
-		   startAngle,	rad radius going anticlockwise as determined by 
+		   startAngle,	rad radius going anticlockwise as determined by
 		   endAngle,	anticlockwise in path.
 		   anticlockwise)
-		rect(x,y,w,h)	Draws a rectangle at x,y with w width and y height in 
+		rect(x,y,w,h)	Draws a rectangle at x,y with w width and y height in
 				path.
 		isPointInPath(	Determines if point x,y is in path.
 		   x,y)
-		
+
 		font		The font to use when drawing text.
 		textAlign	The alignment to use when drawing text.
 		textBaseline	The baseline to use when drawing text.
@@ -572,43 +572,43 @@ Rendering
 		strokeText(text, Stroke text at x,y with maxWidth.
 		   x,y,maxWidth)
 		measureText(text) Returns the drawn length of text.
-		
-		clearRect(x,y,	Erases content covered by x,y over w width and h 
+
+		clearRect(x,y,	Erases content covered by x,y over w width and h
 		   w,h)		height.
 		fillRect(x,y,	Fills rect at x,y with w width and h height.
 		   w,h)
-		strokeRect(x,y,	Strokes (outlines) rect at x,y with w width and h 
+		strokeRect(x,y,	Strokes (outlines) rect at x,y with w width and h
 		   w,h)		height.
-		createImageData	Creates an empty ImageData object of sw width and sh 
+		createImageData	Creates an empty ImageData object of sw width and sh
 		   (sw,sh)	height.
 		createImageData	Creates a copy of imageData as ImageData.
 		   (imageData)
 		getImageData(	Gets Image data at sx,sy over sw width and sh height.
 		   sx,sy,sw,sh)
-		putImageData(	Draws imageData at dx,dy with optional hints of where 
+		putImageData(	Draws imageData at dx,dy with optional hints of where
 		   imageData,	content changed.
 		   dx, dy,
 		 [drityX,dirtyY,
 		   dirtyWidth,
 		   dirtyHeight])
- Canvas3D			An object providing 3D graphics rendering, optimized 
+ Canvas3D			An object providing 3D graphics rendering, optimized
 				for extended JS.
 		(environment, each contains enabled property for turning on/off)
-		cull		How to cull triangles from the scene. Contains 
+		cull		How to cull triangles from the scene. Contains
 				properties of Booleans face and frontFace.
-		blend		How to blend transparent colours. Contains shader 
+		blend		How to blend transparent colours. Contains shader
 				properties sourceBlend and destinationBlend.
 		stencil		How to stencil blend, contains func shader.
-		depth		How to cull depth. Contains test (out of ...), range 
-				(Array<2 Integers>), writemask, clearValue, func, bits, 
+		depth		How to cull depth. Contains test (out of ...), range
+				(Array<2 Integers>), writemask, clearValue, func, bits,
 				offsetUnits, & offsetFactor.
-		multisample	How to sample the scene. Contains sampleAlphaEnabled 
+		multisample	How to sample the scene. Contains sampleAlphaEnabled
 				(Boolean), coverageValue, coverageInvert, and samples.
-		viewport	How to render the scene. Contains viewport, maxDims, 
-				clearColorValue, scissorBox, lineWidth, 
-				aliasedPointSizeRange, aliasedLineWidthRange, 
+		viewport	How to render the scene. Contains viewport, maxDims,
+				clearColorValue, scissorBox, lineWidth,
+				aliasedPointSizeRange, aliasedLineWidthRange,
 				colorWriteMask, and subpixelBits.
-		
+
 		colorSurface-	Boolean for whether to use colored surfaces.
 		  Enabled
 		scene		Array of meshes to be drawn by push().
@@ -620,7 +620,7 @@ Rendering
 
  CanvasGradient
 		addColorStrop(	Adds a step at offset of colour in the gradiant.
-		   offset, 
+		   offset,
 		   color)
  ImageData
 		width		The width of the image data.
@@ -629,7 +629,7 @@ Rendering
 
  Mesh				A 3D object to be drawn via GPU.
 		meshType	How to render the vertices out of (...)
-		vertices	Array of Arrays of 3 Integers Representing triangles of 
+		vertices	Array of Arrays of 3 Integers Representing triangles of
 				vectors.
 		color		The color to fill the shape with.
 		colorArray	The color for each vertex.
@@ -641,22 +641,22 @@ Rendering
 		offset		The offset to be applied to the Mesh when rendered.
 
  Texture(image)			An image formatted for GPU use.
-		binding2D	The image passed to the constructor. 
-		bindingCubeMap	The cube map passed to the constuctor. 
-		maxSize		The size of the image as an Array of 2 Integers. 
-		maxCubeSize	The size of cube map as an Array of 2 Integers. 
-		active		Is the texture currently being used by the GPU. 
-		maxImageUnits	How big the image is in image units. 
-		maxVertexImage-	How big the image is in vertex image units. 
+		binding2D	The image passed to the constructor.
+		bindingCubeMap	The cube map passed to the constuctor.
+		maxSize		The size of the image as an Array of 2 Integers.
+		maxCubeSize	The size of cube map as an Array of 2 Integers.
+		active		Is the texture currently being used by the GPU.
+		maxImageUnits	How big the image is in image units.
+		maxVertexImage-	How big the image is in vertex image units.
 		  Units
 		maxCombined-	How big in image units in total is the image?
 		  ImageUnits
  Light				A light in a 3D scene. Color's expressed as an
 				Array<3 Integers>
-		specular	The specular color.    
-		diffuse		The diffuse color. 
-		ambient		The ambient color. 
+		specular	The specular color.
+		diffuse		The diffuse color.
+		ambient		The ambient color.
 		position	The position of the light as an Array<3 Integers>
-		spotDirection	The direction of the spotlight as an Array<3 Integers>. 
-		cutoff		The cut off angle to the center of the light. 
+		spotDirection	The direction of the spotlight as an Array<3 Integers>.
+		cutoff		The cut off angle to the center of the light.
  shader				Loaded scripts to describe GPU behavior.

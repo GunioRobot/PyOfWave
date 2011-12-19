@@ -53,7 +53,7 @@ js_beautify = function(js_source_text, options) {
     var opt_space_after_anon_function = options.space_after_anon_function === 'undefined' ? false : options.space_after_anon_function;
     var opt_keep_array_indentation = typeof options.keep_array_indentation === 'undefined' ? false : options.keep_array_indentation;
 	var opt_space_statement_expression = typeof options.space_statement_expression === 'undefined' ? false : options.space_statement_expression;
-	
+
     just_added_newline = false;
 
     // cache the source's length.
@@ -660,7 +660,7 @@ js_beautify = function(js_source_text, options) {
                 }
 				paren_spots[paren_count] = false;
 				//in_statement_expression = true;
-				
+
             } else if (in_array(last_text, line_starters) || last_text === 'catch') {
                 print_single_space();
             }
@@ -668,12 +668,12 @@ js_beautify = function(js_source_text, options) {
 				paren_spots[paren_count] = false;
 				//in_statement_expression = true;
 			}
-			
+
             print_token();
             break;
 
         case 'TK_END_EXPR':
-            
+
 			if(token_text == ")"){
 				//is there someone waiting
 				var ps = paren_spots[paren_count];
@@ -1041,7 +1041,7 @@ js_beautify = function(js_source_text, options) {
             var lines = token_text.split(/\x0a|\x0d\x0a/);
 
             if (/^\/\*\*/.test(token_text)) {
-            	
+
                 // javadoc: reformat and reindent
                 print_newline();
                 output.push(lines[0]);
@@ -1050,7 +1050,7 @@ js_beautify = function(js_source_text, options) {
                     output.push(' ');
                     output.push(lines[i].replace(/^\s\s*|\s\s*$/, ''));
                 }
-                
+
             } else {
                 // simple block comment: leave intact
                 if (lines.length > 1) {
@@ -1071,16 +1071,16 @@ js_beautify = function(js_source_text, options) {
             break;
 
         case 'TK_INLINE_COMMENT':
-        	// Slightly misleading name, this deals with this style comment:  /* foo */ - JCK  
-        	
+        	// Slightly misleading name, this deals with this style comment:  /* foo */ - JCK
+
             print_single_space();
-            
+
             // Give the comment its own line - JCK
             print_newline();
             print_token();
             print_newline();
-            
-            
+
+
             if (is_expression(flags.mode)) {
                 print_single_space();
             } else {
@@ -1089,9 +1089,9 @@ js_beautify = function(js_source_text, options) {
             break;
 
         case 'TK_COMMENT':
-        	
+
             //print_newline();
-            
+
             if (wanted_newline) {
                 print_newline();
             } else {

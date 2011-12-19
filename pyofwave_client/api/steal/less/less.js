@@ -2,7 +2,7 @@
  * @add steal.static
  */
 steal({path: "less_engine.js",ignore: true},function(){
-	
+
 	/**
 	 * @function less
 	 * @plugin steal/less
@@ -23,7 +23,7 @@ steal({path: "less_engine.js",ignore: true},function(){
 	 * <p>First, create a less file like:</p>
 	 * @codestart css
 	 * @@my_color red
-	 * 
+	 *
 	 * body { color:  @@my_color; }
 	 * @codeend
 	 * <p>Save this in a file named <code>red.less</code>.</p>
@@ -43,7 +43,7 @@ steal({path: "less_engine.js",ignore: true},function(){
 	 * @return {steal} returns the steal function.
 	 */
 	steal.less = function(){
-		//if production, 
+		//if production,
 		if(steal.options.env == 'production'){
 			if(steal.loadedProductionCSS){
 				return steal;
@@ -78,12 +78,12 @@ steal({path: "less_engine.js",ignore: true},function(){
 	            }).parse(src, function (e, root) {
 	                var styles = root.toCSS(),
 						css  = document.createElement('style');
-			        
+
 					css.type = 'text/css';
 					css.id = steal.cleanId(path)
-			        
+
 					document.getElementsByTagName('head')[0].appendChild(css);
-				    
+
 				    if (css.styleSheet) { // IE
 			            css.styleSheet.cssText = styles;
 				    } else {

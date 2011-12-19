@@ -89,7 +89,7 @@
 		 * @codeend
 		 * @param {Object} url
 		 * @param {Object} expand
-		 * @return {String} 
+		 * @return {String}
 		 */
 		joinFrom: function( url, expand ) {
 			if ( this.isDomainAbsolute() ) {
@@ -133,7 +133,7 @@
 			return this.path.match(/(?:https?:\/\/[^\/]*)(.*)/)[1];
 		},
 		/**
-		 * 
+		 *
 		 * @param {Object} url
 		 */
 		toReferenceFromSameDomain: function( url ) {
@@ -161,7 +161,7 @@
 			return this.path.match(/^(https?:|file:)/) != null
 		},
 		/**
-		 * For a given path, a given working directory, and file location, update the path so 
+		 * For a given path, a given working directory, and file location, update the path so
 		 * it points to the right location.
 		 */
 
@@ -253,10 +253,10 @@
 			out.close();
 		},
 		contents: function( func, current ) {
-			
+
 			var me = new java.io.File(this.path),
 				listOfFiles = me.listFiles();
-				
+
 			if ( listOfFiles == null ) {
 				//print("there is nothing in " + this.path)
 				return;
@@ -274,7 +274,7 @@
 				rootFolders = root.split(/\/|\\/),
 				targetDir = rootFolders[rootFolders.length-1]
 				i = 0,
-				adjustedPath = (targetDir? this.path.replace(new RegExp(".*"+targetDir+"\/?"),""): 
+				adjustedPath = (targetDir? this.path.replace(new RegExp(".*"+targetDir+"\/?"),""):
 					this.path),
 				myFolders = adjustedPath.split(/\/|\\/);
 
@@ -299,22 +299,22 @@
 	});
 
 	/**
-	 * If there's a CMD system variable (like "documentjs/document.bat"), 
+	 * If there's a CMD system variable (like "documentjs/document.bat"),
 	 * assumes the root is the folder one below the scripts folder.
-	 * 
+	 *
 	 * Otherwise, assumes the current directory IS the root jmvc folder (framework)
-	 * 
+	 *
 	 */
 	steal.File.getRoot = function() {
 		var cwd = steal.File.cwd(),
 			cmd = ""+java.lang.System.getProperty("cmd"),
 			root = cwd,
 			relativeRoot;
-		
+
 		if(cmd) {
 			relativeRoot = cmd.replace(/\/?[^\/]*\/[^\/]*$/, "")
 			root = cwd+'/'+relativeRoot;
-		} 
+		}
 		return root;
 	}
 	steal.File.cwdURL = function() {

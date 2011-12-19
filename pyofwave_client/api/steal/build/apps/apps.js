@@ -43,7 +43,7 @@ steal(function( steal ) {
 		return data;
 	},
 		/**
-		 * Adds an order to a directed acyclic graph 
+		 * Adds an order to a directed acyclic graph
 		 * @param {Object} appFiles
 		 */
 		orderFiles = function( appFiles ) {
@@ -101,7 +101,7 @@ steal(function( steal ) {
 					mostSize = most.totalSize;
 				}
 			}
-			//mark files 
+			//mark files
 			for ( var i = 0; i < most.files.length; i++ ) {
 				var f = most.files[i];
 				f.packaged = true;

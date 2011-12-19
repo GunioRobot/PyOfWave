@@ -37,8 +37,8 @@ test("joinFrom", function() {
 
 	result = new steal.File('/a/b.c').joinFrom('');
 	equals(result, "/a/b.c", "/a/b.c is correctly joined.");
-	
-	
+
+
 	result = new steal.File('../../up.js').joinFrom('cookbook/')
 	equals(result, "../up.js", "up.js is correctly joined.")
 })

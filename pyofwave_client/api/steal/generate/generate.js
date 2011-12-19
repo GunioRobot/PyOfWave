@@ -31,7 +31,7 @@ steal("//steal/generate/ejs", '//steal/generate/inflector', '//steal/rhino/promp
 		 * @codeend
 		 * <dl>
 		 * <dt>path/to/app</dt>
-		 * <dd>The lowercase path you want your application in. 
+		 * <dd>The lowercase path you want your application in.
 		 * </dd>
 		 * </dl>
 		 * </li>
@@ -44,7 +44,7 @@ steal("//steal/generate/ejs", '//steal/generate/inflector', '//steal/rhino/promp
 		 * @codeend
 		 * <dl>
 		 * <dt>path/to/app</dt>
-		 * <dd>The lowercase path you want your application in. Keep application names short because they 
+		 * <dd>The lowercase path you want your application in. Keep application names short because they
 		 * are used as namespaces.  The last part of the path will be taken to be your application's name.
 		 * </dd>
 		 * </dl>
@@ -56,12 +56,12 @@ steal("//steal/generate/ejs", '//steal/generate/inflector', '//steal/rhino/promp
 		 * <dl>
 		 * <dt>App.Controllers.Name</dt>
 		 * <dd>The namespaced name of your controller.  For example, if your controller is named
-		 * <code>Cookbook.Controllers.Recipe</code>, the generator will create 
-		 * <code>cookbook/controllers/recipe_controller.js</code>. 
+		 * <code>Cookbook.Controllers.Recipe</code>, the generator will create
+		 * <code>cookbook/controllers/recipe_controller.js</code>.
 		 * </dd>
 		 * </dl>
 		 * </li>
-		 * 
+		 *
 		 * <li style='padding-top: 10px;'><code>model</code> - creates a JavaScriptMVC [jQuery.Model].
 		 * @codestart text
 		 * js jquery/generate/model <i>App.Models.Name</i> [TYPE] [OPTIONS]
@@ -69,26 +69,26 @@ steal("//steal/generate/ejs", '//steal/generate/inflector', '//steal/rhino/promp
 		 * <dl>
 		 * <dt>App.Models.Name</dt>
 		 * <dd>The namespaced name of your model.  For example, if your model is named
-		 * <code>Cookbook.Models.Recipe</code>, the generator will create 
-		 * <code>cookbook/models/recipe.js</code>. 
+		 * <code>Cookbook.Models.Recipe</code>, the generator will create
+		 * <code>cookbook/models/recipe.js</code>.
 		 * </dd>
 		 * </dl>
 		 * </li>
-		 * 
+		 *
 		 * <li style='padding-top: 10px;'><code>page</code> - creates a page that loads steal.js and an application.
 		 * @codestart text
 		 * js jquery/generate/model <i>path/to/app</i> <i>path/to/page.html</i>
 		 * @codeend
 		 * <dl>
 		 * <dt>path/to/app</dt>
-		 * <dd>The path to your apps folder. 
+		 * <dd>The path to your apps folder.
 		 * </dd>
 		 * <dt>path/to/page.html</dt>
-		 * <dd>The path to the page you want to create. 
+		 * <dd>The path to the page you want to create.
 		 * </dd>
 		 * </dl>
 		 * </li>
-		 * 
+		 *
 		 * <li style='padding-top: 10px;'><code>plugin</code> - creates a JavaScriptMVC plugin file and folder structure.
 		 * @codestart text
 		 * js jquery/generate/plugin <i>path/to/plugin</i> [OPTIONS]
@@ -112,13 +112,13 @@ steal("//steal/generate/ejs", '//steal/generate/inflector', '//steal/rhino/promp
 		 * </dl>
 		 * </li>
 		 * </ul>
-		 * 
+		 *
 		 * <h2>The Generator Function</h2>
 		 * <p>Renders a folders contents with EJS and data and then copies it to another folder.</p>
 		 * @codestart
 		 * steal.generate(
 		 *   "path/to/my_template_folder",
-		 *   "render/templates/here", 
+		 *   "render/templates/here",
 		 *   {
 		 *     data: "to be used"
 		 *   })

@@ -10,14 +10,14 @@ steal({
 	 * @function coffee
 	 * @plugin steal/coffee
 	 * <p>Requires a [http://jashkenas.github.com/coffee-script/ CoffeeScript] script.</p>
-	 * 
+	 *
 	 * <p>CoffeeScript is a more 'refined' version of JavaScript that lets you write code like:</p>
 	 * @codestart
 	 * number = -42 if opposite
 	 * @codeend
 	 * CoffeeScript is normally used on the server, but steal lets you load CoffeeScripts
 	 * in the browser, and compress their JavaScript output into your production builds.
-	 * 
+	 *
 	 * <h2>Use</h2>
 	 * <p>First, create a coffee script like:</p>
 	 * @codestart
@@ -40,7 +40,7 @@ steal({
 	 * @return {steal} returns the steal function.
 	 */
 	steal.coffee = function() {
-		//if production, 
+		//if production,
 		if ( steal.options.env == 'production' ) {
 			return this;
 		}

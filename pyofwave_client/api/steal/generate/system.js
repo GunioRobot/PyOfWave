@@ -9,7 +9,7 @@ steal(function( steal ) {
 
 		return line;
 	};
-	
+
 	// am i non-windows?
 	var windows = true,
 		firefox_location = "*firefox",

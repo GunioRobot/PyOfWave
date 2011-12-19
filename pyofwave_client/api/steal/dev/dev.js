@@ -30,14 +30,14 @@ steal.dev = {
 		var path = steal.cur().path.replace(/\.[^$]+$/, "").split('/'),
 			//make sure parts in name match
 			parts = name.split('.');
-		
+
 		for ( var i = 0; i < parts.length && path.length; i++ ) {
 			if (path[i] && parts[i].toLowerCase() != path[i] && this.underscore(parts[i]) != path[i] && this.underscore(parts[i]) != path[i].replace(/_controller/, "") ) {
 				this.warn("Are you sure " + name + " belongs in " + steal.cur().path);
 			}
 		}
-		
-		
+
+
 	},
 
 	logLevel : 0,
@@ -56,7 +56,7 @@ steal.dev = {
 				opera.postError("steal.js WARNING: " + out);
 			}
 		}
-		
+
 	},
 	/**
 	 * Adds a message to the console.

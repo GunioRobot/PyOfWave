@@ -3,7 +3,7 @@
 
 steal.plugins('steal/build').then('//steal/clean/beautify','//steal/clean/jslint','//steal/rhino/prompt', function(steal){
 	var lintAndPrint = function(out, predefined){
-		
+
 
 		JSLINT(out,{devel: true, forin: true, browser: true, windows: true, rhino: true, predefined : predefined});
 		if(JSLINT.errors.length){
@@ -16,14 +16,14 @@ steal.plugins('steal/build').then('//steal/clean/beautify','//steal/clean/jslint
 				line = error.evidence.replace(/\t/g,"     ");
 
 				print("    "+error.line+":"+error.character+"  "+
-					line.substring(Math.max(error.character-25, 0), 
+					line.substring(Math.max(error.character-25, 0),
 					   Math.min(error.character+25, line.length)).replace(/^\s+/,"")
-					
+
 					)
 				print(" ")
 			}
 		}
-		
+
 		var data  = JSLINT.data();
 		//if(data.globals){
 		//	print("  GLOBALS \n    "+data.globals.join("\n    "))
@@ -40,14 +40,14 @@ steal.plugins('steal/build').then('//steal/clean/beautify','//steal/clean/jslint
 				print("    "+data.implieds[i].line+" : "+data.implieds[i].name)
 			}
 		}
-		return JSLINT.errors.length > 0 
+		return JSLINT.errors.length > 0
 	}
-	
-	
+
+
 	/**
 	 * @parent stealjs
 	 * <p>Beautifies source code with [http://jsbeautifier.org/ JS Beautify]
-	 * and checks it for trouble spots with 
+	 * and checks it for trouble spots with
 	 * [http://www.jslint.com/ JSLint].
 	 * </p>
 	 * <p>The following cleans all scripts found in myapp/myapp.html.</p>
@@ -84,17 +84,17 @@ steal.plugins('steal/build').then('//steal/clean/beautify','//steal/clean/jslint
 	 * @codeend
 	 * <h2>The steal.clean function</h2>
 	 * <p>Takes a relative path to a file on the filesystem;
-	 * checks if it is a html page or a single js file; runs 
+	 * checks if it is a html page or a single js file; runs
 	 * beautify on it then optionally runs JSLint.</p>
 	 * @param {String} url the path to a page or a JS file
 	 * @param {Object} [options] an optional set of params.  If you
 	 * want to turn on steal, this should be true.
-	 * 
+	 *
 	 */
 	steal.clean = function(url, options){
 		options = steal.extend(
-			{indent_size: 1, 
-			 indent_char: '\t', 
+			{indent_size: 1,
+			 indent_char: '\t',
 			 space_statement_expression: true,
 			 jquery : false},
 			steal.opts(options || {}, {
@@ -106,7 +106,7 @@ steal.plugins('steal/build').then('//steal/clean/beautify','//steal/clean/jslint
 				jslint :1,
 				predefined: 1
 			}) )
-		
+
 		//if it ends with js, just rewwrite
 		if(/\.js/.test(url)){
 			var text = readFile(url);
@@ -128,7 +128,7 @@ steal.plugins('steal/build').then('//steal/clean/beautify','//steal/clean/jslint
 			var folder = steal.File(url).dir(),
 				clean = /\/\/@steal-clean/
 			//folder
-			
+
 			steal.build.open(url).each(function(script, text, i){
 				if(!text || !script.src){
 					return;
@@ -147,7 +147,7 @@ steal.plugins('steal/build').then('//steal/clean/beautify','//steal/clean/jslint
 								quit();
 							}
 						}
-						
+
 					}else{
 						if(steal.prompt.yesno("B "+path+" Overwrite? [Yn]")){
 							if(options.print){
@@ -155,7 +155,7 @@ steal.plugins('steal/build').then('//steal/clean/beautify','//steal/clean/jslint
 							}else{
 								steal.File(path).save( out  )
 							}
-							
+
 							if(options.jslint){
 								var errors = lintAndPrint(out, options.predefined || {});
 								if(errors){
@@ -164,18 +164,18 @@ steal.plugins('steal/build').then('//steal/clean/beautify','//steal/clean/jslint
 								}
 							}
 						}
-	
+
 					}
-					
+
 				}
 			});
 		}
-		
-		
-		
-		
-	};
-	
 
-  
+
+
+
+	};
+
+
+
 });

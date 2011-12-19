@@ -1,4 +1,4 @@
-// usage: 
+// usage:
 // js steal\scripts\pluginify.js funcunit/functional -destination funcunit/dist/funcunit.js
 // js steal\scripts\pluginify.js jquery/controller
 // js steal\scripts\pluginify.js jquery/event/drag -exclude jquery/lang/vector/vector.js jquery/event/livehack/livehack.js
@@ -9,7 +9,7 @@ steal("//steal/build/pluginify/parse").plugins('steal/build/scripts').then(
 
 	/**
 	 * Builds a 'steal-less' version of your application.  To use this, files that use steal must
-	 * have their code within a callback function.  
+	 * have their code within a callback function.
 	 * @param {Object} plugin
 	 * @param {Object} opts
 	 */
@@ -55,7 +55,7 @@ steal("//steal/build/pluginify/parse").plugins('steal/build/scripts').then(
 
 		for ( i = 0; i < steals.length; i++ ) {
 			if(!inExclude(steals[i].path)){
-				
+
 				var content = steal.build.pluginify.content(steals[i], opts.global ? opts.global : "jQuery" );
 				if(content){
 					print("  > "+steals[i].path)
@@ -67,11 +67,11 @@ steal("//steal/build/pluginify/parse").plugins('steal/build/scripts').then(
 		new steal.File(destination).save(out.join(";\n"));
 		//print("pluginified " + plugin)
 	};
-	
-	
+
+
 	//keeps track of which 'then' we are in with steal
 	var funcCount = {};
-	
+
 	//gets content from a steal
 	s.build.pluginify.content = function(steal, param){
 		if(steal.func){
@@ -100,10 +100,10 @@ steal("//steal/build/pluginify/parse").plugins('steal/build/scripts').then(
 			//print(token.value)
 			if(token.type !== "string"){
 				switch(token.value){
-					case "/" : 
+					case "/" :
 						comment(p)
 						break;
-					case "steal" : 
+					case "steal" :
 						stealPull(p, content, function(func){
 							funcs.push(func)
 						});
@@ -112,7 +112,7 @@ steal("//steal/build/pluginify/parse").plugins('steal/build/scripts').then(
 			}
 		}
 		return funcs[ith||0];
-		
+
 	};
 	//gets a function from steal
 	var stealPull = function(p, content, cb){
@@ -131,7 +131,7 @@ steal("//steal/build/pluginify/parse").plugins('steal/build/scripts').then(
 		token = p.until("function",")");
 
 		if(token.value == "function"){
-			
+
 			startToken = p.until("{");
 
 			endToken = nextBracket(p);
@@ -139,10 +139,10 @@ steal("//steal/build/pluginify/parse").plugins('steal/build/scripts').then(
 			//print("CONTENT\n"+  );
 			p.moveNext();
 		}else{
-			
+
 		}
 		stealPull(p,content, cb );
-		
+
 	},
 	//moves across a comment
 	comment = function(p){ //we don't really need this anymore
@@ -158,25 +158,25 @@ steal("//steal/build/pluginify/parse").plugins('steal/build/scripts').then(
 			//print(token.value)
 			if(token.type == 'operator'){
 				switch(token.value){
-					case "{": 
-						
+					case "{":
+
 						count++;
 						//print("  +"+count+" "+prev+" "+last)
 						break;
 					case "}" :
-						
+
 						count--;
 						//print("  -"+count+" "+prev+" "+last)
 						if(count === 0){
 							return token;
 						}
 						break;
-					case "/" : 
+					case "/" :
 						comment(p);
 						break;
 				}
 			}
-			
+
 			prev = last;
 			last = (token.value)
 		}

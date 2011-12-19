@@ -56,7 +56,7 @@
 	/**
 	 * Converts args or a string into options
 	 * @param {Object} args
-	 * @param {Object} options something like 
+	 * @param {Object} options something like
 	 * {
 	 * name : {
 	 * 	shortcut : "-n",

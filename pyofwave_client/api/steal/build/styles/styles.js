@@ -61,7 +61,7 @@ steal(function( steal ) {
 		return newCSss;
 	},
 		isRelative = function( part ) {
-			// http://, https://, / 
+			// http://, https://, /
 			return !/^(http:\/\/|https:\/\/|\/)/.test(part)
 		}
 

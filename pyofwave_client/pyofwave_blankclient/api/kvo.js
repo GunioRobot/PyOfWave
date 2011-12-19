@@ -19,7 +19,7 @@ $.Class('KVO', {
    set : function(obj) {
       for (var id in this._binds) this.get(this._binds[id]).unobserve(id); //unbinds this from previous value
 
-      //set new oject, and properly wrap properties. 
+      //set new oject, and properly wrap properties.
       this._obj = {};
       for (var key in obj) {
          if (!["String", "Integer"].contains(typeof obj[key]) || obj[key].class != "KVO") {
@@ -30,12 +30,12 @@ $.Class('KVO', {
          else this._obj[key] = obj[key];
       }
 
-      for (var o in observers) o(this);  //notify observers. 
+      for (var o in observers) o(this);  //notify observers.
    }
    /*Changes wrapped object to match passed object and calls appropriate observers.*/
    change : function(obj) {
       if (!this._obj) this.set(obj);
-      
+
       for (var key in obj) if (obj[key] != this._obj[key])
          this.get(key).set(obj[key]);
    }

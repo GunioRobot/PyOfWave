@@ -4,7 +4,7 @@
 steal('../api/jquery/jquerymx-1.0.custom.min.js', '../api/jquery/jquery-1.5.min.js' 'api/widget.js', 'sections.js').then(function() {
 $.fn.section = function(id, creator) {
       var toolbar = $('<div>').id('client-toolbar');
-      for (var i=0;i < creator.toolbar.length;i++) 
+      for (var i=0;i < creator.toolbar.length;i++)
          toolbar.append(creator.toolbar[i]);
 
       $(this).append($('<div>').append(toolbar).append(creator()).id(id));

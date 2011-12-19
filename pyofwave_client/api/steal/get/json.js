@@ -151,7 +151,7 @@
 			else {
 				continue; //skip non-string or number keys
 			}
-			
+
 			var val = vtoJSON(o[k], compact);
 			if ( typeof(val) != "string" ) {
 				// skip non-serializable values

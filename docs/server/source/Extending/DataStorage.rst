@@ -10,7 +10,7 @@ The datasource needs to be set up to be able to store PyOfWave documents before 
 
 - A sequence of "items"
 
-   - Each item must have some text; a type of either open, close, or text; 
+   - Each item must have some text; a type of either open, close, or text;
    and a map of annotations.
 
 - A map of tags, for each user and global, to a sequence of values.
@@ -30,15 +30,15 @@ Add a new Python file in datasource (doesn't really matter if you put it there) 
          """Create a new Document in datastorage."""
 
       def getDocument(self, doc):
-         """Retrieve document named doc (which includes the domain) and 
+         """Retrieve document named doc (which includes the domain) and
             return as a Document object."""
 
       def getDocumentVersion(self, doc, start, end, limit):
-         """Retrieve specified deltas for the document and 
+         """Retrieve specified deltas for the document and
             return as Delta objects."""
 
       def searchDocuments(self, user, search):
-         """Retrieve a list of document names which match the tags 
+         """Retrieve a list of document names which match the tags
             provided by setTags."""
 
       def setTags(self, doc, user, **tags):

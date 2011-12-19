@@ -36,7 +36,7 @@ String.prototype.tokens = function (prefix, suffix) {
     var make = function (type, value) {
 
 // Make a token object.
-		
+
 		//prereg = i &&
         //            (('(,=:[!&|?{};'.indexOf(i.charAt(i.length - 1)) >= 0) ||
          //           i === 'return')
@@ -50,7 +50,7 @@ String.prototype.tokens = function (prefix, suffix) {
             from: from,
             to: i
         };
-		
+
     };
 	var has = function(thIs, before){
 		var j = i+1;
@@ -66,7 +66,7 @@ String.prototype.tokens = function (prefix, suffix) {
             j += 1;
         }
 	}
-	
+
 // Begin tokenization. If the source string is empty, return nothing.
 
     if (!this) {
@@ -175,7 +175,7 @@ String.prototype.tokens = function (prefix, suffix) {
                 str += c;
                 i += 1;
 				print(this.substr(i-20,20))
-				print(this.substr(i,20))				
+				print(this.substr(i,20))
                 make('number', str).error("Bad number");
             }
 
@@ -258,9 +258,9 @@ String.prototype.tokens = function (prefix, suffix) {
             result.push(make('string', str));
             c = this.charAt(i);
 
-		
+
 // comment.
-		
+
         } else if (c === '/' && this.charAt(i + 1) === '*') {
             i += 1;
             for (;;) {
@@ -293,14 +293,14 @@ String.prototype.tokens = function (prefix, suffix) {
                 	i += 1;
 					//print("adding "+c)
 					c = this.charAt(i);
-					
+
 					str += c;
 					//print("adding "+c)
                 	i += 1;
 					c = this.charAt(i);
 					continue;
 				}
-				
+
 				if (c === '/' ) {
 					str += c;
 					i += 1;

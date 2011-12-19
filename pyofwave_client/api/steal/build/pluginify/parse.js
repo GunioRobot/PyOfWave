@@ -5,7 +5,7 @@ steal.build.parse = function(str){
 		//print("Breaking up strs")
 		var tokens = str.tokens('=<>!+-*&|/%^', '=<>&|'),
 			tokenNum = 0;
-			
+
 		var moveNext = function(){
 			var next = tokens[tokenNum++];
 			if(next){
@@ -13,14 +13,14 @@ steal.build.parse = function(str){
 			}
 			return next;
 		}
-		
+
 		return {
 			moveNext : moveNext,
 			next : function(){
 				return tokens[tokenNum];
 			},
 			until: function(){
-				var token, 
+				var token,
 					matchCounts = [];
 				for(var i =0; i < arguments.length;i++){
 					matchCounts[i] =0;
@@ -30,7 +30,7 @@ steal.build.parse = function(str){
 				}
 				while (token = moveNext() ) {
 					for(var i =0; i< arguments.length; i++){
-						if( token.type !== "string" && 
+						if( token.type !== "string" &&
 							token.value === arguments[i][matchCounts[i]]){
 							matchCounts[i] = matchCounts[i]+1;
 							if(matchCounts[i] === arguments[i].length){

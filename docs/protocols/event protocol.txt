@@ -10,7 +10,7 @@ When downloading this stream, you will recieve JSON objects containing events, w
 
 Connection:
 ---
-The event protocal requires a one directional stream, client settings looked up via a session. 
+The event protocal requires a one directional stream, client settings looked up via a session.
 
 Format:
 ---
@@ -43,7 +43,7 @@ Event objects are in the following format:
 And Blips are in the following format:
 {
    annotations : [Annotation . . .],
-   elements : 
+   elements :
    blipId : String,
    childBlipIds : [String . . .],
    contributors : [String (wave address) . . .],
@@ -80,46 +80,46 @@ Wavelet:
  version		The numbered version of the wave.
  waveId			The waveId of the containing wave as a String.
  waveletId		The waveletId of the wavelet.
- dataDocuments		Object associating document IDs to objects of their 
+ dataDocuments		Object associating document IDs to objects of their
 			data.
 
 Blip:
 --
  Properties		Description
  ----------		-----------
- blipId			contains the ID of blip in which the event 
+ blipId			contains the ID of blip in which the event
 			occurred.
- childBlipIds		contains an array of blip IDs for each of the 
+ childBlipIds		contains an array of blip IDs for each of the
 			blip's children.
- contributors		denotes participants who have contributed to the 
+ contributors		denotes participants who have contributed to the
 			state of this blip.
  creator		denotes the participant who created this blip.
- lastModifiedTime	denotes the Unix time at which this blip was last 
+ lastModifiedTime	denotes the Unix time at which this blip was last
 			modified by any participant.
  content		contains the textual content of this blip.
- version		contains the version of this blip. Each atomic 
+ version		contains the version of this blip. Each atomic
 			operation on a blip increases this version number.
  waveId			contains the Wave ID associated with this blip.
- waveletId		contains the wavelet ID associated with this blip. 
+ waveletId		contains the wavelet ID associated with this blip.
 
  (optional:)
- annotations		array of annotations associated with the blip. The 
-			annotation is represented by an object with range 
-			(containing start and end properties), key, and 
+ annotations		array of annotations associated with the blip. The
+			annotation is represented by an object with range
+			(containing start and end properties), key, and
 			value.
- elements		contains gadgets, controls, and attachments 
+ elements		contains gadgets, controls, and attachments
 			associated with the blip.
 
 Events:
 --
  Properties		Description
  ----------		-----------
- type			A string designating the event, possible values are 
+ type			A string designating the event, possible values are
 			listed in the following "Event Types" table.
- modifiedBy		The wave address of the user who made this change 
+ modifiedBy		The wave address of the user who made this change
 			as a String.
  timestamp		The unix timestamp of when the update accord.
- properties		An object with properties donoted by the type 
+ properties		An object with properties donoted by the type
 			property.
 
 Event Types:
@@ -131,9 +131,9 @@ Event Types:
  WAVELET_BLIP_REMOVED	blipId			BlipId of root blip
 			removedBlipId		BlipId of removed blip
  WAVELET_PARTICAPANTS-	blipId			BlipId of root blip
-   _CHANGED		participantsAdded	Array of the addresses of 
+   _CHANGED		participantsAdded	Array of the addresses of
 						added participants
-			participantsRemoved	Array of the addresses of 
+			participantsRemoved	Array of the addresses of
 						removed participants.
  WAVELET_SELF_ADDED	blipId			blipId of root blip.
  WAVELET_SELF_REMOVED	blipId			blipId of root blip.
@@ -141,24 +141,24 @@ Event Types:
  WAVELET_TITLE_CHANGED	blipId			blipId of root blip.
 			title			New title as String.
  BLIP_CONTRIBUTORS_-	blipId			blipId of root blip.
-   _CHANGED		contributorsAdded	Array of the addresses of 
+   _CHANGED		contributorsAdded	Array of the addresses of
 						added contributors.
-			contributorsRemoved	Array of the addresses of 
+			contributorsRemoved	Array of the addresses of
 						removed contributors.
  BLIP_SUBMITTED		blipId			blipId of submitted blip.
- DOCUMENT_SUBMITTED	blipId			blipId of blip where change 
+ DOCUMENT_SUBMITTED	blipId			blipId of blip where change
 						acoord.
  FORM_BUTTON_CLICKED	blipId			blipId of containing blip.
-			button			name of the clicked button as 
+			button			name of the clicked button as
 						String.
  GADGET_STATE_CHANGED	blipId			blipId of containing blip.
-			index			index of the gadget that 
+			index			index of the gadget that
 						changed as a Number.
-			oldState		previous state of the gadget 
+			oldState		previous state of the gadget
 						as object
- ANNOTATED_TEXT_CHANGED	blipId			blipId of blip where change 
+ ANNOTATED_TEXT_CHANGED	blipId			blipId of blip where change
 						accord.
-			range			Object containing the start 
+			range			Object containing the start
 						and end indexes in the blip.
 			name			name of annotation as String.
 			value			value of annotation as String.

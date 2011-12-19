@@ -7,7 +7,7 @@ Contents:
 
 .. toctree::
    :maxdepth: 1
-   
+
    DataStorage
    Operations
    Authentication

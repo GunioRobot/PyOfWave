@@ -52,7 +52,7 @@ Now implement all the methods to refer back to your authentication scheme. The i
 3. Integrate the Adaptor
 =================
 
-Now open :file:`PREFERENCES.py` and 
+Now open :file:`PREFERENCES.py` and
 
 #. Import the file you just created.
 

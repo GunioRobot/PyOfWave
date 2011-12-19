@@ -10,17 +10,17 @@ It is *highly* recommended to set these settings, or PyOfWave may not function c
 
 .. py:data:: DOMAIN
 
-   This value represents your domain name. This is used by the protocols to 
+   This value represents your domain name. This is used by the protocols to
    identify documents and users belonging to you. Should be a string.
 
 .. py:data:: DELTA_OBSERVER_PROCESSES
 
-   The number of processes to launch to handle changes in documents 
+   The number of processes to launch to handle changes in documents
    "deltas". Should be a integer.
 
 .. py:data:: DELTA_OBSERVER_TIMEOUT
 
-   The number of tasks a process should run before it times out. Should be 
+   The number of tasks a process should run before it times out. Should be
    a integer.
 
 PREFERENCES.py
@@ -28,8 +28,8 @@ PREFERENCES.py
 
 If you wish to customize how data is handled in PyOfWave, use this file. If you need more details, please see :doc:`CoreModule`.
 
-.. note:: This file is seperate to handle seperate dependancies (Python 
-   yells if I have both settings using the objects and used by the objects 
+.. note:: This file is seperate to handle seperate dependancies (Python
+   yells if I have both settings using the objects and used by the objects
    in the core server).
 
 .. py:data:: STORAGE_OBJECT

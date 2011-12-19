@@ -7,8 +7,8 @@ steal.foo().bar(function(abc){
 	"abc(){};";
 	/* steal */
 	// steal
-	
-	boom	
+
+	boom
 }).plugins("boom").then(function($,foo){
 	//yes
 })

@@ -1,5 +1,5 @@
-/*Sets up SDK for the gadget. Some browser API may also be used by gadgets, 
-but it is reccommended they stick to the standard SDK outlined by 
+/*Sets up SDK for the gadget. Some browser API may also be used by gadgets,
+but it is reccommended they stick to the standard SDK outlined by
 docs/protocol/gadget API (which includes some browser API).*/
 
 /*Gets all property values off an object.*/
@@ -23,7 +23,7 @@ sharedMethods.set = function(val) {
       this[key] = val[key];
       this.__binds.push(this[key].observe(this.__notify));
    }
-   
+
    for (var o in this.__observers) observer(this);
    return this;
 }
@@ -162,7 +162,7 @@ function bind(obj1, obj2) {
       obj1 = val;
       bindObj2 = obj2.observe(observeObj2);
    }
-   
+
    bindObj1 = obj1.observe(observeObj1);
    bindObj2 = obj2.observe(observeObj2);
 }

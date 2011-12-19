@@ -2,8 +2,8 @@ Please note, these standards may include a few very slight changes which I feel 
 
 To help you find the correct standard, the next lines copy out the Jobs for each standard:
 -Wave Event Protocal: Facilitates communicating live changes to the client.
--Federation Format: This standard defines a document structure that can be passed around in the federation standard. 
--Federation Protocal: To sync documents containing waves between servers. 
+-Federation Format: This standard defines a document structure that can be passed around in the federation standard.
+-Federation Protocal: To sync documents containing waves between servers.
 -Gadget API: A minimal API for gadget developers to use and wave clients to implement.
 -Simple Data Protocal: Allows browser clients to communicate actions to the server.
 -Wave Client Protocal: Provides a lower bandwidth and lighter weight alternative to the Simple Data Protocal

@@ -1,6 +1,6 @@
 // this is test helpers for steal
 steal(function(steal){
-	
+
 var assertions = [],
 	module = "";
 steal.test =  {
@@ -36,7 +36,7 @@ steal.test =  {
 	    }
 	},
 	sleep: function( duration ){
-        java.lang.Thread.currentThread().sleep(duration);		
+        java.lang.Thread.currentThread().sleep(duration);
 	},
 	print: function() {
 		var win =this.getWindow();
@@ -48,10 +48,10 @@ steal.test =  {
 	        for (var i=0; i<children.length; i++) {
 	            var success = deleteDir(new java.io.File(dir, children[i]));
 	            if (!success) return false;
-	            
+
 	        }
 	    }
-	
+
 	    // The directory is now empty so delete it
 	    return dir['delete']();
 	},
@@ -92,8 +92,8 @@ steal.test =  {
 				"text/javascript" : true,
 				"text/envjs" : true,
 				"": true
-			}, 
-			fireLoad: fireLoad !== undefined ? fireLoad : true, 
+			},
+			fireLoad: fireLoad !== undefined ? fireLoad : true,
 			logLevel: 2,
 			dontPrintUserAgent: true
 		});
@@ -108,5 +108,5 @@ steal.test =  {
 		print("==========  "+name+"  =========")
 	}
 }
-	
+
 })

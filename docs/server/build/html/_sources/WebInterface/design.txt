@@ -3,10 +3,10 @@ UI Design Principles
 
 .. contents::
 
-.. note:: I use the term "hacker" to refer to a collaberator on PyOfWave or 
+.. note:: I use the term "hacker" to refer to a collaberator on PyOfWave or
    other OpenSource project. "Crackers" are what society calls "hackers".
 
-   This is written in first person to make it easier to explain where I'm 
+   This is written in first person to make it easier to explain where I'm
    coming from.
 
 This file describes the UI principles used by POW (PyOfWave), it is here as a guide for web developer hackers. I want POW to be an example that OpenSource does *note* create bad designs, as I've seen some people in both general society and hackers believe.
@@ -55,7 +55,7 @@ Explicit actions clearly state the result of manipulating an object. For example
 
 Implied actions convey the result of an action through visual cues or context. A drag-and-drop operation is a common example of an implied action. Dragging one object onto another object constitutes a relationship between the objects and an action to be performed by the drag operation. For example, dragging a file icon to the Trash implies the imminent removal of the underlying file from the file system. For implied actions to be apparent, the user must be able to recognize the objects involved, the manipulation to be performed, and the consequences of the action.
 
-Keep these two paradigms in mind as you design your user interface. Examine the user's mental model of your application's task to help you determine when each type of action is appropriate. 
+Keep these two paradigms in mind as you design your user interface. Examine the user's mental model of your application's task to help you determine when each type of action is appropriate.
 
 User Control
 ------------
@@ -67,12 +67,12 @@ Feedback and Communication
 
 Feedback and communication encompass far more than merely displaying alerts when something goes wrong. Instead, it involves keeping users informed about what's happening by providing appropriate feedback and enabling communication with your application.
 
-When a user initiates an action, always provide an indication that your application has received the user's input and is operating on it. Users want to know that a command is being carried out. If a command can't be carried out, they want to know why it can't and what can be done instead. When used sparingly, animation is one of the best ways to show a user that a requested action is being carried out. 
+When a user initiates an action, always provide an indication that your application has received the user's input and is operating on it. Users want to know that a command is being carried out. If a command can't be carried out, they want to know why it can't and what can be done instead. When used sparingly, animation is one of the best ways to show a user that a requested action is being carried out.
 
 Consistancy
 -----------
 
-Consistency in the interface allows users to transfer their knowledge and skills from one application to another. Use standard controls to achieve consistancy with the OS. 
+Consistency in the interface allows users to transfer their knowledge and skills from one application to another. Use standard controls to achieve consistancy with the OS.
 
 * **Is it consistent with Mac OS X standards?** For example, does the application use the reserved and recommended keyboard equivalents (see “Keyboard Shortcuts Quick Reference”) for their correct purposes? Is it Aqua-compliant? Does it use the solutions to standard tasks Mac OS X provides? (For more information on these solutions, see “Using Mac OS X Technologies.”)
 
@@ -87,7 +87,7 @@ WYSIWYG (What You See Is What You Get)
 
 In applications in which users can format data for printing, publish to the web, or write to film, DVD, or other formats, make sure there are no significant differences between what users see onscreen and what they receive in the final output. When the user makes changes to a document, display the results immediately; the user shouldn't have to wait for the final output or make mental calculations about how the document will look later. Use a preview function if necessary.
 
-People should be able to find all the available features in your application. Don't hide features by failing to make commands available in a menu. Menus present lists of commands so that people can see their choices rather than try to remember command names. Avoid providing access to features only in toolbars or contextual menus. 
+People should be able to find all the available features in your application. Don't hide features by failing to make commands available in a menu. Menus present lists of commands so that people can see their choices rather than try to remember command names. Avoid providing access to features only in toolbars or contextual menus.
 
 Forgiveness
 -----------
@@ -136,15 +136,15 @@ To achieve familiarity, as described in the previous section :ref:`apple_hig`, u
 Keep a Static Screen
 --------------------
 
-Wave provides live data, which changes all the time. This may overwhelm users, so do not change anything else and keep changes to reflect either 
+Wave provides live data, which changes all the time. This may overwhelm users, so do not change anything else and keep changes to reflect either
 
-* An addition to a Wave 
+* An addition to a Wave
 
-* Or a reflow of content (which allows better layout of data and screen use). 
+* Or a reflow of content (which allows better layout of data and screen use).
 
 Place Actions in the Toolbar
 ----------------------------
 
-This provides tidy organization to the screen, with all actions clearly associated with a section of the screen holding content. 
+This provides tidy organization to the screen, with all actions clearly associated with a section of the screen holding content.
 
-An exception to this is the edit and playback actions in the Wave view. This is placed in a secondary toolbar below the toolbar and is there to maintain a more static screen as described above. 
+An exception to this is the edit and playback actions in the Wave view. This is placed in a secondary toolbar below the toolbar and is there to maintain a more static screen as described above.

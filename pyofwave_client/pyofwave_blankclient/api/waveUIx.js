@@ -1,6 +1,6 @@
 /*Wave views which may not be wave specific.*/
 
-steal('../../api/jquery/jquery-1.5.min.js', 
+steal('../../api/jquery/jquery-1.5.min.js',
 '../../api/jquery/jqueryui-1.8.12.custom.min.js', //TODO: Include jQueryUI slider, doesn't unzip on my machine.
 '../../api/jquery/farbtastic.js').then(function() {
 /*displays a menu for selection. Options is a object mapping labels to callbacks. */
@@ -40,11 +40,11 @@ function toolbarOption(icon, action) {
    return $('<img>').attr('href', icon).click(action);
 }
 
-//advanced 
+//advanced
 /*A toolbar option that can be toggled on and off.*/
 function toolbarCheck(icon, onToggle) {
    return toolbarOption(icon, function() {
-      var on = $(this).parent().toggle("selected"); 
+      var on = $(this).parent().toggle("selected");
       onToggle(on);
    });
 }
@@ -52,9 +52,9 @@ function toolbarCheck(icon, onToggle) {
 function toolbarDropdown(icon, options, onSelect) {
    $(this).data('selected', options[0]);
    var menuOptions = new Array();
-   for (var i = 0; i < options.length, i++) 
+   for (var i = 0; i < options.length, i++)
       menuOptions[options[i]] = function() {
-         $(this).data('selected', options[i]); 
+         $(this).data('selected', options[i]);
          onSelect(options[i]);
          //TODO: Check selected option.
       });
@@ -69,7 +69,7 @@ function toolbarRadio(icon, name, onSelect) {
    //create and return toolbarCheck.
    var el =  toolbarOption(icon, function() {
       $('#wave-toolbar .selected .' + name).removeClass('selected');
-      $(this).parent().toggleClass('selected'); //TODO: ensure deselect works. 
+      $(this).parent().toggleClass('selected'); //TODO: ensure deselect works.
       OnSelect();
    });
    el.parent().class(name);

@@ -362,7 +362,7 @@ ___v1ew.push("<pre class='signiture'><code>");___v1ew.push((jQuery.EJS.text( sig
 ___v1ew.push("\n");
 ___v1ew.push("  <div class='params'>\n");
 ___v1ew.push("  ");if(this.params){;___v1ew.push("\n");
-___v1ew.push("	  "); for(var n in this.params){   
+___v1ew.push("	  "); for(var n in this.params){
 	       var param = this.params[n]; ;___v1ew.push("  \n");
 ___v1ew.push("	      <div class='param ");___v1ew.push((jQuery.EJS.text( param.optional ? "optional" : "")));___v1ew.push("'>\n");
 ___v1ew.push("	          <label>");___v1ew.push((jQuery.EJS.text( param.name)));___v1ew.push("</label>\n");
@@ -392,7 +392,7 @@ ___v1ew.push("<pre class='signiture'><code>");___v1ew.push((jQuery.EJS.text( sig
 ___v1ew.push("\n");
 ___v1ew.push("  <div class='params'>\n");
 ___v1ew.push("  \n");
-___v1ew.push("  "); for(var name in this.params){   
+___v1ew.push("  "); for(var name in this.params){
        var param = this.params[name]; ;___v1ew.push("  \n");
 ___v1ew.push("      <div class='param ");___v1ew.push((jQuery.EJS.text( param.optional ? "optional" : "")));___v1ew.push("'>\n");
 ___v1ew.push("          <label>");___v1ew.push((jQuery.EJS.text( param.name)));___v1ew.push("</label>\n");
@@ -419,7 +419,7 @@ ___v1ew.push(" <pre class='signiture'><code>");___v1ew.push((jQuery.EJS.text( si
 ___v1ew.push("  \n");
 ___v1ew.push("  <div class='params'>\n");
 ___v1ew.push("  \n");
-___v1ew.push("  "); for(var n in this.params){   
+___v1ew.push("  "); for(var n in this.params){
        var param = this.params[n]; ;___v1ew.push("  \n");
 ___v1ew.push("      <div class='param ");___v1ew.push((jQuery.EJS.text( param.optional ? "optional" : "")));___v1ew.push("'>\n");
 ___v1ew.push("          <label>");___v1ew.push((jQuery.EJS.text( param.name)));___v1ew.push("</label>\n");
@@ -443,7 +443,7 @@ ___v1ew.push((jQuery.EJS.text( view("//jmvcdoc/views/top.ejs",this))));___v1ew.p
  } ;___v1ew.push("\n");
 ___v1ew.push((jQuery.EJS.text( link(comment) )));; return ___v1ew.join('');}}}catch(e){e.lineNumber=null;throw e;} }));;
 steal.end();
-$.View.preload('jmvcdoc_views_results_ejs',jQuery.EJS(function(_CONTEXT,_VIEW) { try { with(_VIEW) { with (_CONTEXT) {var ___v1ew = [];  
+$.View.preload('jmvcdoc_views_results_ejs',jQuery.EJS(function(_CONTEXT,_VIEW) { try { with(_VIEW) { with (_CONTEXT) {var ___v1ew = [];
    var previous = "", res, current, title;;
 ___v1ew.push("\n");
 ___v1ew.push("\n");

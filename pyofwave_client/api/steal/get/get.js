@@ -2,9 +2,9 @@ steal("//steal/get/json", "//steal/rhino/prompt", function( steal ) {
 	/**
 	 * @parent stealjs
 	 * Downloads and installs a plugin from a url.  Normally this is run from the steal/getjs script.
-	 * 
+	 *
 	 * <p>The following copies the mustache-javascript repo to a local mustache folder.</p>
-	 * 
+	 *
 	 * @codestart text
 	 * js steal/getjs "ttp://github.com/tdreyno/mustache-javascriptmvc mustache
 	 * @codeend
@@ -35,7 +35,7 @@ steal("//steal/get/json", "//steal/rhino/prompt", function( steal ) {
 	 * <h2>The Get function</h2>
 	 * get takes a url or official plugin name and installs it.
 	 * @param {String} url the path to a svn or github repo or a name of a recognized plugin.
-	 * @param {Object} options configure the download.  
+	 * @param {Object} options configure the download.
 	 * <table class='options'>
 	 * 	  <tr>
 	 * 	      <th>Name</th><th>Description</th>
@@ -45,7 +45,7 @@ steal("//steal/get/json", "//steal/rhino/prompt", function( steal ) {
 	 *    <tr><td>ignore</td>
 	 * 	  	  <td>An array of regexps that if the filename matches, these will be ignored.</td></tr>
 	 * 	</table>
-	 * 
+	 *
 	 */
 	var get = (steal.get = function( url, options ) {
 		options = steal.opts(options, {
@@ -98,13 +98,13 @@ steal("//steal/get/json", "//steal/rhino/prompt", function( steal ) {
 				return plugin_list[name];
 			}
 			steal.print("  Looking in gets.json for your own plugin list")
-			
+
 			plugin_list_source = readFile("gets.json");
 			if(plugin_list_source){
 				eval("plugin_list = " + plugin_list_source);
 				return plugin_list[name];
 			}
-			
+
 		},
 		//gets teh name from the url
 		guessName = function( url ) {

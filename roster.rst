@@ -10,11 +10,11 @@ Participation Instructions
 
 To participate,
 
-#. Ensure you've got a GitHub account, and have installed Git. 
+#. Ensure you've got a GitHub account, and have installed Git.
 
 #. Select a task from the list below (preferably a root one, but if you're not up for that, choose a leaf).
 
-#. Message me, alcinnz, I will add your name under that item. 
+#. Message me, alcinnz, I will add your name under that item.
 
 #. Fork this project, setup a repository on your machine, and install Twisted and zope.interface.
 
@@ -32,7 +32,7 @@ Between the final parenthesese will appear an X when the task is completed.
 Protocols
 ---------
 
-Please be aware we are currently in the middle of standardizing Wave, so these protocols may change on you. It'll be important to stay up to date on discussions and any concerns will be heard. 
+Please be aware we are currently in the middle of standardizing Wave, so these protocols may change on you. It'll be important to stay up to date on discussions and any concerns will be heard.
 
 Look at this as an opportunity, for you may be implementing a reference implementation. Also any protocol issues will be fixed and you don't have to be stuck with them.
 

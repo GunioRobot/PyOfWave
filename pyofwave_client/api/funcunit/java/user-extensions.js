@@ -88,10 +88,10 @@ var jQuery = function( selector, context ) {
 
 	// For matching the engine and version of the browser
 	browserMatch,
-	
+
 	// Has the ready events already been bound?
 	readyBound = false,
-	
+
 	// The functions to execute on DOM ready
 	readyList = [],
 
@@ -105,7 +105,7 @@ var jQuery = function( selector, context ) {
 	slice = Array.prototype.slice,
 	trim = String.prototype.trim,
 	indexOf = Array.prototype.indexOf,
-	
+
 	// [[Class]] -> type pairs
 	class2type = {};
 
@@ -124,7 +124,7 @@ jQuery.fn = jQuery.prototype = {
 			this.length = 1;
 			return this;
 		}
-		
+
 		// The body element only exists once, optimize finding it
 		if ( selector === "body" && !context && document.body ) {
 			this.context = document;
@@ -163,9 +163,9 @@ jQuery.fn = jQuery.prototype = {
 						ret = jQuery.buildFragment( [ match[1] ], [ doc ] );
 						selector = (ret.cacheable ? ret.fragment.cloneNode(true) : ret.fragment).childNodes;
 					}
-					
+
 					return jQuery.merge( this, selector );
-					
+
 				// HANDLE: $("#id")
 				} else {
 					elem = document.getElementById( match[2] );
@@ -258,7 +258,7 @@ jQuery.fn = jQuery.prototype = {
 
 		if ( jQuery.isArray( elems ) ) {
 			push.apply( ret, elems );
-		
+
 		} else {
 			jQuery.merge( ret, elems );
 		}
@@ -284,7 +284,7 @@ jQuery.fn = jQuery.prototype = {
 	each: function( callback, args ) {
 		return jQuery.each( this, callback, args );
 	},
-	
+
 	ready: function( fn ) {
 		// Attach the listeners
 		jQuery.bindReady();
@@ -302,7 +302,7 @@ jQuery.fn = jQuery.prototype = {
 
 		return this;
 	},
-	
+
 	eq: function( i ) {
 		return i === -1 ?
 			this.slice( i ) :
@@ -327,7 +327,7 @@ jQuery.fn = jQuery.prototype = {
 			return callback.call( elem, i, elem );
 		}));
 	},
-	
+
 	end: function() {
 		return this.prevObject || jQuery(null);
 	},
@@ -416,14 +416,14 @@ jQuery.extend({
 
 		return jQuery;
 	},
-	
+
 	// Is the DOM ready to be used? Set to true once it occurs.
 	isReady: false,
 
 	// A counter to track how many items to wait for before
 	// the ready event fires. See #6781
 	readyWait: 1,
-	
+
 	// Handle when the DOM is ready
 	ready: function( wait ) {
 		// A third-party is pushing the ready event forwards
@@ -467,7 +467,7 @@ jQuery.extend({
 			}
 		}
 	},
-	
+
 	bindReady: function() {
 		if ( readyBound ) {
 			return;
@@ -486,7 +486,7 @@ jQuery.extend({
 		if ( document.addEventListener ) {
 			// Use the handy event callback
 			document.addEventListener( "DOMContentLoaded", DOMContentLoaded, false );
-			
+
 			// A fallback to window.onload, that will always work
 			window.addEventListener( "load", jQuery.ready, false );
 
@@ -495,7 +495,7 @@ jQuery.extend({
 			// ensure firing before onload,
 			// maybe late but safe also for iframes
 			document.attachEvent("onreadystatechange", DOMContentLoaded);
-			
+
 			// A fallback to window.onload, that will always work
 			window.attachEvent( "onload", jQuery.ready );
 
@@ -546,20 +546,20 @@ jQuery.extend({
 		if ( !obj || jQuery.type(obj) !== "object" || obj.nodeType || jQuery.isWindow( obj ) ) {
 			return false;
 		}
-		
+
 		// Not own constructor property must be Object
 		if ( obj.constructor &&
 			!hasOwn.call(obj, "constructor") &&
 			!hasOwn.call(obj.constructor.prototype, "isPrototypeOf") ) {
 			return false;
 		}
-		
+
 		// Own properties are enumerated firstly, so to speed up,
 		// if last one is own, then all properties are own.
-	
+
 		var key;
 		for ( key in obj ) {}
-		
+
 		return key === undefined || hasOwn.call( obj, key );
 	},
 
@@ -569,11 +569,11 @@ jQuery.extend({
 		}
 		return true;
 	},
-	
+
 	error: function( msg ) {
 		throw msg;
 	},
-	
+
 	parseJSON: function( data ) {
 		if ( typeof data !== "string" || !data ) {
 			return null;
@@ -581,7 +581,7 @@ jQuery.extend({
 
 		// Make sure leading/trailing whitespace is removed (IE can't handle it)
 		data = jQuery.trim( data );
-		
+
 		// Make sure the incoming data is actual JSON
 		// Logic borrowed from http://json.org/json2.js
 		if ( rvalidchars.test(data.replace(rvalidescape, "@")
@@ -723,7 +723,7 @@ jQuery.extend({
 			for ( var l = second.length; j < l; j++ ) {
 				first[ i++ ] = second[ j ];
 			}
-		
+
 		} else {
 			while ( second[j] !== undefined ) {
 				first[ i++ ] = second[ j++ ];
@@ -803,7 +803,7 @@ jQuery.extend({
 	// The value/s can be optionally by executed if its a function
 	access: function( elems, key, value, exec, fn, pass ) {
 		var length = elems.length;
-	
+
 		// Setting many attributes
 		if ( typeof key === "object" ) {
 			for ( var k in key ) {
@@ -811,19 +811,19 @@ jQuery.extend({
 			}
 			return elems;
 		}
-	
+
 		// Setting one attribute
 		if ( value !== undefined ) {
 			// Optionally, function values get executed if exec is true
 			exec = !pass && exec && jQuery.isFunction(value);
-		
+
 			for ( var i = 0; i < length; i++ ) {
 				fn( elems[i], key, exec ? value.call( elems[i], i, fn( elems[i], key ) ) : value, pass );
 			}
-		
+
 			return elems;
 		}
-	
+
 		// Getting an attribute
 		return length ? fn( elems[0], key ) : undefined;
 	},
@@ -1128,7 +1128,7 @@ jQuery.extend({
 	// Please use with caution
 	uuid: 0,
 
-	// Unique for each copy of jQuery on the page	
+	// Unique for each copy of jQuery on the page
 	expando: "jQuery" + jQuery.now(),
 
 	// The following elements throw uncatchable exceptions if you
@@ -1620,7 +1620,7 @@ jQuery.fn.extend({
 						var option = options[ i ];
 
 						// Don't return options that are disabled or in a disabled optgroup
-						if ( option.selected && (jQuery.support.optDisabled ? !option.disabled : option.getAttribute("disabled") === null) && 
+						if ( option.selected && (jQuery.support.optDisabled ? !option.disabled : option.getAttribute("disabled") === null) &&
 								(!option.parentNode.disabled || !jQuery.nodeName( option.parentNode, "optgroup" )) ) {
 
 							// Get the specific value for the option
@@ -1643,7 +1643,7 @@ jQuery.fn.extend({
 				if ( rradiocheck.test( elem.type ) && !jQuery.support.checkOn ) {
 					return elem.getAttribute("value") === null ? "on" : elem.value;
 				}
-				
+
 
 				// Everything else, we just grab the value
 				return (elem.value || "").replace(rreturn, "");
@@ -1709,7 +1709,7 @@ jQuery.extend({
 		height: true,
 		offset: true
 	},
-		
+
 	attr: function( elem, name, value, pass ) {
 		// don't set attributes on text and comment nodes
 		if ( !elem || elem.nodeType === 3 || elem.nodeType === 8 ) {
@@ -1878,7 +1878,7 @@ jQuery.event = {
 		var eventKey = elem.nodeType ? "events" : "__events__",
 			events = elemData[ eventKey ],
 			eventHandle = elemData.handle;
-			
+
 		if ( typeof events === "function" ) {
 			// On plain objects events is a fn that holds the the data
 			// which prevents this data from being JSON serialized
@@ -1958,9 +1958,9 @@ jQuery.event = {
 					}
 				}
 			}
-			
-			if ( special.add ) { 
-				special.add.call( elem, handleObj ); 
+
+			if ( special.add ) {
+				special.add.call( elem, handleObj );
 
 				if ( !handleObj.handler.guid ) {
 					handleObj.handler.guid = handler.guid;
@@ -1999,7 +1999,7 @@ jQuery.event = {
 		if ( !elemData || !events ) {
 			return;
 		}
-		
+
 		if ( typeof events === "function" ) {
 			elemData = events;
 			events = events.events;
@@ -2037,7 +2037,7 @@ jQuery.event = {
 				namespaces = type.split(".");
 				type = namespaces.shift();
 
-				namespace = new RegExp("(^|\\.)" + 
+				namespace = new RegExp("(^|\\.)" +
 					jQuery.map( namespaces.slice(0).sort(), fcleanup ).join("\\.(?:.*\\.)?") + "(\\.|$)");
 			}
 
@@ -2199,7 +2199,7 @@ jQuery.event = {
 				isClick = jQuery.nodeName( target, "a" ) && targetType === "click",
 				special = jQuery.event.special[ targetType ] || {};
 
-			if ( (!special._default || special._default.call( elem, event ) === false) && 
+			if ( (!special._default || special._default.call( elem, event ) === false) &&
 				!isClick && !(target && target.nodeName && jQuery.noData[target.nodeName.toLowerCase()]) ) {
 
 				try {
@@ -2269,7 +2269,7 @@ jQuery.event = {
 					event.handler = handleObj.handler;
 					event.data = handleObj.data;
 					event.handleObj = handleObj;
-	
+
 					var ret = handleObj.handler.apply( this, args );
 
 					if ( ret !== undefined ) {
@@ -2368,7 +2368,7 @@ jQuery.event = {
 			add: function( handleObj ) {
 				jQuery.event.add( this,
 					liveConvert( handleObj.origType, handleObj.selector ),
-					jQuery.extend({}, handleObj, {handler: liveHandler, guid: handleObj.handler.guid}) ); 
+					jQuery.extend({}, handleObj, {handler: liveHandler, guid: handleObj.handler.guid}) );
 			},
 
 			remove: function( handleObj ) {
@@ -2398,7 +2398,7 @@ jQuery.removeEvent = document.removeEventListener ?
 		if ( elem.removeEventListener ) {
 			elem.removeEventListener( type, handle, false );
 		}
-	} : 
+	} :
 	function( elem, type, handle ) {
 		if ( elem.detachEvent ) {
 			elem.detachEvent( "on" + type, handle );
@@ -2445,7 +2445,7 @@ jQuery.Event.prototype = {
 		if ( !e ) {
 			return;
 		}
-		
+
 		// if preventDefault exists run it on the original event
 		if ( e.preventDefault ) {
 			e.preventDefault();
@@ -2541,7 +2541,7 @@ if ( !jQuery.support.submitBubbles ) {
 						return trigger( "submit", this, arguments );
 					}
 				});
-	 
+
 				jQuery.event.add(this, "keypress.specialSubmit", function( e ) {
 					var elem = e.target,
 						type = elem.type;
@@ -2603,7 +2603,7 @@ if ( !jQuery.support.changeBubbles ) {
 		if ( e.type !== "focusout" || elem.type !== "radio" ) {
 			jQuery.data( elem, "_change_data", val );
 		}
-		
+
 		if ( data === undefined || val === data ) {
 			return;
 		}
@@ -2617,7 +2617,7 @@ if ( !jQuery.support.changeBubbles ) {
 
 	jQuery.event.special.change = {
 		filters: {
-			focusout: testChange, 
+			focusout: testChange,
 
 			beforedeactivate: testChange,
 
@@ -2688,15 +2688,15 @@ if ( document.addEventListener ) {
 				if ( focusCounts[fix]++ === 0 ) {
 					document.addEventListener( orig, handler, true );
 				}
-			}, 
-			teardown: function() { 
+			},
+			teardown: function() {
 				if ( --focusCounts[fix] === 0 ) {
 					document.removeEventListener( orig, handler, true );
 				}
 			}
 		};
 
-		function handler( e ) { 
+		function handler( e ) {
 			e = jQuery.event.fix( e );
 			e.type = fix;
 			return jQuery.event.trigger( e, null, e.target );
@@ -2713,7 +2713,7 @@ jQuery.each(["bind", "one"], function( i, name ) {
 			}
 			return this;
 		}
-		
+
 		if ( jQuery.isFunction( data ) || data === false ) {
 			fn = data;
 			data = undefined;
@@ -2753,20 +2753,20 @@ jQuery.fn.extend({
 
 		return this;
 	},
-	
+
 	delegate: function( selector, types, data, fn ) {
 		return this.live( types, data, fn, selector );
 	},
-	
+
 	undelegate: function( selector, types, fn ) {
 		if ( arguments.length === 0 ) {
 				return this.unbind( "live" );
-		
+
 		} else {
 			return this.die( types, null, fn, selector );
 		}
 	},
-	
+
 	trigger: function( type, data ) {
 		return this.each(function() {
 			jQuery.event.trigger( type, data, this );
@@ -2823,12 +2823,12 @@ jQuery.each(["live", "die"], function( i, name ) {
 		var type, i = 0, match, namespaces, preType,
 			selector = origSelector || this.selector,
 			context = origSelector ? this : jQuery( this.context );
-		
+
 		if ( typeof types === "object" && !types.preventDefault ) {
 			for ( var key in types ) {
 				context[ name ]( key, data, types[key], selector );
 			}
-			
+
 			return this;
 		}
 
@@ -2875,7 +2875,7 @@ jQuery.each(["live", "die"], function( i, name ) {
 				context.unbind( "live." + liveConvert( type, selector ), fn );
 			}
 		}
-		
+
 		return this;
 	};
 });
@@ -2894,7 +2894,7 @@ function liveHandler( event ) {
 	if ( event.liveFired === this || !events || !events.live || event.button && event.type === "click" ) {
 		return;
 	}
-	
+
 	if ( event.namespace ) {
 		namespace = new RegExp("(^|\\.)" + event.namespace.split(".").join("\\.(?:.*\\.)?") + "(\\.|$)");
 	}
@@ -3042,7 +3042,7 @@ var Sizzle = function( selector, context, results, seed ) {
 	if ( context.nodeType !== 1 && context.nodeType !== 9 ) {
 		return [];
 	}
-	
+
 	if ( !selector || typeof selector !== "string" ) {
 		return results;
 	}
@@ -3052,7 +3052,7 @@ var Sizzle = function( selector, context, results, seed ) {
 		contextXML = Sizzle.isXML( context ),
 		parts = [],
 		soFar = selector;
-	
+
 	// Reset the position of the chunker regexp (start from head)
 	do {
 		chunker.exec( "" );
@@ -3060,9 +3060,9 @@ var Sizzle = function( selector, context, results, seed ) {
 
 		if ( m ) {
 			soFar = m[3];
-		
+
 			parts.push( m[1] );
-		
+
 			if ( m[2] ) {
 				extra = m[3];
 				break;
@@ -3086,7 +3086,7 @@ var Sizzle = function( selector, context, results, seed ) {
 				if ( Expr.relative[ selector ] ) {
 					selector += parts.shift();
 				}
-				
+
 				set = posProcess( selector, set );
 			}
 		}
@@ -3215,7 +3215,7 @@ Sizzle.find = function( expr, context, isXML ) {
 	for ( var i = 0, l = Expr.order.length; i < l; i++ ) {
 		var match,
 			type = Expr.order[i];
-		
+
 		if ( (match = Expr.leftMatch[ type ].exec( expr )) ) {
 			var left = match[1];
 			match.splice( 1, 1 );
@@ -3531,7 +3531,7 @@ var Expr = Sizzle.selectors = {
 
 		ATTR: function( match, curLoop, inplace, result, not, isXML ) {
 			var name = match[1].replace(/\\/g, "");
-			
+
 			if ( !isXML && Expr.attrMap[name] ) {
 				match[1] = Expr.attrMap[name];
 			}
@@ -3562,7 +3562,7 @@ var Expr = Sizzle.selectors = {
 			} else if ( Expr.match.POS.test( match[0] ) || Expr.match.CHILD.test( match[0] ) ) {
 				return true;
 			}
-			
+
 			return match;
 		},
 
@@ -3572,7 +3572,7 @@ var Expr = Sizzle.selectors = {
 			return match;
 		}
 	},
-	
+
 	filters: {
 		enabled: function( elem ) {
 			return elem.disabled === false && elem.type !== "hidden";
@@ -3585,12 +3585,12 @@ var Expr = Sizzle.selectors = {
 		checked: function( elem ) {
 			return elem.checked === true;
 		},
-		
+
 		selected: function( elem ) {
 			// Accessing this property makes selected-by-default
 			// options in Safari work properly
 			elem.parentNode.selectedIndex;
-			
+
 			return elem.selected === true;
 		},
 
@@ -3716,21 +3716,21 @@ var Expr = Sizzle.selectors = {
 				case "only":
 				case "first":
 					while ( (node = node.previousSibling) )	 {
-						if ( node.nodeType === 1 ) { 
-							return false; 
+						if ( node.nodeType === 1 ) {
+							return false;
 						}
 					}
 
-					if ( type === "first" ) { 
-						return true; 
+					if ( type === "first" ) {
+						return true;
 					}
 
 					node = elem;
 
 				case "last":
 					while ( (node = node.nextSibling) )	 {
-						if ( node.nodeType === 1 ) { 
-							return false; 
+						if ( node.nodeType === 1 ) {
+							return false;
 						}
 					}
 
@@ -3743,22 +3743,22 @@ var Expr = Sizzle.selectors = {
 					if ( first === 1 && last === 0 ) {
 						return true;
 					}
-					
+
 					var doneName = match[0],
 						parent = elem.parentNode;
-	
+
 					if ( parent && (parent.sizcache !== doneName || !elem.nodeIndex) ) {
 						var count = 0;
-						
+
 						for ( node = parent.firstChild; node; node = node.nextSibling ) {
 							if ( node.nodeType === 1 ) {
 								node.nodeIndex = ++count;
 							}
-						} 
+						}
 
 						parent.sizcache = doneName;
 					}
-					
+
 					var diff = elem.nodeIndex - last;
 
 					if ( first === 0 ) {
@@ -3777,7 +3777,7 @@ var Expr = Sizzle.selectors = {
 		TAG: function( elem, match ) {
 			return (match === "*" && elem.nodeType === 1) || elem.nodeName.toLowerCase() === match;
 		},
-		
+
 		CLASS: function( elem, match ) {
 			return (" " + (elem.className || elem.getAttribute("class")) + " ")
 				.indexOf( match ) > -1;
@@ -3843,7 +3843,7 @@ var makeArray = function( array, results ) {
 		results.push.apply( results, array );
 		return results;
 	}
-	
+
 	return array;
 };
 
@@ -4090,7 +4090,7 @@ if ( document.querySelectorAll ) {
 		if ( div.querySelectorAll && div.querySelectorAll(".TEST").length === 0 ) {
 			return;
 		}
-	
+
 		Sizzle = function( query, context, extra, seed ) {
 			context = context || document;
 
@@ -4128,7 +4128,7 @@ if ( document.querySelectorAll ) {
 					}
 				}
 			}
-		
+
 			return oldSizzle(query, context, extra, seed);
 		};
 
@@ -4150,7 +4150,7 @@ if ( document.querySelectorAll ) {
 		// This should fail with an exception
 		// Gecko does not error, returns false instead
 		matches.call( document.documentElement, "[test!='']:sizzle" );
-	
+
 	} catch( pseudoError ) {
 		pseudoWorks = true;
 	}
@@ -4161,7 +4161,7 @@ if ( document.querySelectorAll ) {
 			expr = expr.replace(/\=\s*([^'"\]]*)\s*\]/g, "='$1']");
 
 			if ( !Sizzle.isXML( node ) ) {
-				try { 
+				try {
 					if ( pseudoWorks || !Expr.match.PSEUDO.test( expr ) && !/!=/.test( expr ) ) {
 						return matches.call( node, expr );
 					}
@@ -4190,7 +4190,7 @@ if ( document.querySelectorAll ) {
 	if ( div.getElementsByClassName("e").length === 1 ) {
 		return;
 	}
-	
+
 	Expr.order.splice(1, 0, "CLASS");
 	Expr.find.CLASS = function( match, context, isXML ) {
 		if ( typeof context.getElementsByClassName !== "undefined" && !isXML ) {
@@ -4241,7 +4241,7 @@ function dirCheck( dir, cur, doneName, checkSet, nodeCheck, isXML ) {
 
 		if ( elem ) {
 			var match = false;
-			
+
 			elem = elem[dir];
 
 			while ( elem ) {
@@ -4294,7 +4294,7 @@ if ( document.documentElement.contains ) {
 
 Sizzle.isXML = function( elem ) {
 	// documentElement is verified for cases where it doesn't yet exist
-	// (such as loading iframes in IE - #4833) 
+	// (such as loading iframes in IE - #4833)
 	var documentElement = (elem ? elem.ownerDocument || elem : 0).documentElement;
 
 	return documentElement ? documentElement.nodeName !== "HTML" : false;
@@ -4386,7 +4386,7 @@ jQuery.fn.extend({
 	filter: function( selector ) {
 		return this.pushStack( winnow(this, selector, true), "filter", selector );
 	},
-	
+
 	is: function( selector ) {
 		return !!selector && jQuery.filter( selector, this ).length > 0;
 	},
@@ -4404,7 +4404,7 @@ jQuery.fn.extend({
 					selector = selectors[i];
 
 					if ( !matches[selector] ) {
-						matches[selector] = jQuery.expr.match.POS.test( selector ) ? 
+						matches[selector] = jQuery.expr.match.POS.test( selector ) ?
 							jQuery( selector, context || this.context ) :
 							selector;
 					}
@@ -4427,7 +4427,7 @@ jQuery.fn.extend({
 			return ret;
 		}
 
-		var pos = POS.test( selectors ) ? 
+		var pos = POS.test( selectors ) ?
 			jQuery( selectors, context || this.context ) : null;
 
 		for ( i = 0, l = this.length; i < l; i++ ) {
@@ -4448,10 +4448,10 @@ jQuery.fn.extend({
 		}
 
 		ret = ret.length > 1 ? jQuery.unique(ret) : ret;
-		
+
 		return this.pushStack( ret, "closest", selectors );
 	},
-	
+
 	// Determine the position of an element within
 	// the matched set of elements
 	index: function( elem ) {
@@ -4532,7 +4532,7 @@ jQuery.each({
 }, function( name, fn ) {
 	jQuery.fn[ name ] = function( until, selector ) {
 		var ret = jQuery.map( this, fn, until );
-		
+
 		if ( !runtil.test( name ) ) {
 			selector = until;
 		}
@@ -4561,7 +4561,7 @@ jQuery.extend({
 			jQuery.find.matchesSelector(elems[0], expr) ? [ elems[0] ] : [] :
 			jQuery.find.matches(expr, elems);
 	},
-	
+
 	dir: function( elem, dir, until ) {
 		var matched = [],
 			cur = elem[ dir ];
@@ -4783,7 +4783,7 @@ jQuery.fn.extend({
 			return set;
 		}
 	},
-	
+
 	// keepData is for internal use only--do not document
 	remove: function( selector, keepData ) {
 		for ( var i = 0, elem; (elem = this[i]) != null; i++ ) {
@@ -4798,7 +4798,7 @@ jQuery.fn.extend({
 				}
 			}
 		}
-		
+
 		return this;
 	},
 
@@ -4814,7 +4814,7 @@ jQuery.fn.extend({
 				elem.removeChild( elem.firstChild );
 			}
 		}
-		
+
 		return this;
 	},
 
@@ -4965,9 +4965,9 @@ jQuery.fn.extend({
 			} else {
 				results = jQuery.buildFragment( args, this, scripts );
 			}
-			
+
 			fragment = results.fragment;
-			
+
 			if ( fragment.childNodes.length === 1 ) {
 				first = fragment = fragment.firstChild;
 			} else {
@@ -5075,18 +5075,18 @@ jQuery.each({
 		var ret = [],
 			insert = jQuery( selector ),
 			parent = this.length === 1 && this[0].parentNode;
-		
+
 		if ( parent && parent.nodeType === 11 && parent.childNodes.length === 1 && insert.length === 1 ) {
 			insert[ original ]( this[0] );
 			return this;
-			
+
 		} else {
 			for ( var i = 0, l = insert.length; i < l; i++ ) {
 				var elems = (i > 0 ? this.clone(true) : this).get();
 				jQuery( insert[i] )[ original ]( elems );
 				ret = ret.concat( elems );
 			}
-		
+
 			return this.pushStack( ret, name, insert.selector );
 		}
 	};
@@ -5174,7 +5174,7 @@ jQuery.extend({
 			for ( i = 0; ret[i]; i++ ) {
 				if ( scripts && jQuery.nodeName( ret[i], "script" ) && (!ret[i].type || ret[i].type.toLowerCase() === "text/javascript") ) {
 					scripts.push( ret[i].parentNode ? ret[i].parentNode.removeChild( ret[i] ) : ret[i] );
-				
+
 				} else {
 					if ( ret[i].nodeType === 1 ) {
 						ret.splice.apply( ret, [i + 1, 0].concat(jQuery.makeArray(ret[i].getElementsByTagName("script"))) );
@@ -5186,22 +5186,22 @@ jQuery.extend({
 
 		return ret;
 	},
-	
+
 	cleanData: function( elems ) {
 		var data, id, cache = jQuery.cache,
 			special = jQuery.event.special,
 			deleteExpando = jQuery.support.deleteExpando;
-		
+
 		for ( var i = 0, elem; (elem = elems[i]) != null; i++ ) {
 			if ( elem.nodeName && jQuery.noData[elem.nodeName.toLowerCase()] ) {
 				continue;
 			}
 
 			id = elem[ jQuery.expando ];
-			
+
 			if ( id ) {
 				data = cache[ id ];
-				
+
 				if ( data && data.events ) {
 					for ( var type in data.events ) {
 						if ( special[ type ] ) {
@@ -5212,14 +5212,14 @@ jQuery.extend({
 						}
 					}
 				}
-				
+
 				if ( deleteExpando ) {
 					delete elem[ jQuery.expando ];
 
 				} else if ( elem.removeAttribute ) {
 					elem.removeAttribute( jQuery.expando );
 				}
-				
+
 				delete cache[ id ];
 			}
 		}
@@ -5832,7 +5832,7 @@ jQuery.extend({
 				data = tmp;
 				jQuery.handleSuccess( s, xhr, status, data );
 				jQuery.handleComplete( s, xhr, status, data );
-				
+
 				if ( head ) {
 					head.removeChild( script );
 				}
@@ -6091,19 +6091,19 @@ jQuery.extend({
 				value = jQuery.isFunction(value) ? value() : value;
 				s[ s.length ] = encodeURIComponent(key) + "=" + encodeURIComponent(value);
 			};
-		
+
 		// Set traditional to true for jQuery <= 1.3.2 behavior.
 		if ( traditional === undefined ) {
 			traditional = jQuery.ajaxSettings.traditional;
 		}
-		
+
 		// If an array was passed in, assume that it is an array of form elements.
 		if ( jQuery.isArray(a) || a.jquery ) {
 			// Serialize the form elements
 			jQuery.each( a, function() {
 				add( this.name, this.value );
 			});
-			
+
 		} else {
 			// If traditional, encode the "old" way (the way 1.3.2 or older
 			// did it), otherwise encode params recursively.
@@ -6136,7 +6136,7 @@ function buildParams( prefix, obj, traditional, add ) {
 				buildParams( prefix + "[" + ( typeof v === "object" || jQuery.isArray(v) ? i : "" ) + "]", v, traditional, add );
 			}
 		});
-			
+
 	} else if ( !traditional && obj != null && typeof obj === "object" ) {
 		if ( jQuery.isEmptyObject( obj ) ) {
 			add( prefix, "" );
@@ -6147,7 +6147,7 @@ function buildParams( prefix, obj, traditional, add ) {
 				buildParams( prefix + "[" + k + "]", v, traditional, add );
 			});
 		}
-					
+
 	} else {
 		// Serialize scalar item.
 		add( prefix, obj );
@@ -6205,7 +6205,7 @@ jQuery.extend({
 			jQuery.event.trigger( "ajaxStop" );
 		}
 	},
-		
+
 	triggerGlobal: function( s, type, args ) {
 		(s.context && s.context.url == null ? jQuery(s.context) : jQuery.event).trigger(type, args);
 	},
@@ -6828,7 +6828,7 @@ if ( "getBoundingClientRect" in document.documentElement ) {
 	jQuery.fn.offset = function( options ) {
 		var elem = this[0], box;
 
-		if ( options ) { 
+		if ( options ) {
 			return this.each(function( i ) {
 				jQuery.offset.setOffset( this, options, i );
 			});
@@ -6870,7 +6870,7 @@ if ( "getBoundingClientRect" in document.documentElement ) {
 	jQuery.fn.offset = function( options ) {
 		var elem = this[0];
 
-		if ( options ) { 
+		if ( options ) {
 			return this.each(function( i ) {
 				jQuery.offset.setOffset( this, options, i );
 			});
@@ -6989,7 +6989,7 @@ jQuery.offset = {
 
 		return { top: top, left: left };
 	},
-	
+
 	setOffset: function( elem, options, i ) {
 		var position = jQuery.css( elem, "position" );
 
@@ -7023,7 +7023,7 @@ jQuery.offset = {
 		if (options.left != null) {
 			props.left = (options.left - curOffset.left) + curLeft;
 		}
-		
+
 		if ( "using" in options ) {
 			options.using.call( elem, props );
 		} else {
@@ -7083,7 +7083,7 @@ jQuery.each( ["Left", "Top"], function( i, name ) {
 
 	jQuery.fn[ method ] = function(val) {
 		var elem = this[0], win;
-		
+
 		if ( !elem ) {
 			return null;
 		}
@@ -7151,7 +7151,7 @@ jQuery.each([ "Height", "Width" ], function( i, name ) {
 		if ( !elem ) {
 			return size == null ? null : this;
 		}
-		
+
 		if ( jQuery.isFunction( size ) ) {
 			return this.each(function( i ) {
 				var self = jQuery( this );
@@ -7209,11 +7209,11 @@ jQuery.wrapped = function(){
 	var args = Selenium.makeArray(arguments),
 	    selector = args.shift(),
 	    context =  args.shift(),
-		method = args.shift(), 
+		method = args.shift(),
 		q, a, res;
-		
-	
-		
+
+
+
 	for(var i=0; i < arguments.length; i++){
 		if (typeof arguments[i] == 'function' && arguments[i] == Selenium.resume) {
 			Selenium.pause();
@@ -7225,7 +7225,7 @@ jQuery.wrapped = function(){
 	} else {
     	q = jQuery(selector, context);
 	}
-	
+
 	res = q[method].apply(q, args);
     //need to convert to json
     return jQuery.toJSON(res.jquery ? true : res)
@@ -7251,7 +7251,7 @@ var RRTest = RemoteRunner.prototype.continueTest;
 RemoteRunner.prototype.continueTest = function(){
 	if(Selenium.paused){
 		return;
-	} 
+	}
 	RRTest.call(this);
 };
 })()
@@ -7262,12 +7262,12 @@ RemoteRunner.prototype.continueTest = function(){
  * This document is licensed as free software under the terms of the
  * MIT License: http://www.opensource.org/licenses/mit-license.php
  *
- * Brantley Harris wrote this plugin. It is based somewhat on the JSON.org 
+ * Brantley Harris wrote this plugin. It is based somewhat on the JSON.org
  * website's http://www.json.org/json2.js, which proclaims:
  * "NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.", a sentiment that
  * I uphold.
  *
- * It is also influenced heavily by MochiKit's serializeJSON, which is 
+ * It is also influenced heavily by MochiKit's serializeJSON, which is
  * copyrighted 2005 by Bob Ippolito.
  */
  steal.plugins('jquery').then(function(){
@@ -7292,26 +7292,26 @@ RemoteRunner.prototype.continueTest = function(){
         if (typeof space == "number")
             space = "          ".substring(0, space);
         space = (typeof space == "string") ? space.substring(0, 10) : "";
-        
+
         var type = typeof(o);
-    
+
         if (o === null)
             return "null";
-    
+
         if (type == "undefined" || type == "function")
             return undefined;
-        
+
         if (type == "number" || type == "boolean")
             return o + "";
-    
+
         if (type == "string")
             return $.quoteString(o);
-    
+
         if (type == 'object')
         {
-            if (typeof o.toJSON == "function") 
+            if (typeof o.toJSON == "function")
                 return $.toJSON( o.toJSON(), replacer, space, true );
-            
+
             if (o.constructor === Date)
             {
                 var month = o.getUTCMonth() + 1;
@@ -7321,23 +7321,23 @@ RemoteRunner.prototype.continueTest = function(){
                 if (day < 10) day = '0' + day;
 
                 var year = o.getUTCFullYear();
-                
+
                 var hours = o.getUTCHours();
                 if (hours < 10) hours = '0' + hours;
-                
+
                 var minutes = o.getUTCMinutes();
                 if (minutes < 10) minutes = '0' + minutes;
-                
+
                 var seconds = o.getUTCSeconds();
                 if (seconds < 10) seconds = '0' + seconds;
-                
+
                 var milli = o.getUTCMilliseconds();
                 if (milli < 100) milli = '0' + milli;
                 if (milli < 10) milli = '0' + milli;
 
                 return '"' + year + '-' + month + '-' + day + 'T' +
-                             hours + ':' + minutes + ':' + seconds + 
-                             '.' + milli + 'Z"'; 
+                             hours + ':' + minutes + ':' + seconds +
+                             '.' + milli + 'Z"';
             }
 
             var process = ($.isFunction(replacer)) ?
@@ -7346,7 +7346,7 @@ RemoteRunner.prototype.continueTest = function(){
                 nl = (space) ? "\n" : "",
                 sp = (space) ? " " : "";
 
-            if (o.constructor === Array) 
+            if (o.constructor === Array)
             {
                 var ret = [];
                 for (var i = 0; i < o.length; i++)
@@ -7354,7 +7354,7 @@ RemoteRunner.prototype.continueTest = function(){
 
                 return "[" + nl + ret.join("," + nl) + nl + "]";
             }
-        
+
             var pairs = [], proplist;
             if ($.isArray(replacer)) {
                 proplist = $.map(replacer, function (v) {
@@ -7375,12 +7375,12 @@ RemoteRunner.prototype.continueTest = function(){
                     name = $.quoteString(k);
                 else
                     continue;  //skip non-string or number keys
-            
+
                 val = $.toJSON( process(k, o[k]), replacer, space, true );
-            
+
                 if (typeof val == "undefined")
                     continue;  //skip pairs where the value is a function.
-            
+
                 pairs.push((name + ":" + sp + val).replace(/^/gm, space));
             }
 
@@ -7397,7 +7397,7 @@ RemoteRunner.prototype.continueTest = function(){
             return JSON.parse(src);
         return eval("(" + src + ")");
     };
-    
+
     /** jQuery.secureEvalJSON(src)
         Evals JSON in a way that is *more* secure.
     **/
@@ -7405,12 +7405,12 @@ RemoteRunner.prototype.continueTest = function(){
     {
         if (typeof(JSON) == 'object' && JSON.parse)
             return JSON.parse(src);
-        
+
         var filtered = src;
         filtered = filtered.replace(/\\["\\\/bfnrtu]/g, '@');
         filtered = filtered.replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']');
         filtered = filtered.replace(/(?:^|:|,)(?:\s*\[)+/g, '');
-        
+
         if (/^[\],:{}\s]*$/.test(filtered))
             return eval("(" + src + ")");
         else
@@ -7418,13 +7418,13 @@ RemoteRunner.prototype.continueTest = function(){
     };
 
     /** jQuery.quoteString(string)
-        Returns a string-repr of a string, escaping quotes intelligently.  
+        Returns a string-repr of a string, escaping quotes intelligently.
         Mostly a support function for toJSON.
-    
+
         Examples:
             >>> jQuery.quoteString("apple")
             "apple"
-        
+
             >>> jQuery.quoteString('"Where are we going?", she asked.')
             "\"Where are we going?\", she asked."
      **/
@@ -7432,7 +7432,7 @@ RemoteRunner.prototype.continueTest = function(){
     {
         if (string.match(_escapeable))
         {
-            return '"' + string.replace(_escapeable, function (a) 
+            return '"' + string.replace(_escapeable, function (a)
             {
                 var c = _meta[a];
                 if (typeof c === 'string') return c;
@@ -7442,9 +7442,9 @@ RemoteRunner.prototype.continueTest = function(){
         }
         return '"' + string + '"';
     };
-    
+
     var _escapeable = /["\\\x00-\x1f\x7f-\x9f]/g;
-    
+
     var _meta = {
         '\b': '\\b',
         '\t': '\\t',
@@ -7457,8 +7457,8 @@ RemoteRunner.prototype.continueTest = function(){
 })(jQuery);
 })
 (function(){
-	
-	
+
+
 var extend = function(d, s) { for (var p in s) d[p] = s[p]; return d;},
 	// only uses browser detection for key events
 	browser = {
@@ -7474,8 +7474,8 @@ var extend = function(d, s) { for (var p in s) d[p] = s[p]; return d;},
 		var event = element.ownerDocument.createEventObject();
 		return extend(event, options);
 	},
-	data = {}, 
-	id = 0, 
+	data = {},
+	id = 0,
 	expando = "_synthetic"+(new Date() - 0),
 	bind,
 	unbind,
@@ -7490,11 +7490,11 @@ var extend = function(d, s) { for (var p in s) d[p] = s[p]; return d;},
  * @test funcunit/synthetic/qunit.html
  * Syn is used to simulate user actions.  It creates synthetic events and
  * performs their default behaviors.
- * 
+ *
  * <h2>Basic Use</h2>
  * The following clicks an input element with <code>id='description'</code>
  * and then types <code>'Hello World'</code>.
- * 
+ *
 @codestart
 Syn.click({},'description')
   .type("Hello World")
@@ -7502,10 +7502,10 @@ Syn.click({},'description')
  * <h2>User Actions and Events</h2>
  * <p>Syn is typically used to simulate user actions as opposed to triggering events. Typing characters
  * is an example of a user action.  The keypress that represents an <code>'a'</code>
- * character being typed is an example of an event. 
+ * character being typed is an example of an event.
  * </p>
  * <p>
- *   While triggering events is supported, it's much more useful to simulate actual user behavior.  The 
+ *   While triggering events is supported, it's much more useful to simulate actual user behavior.  The
  *   following actions are supported by Syn:
  * </p>
  * <ul>
@@ -7516,26 +7516,26 @@ Syn.click({},'description')
  *   <li><code>[Syn.prototype.move move]</code> - moves the mouse from one position to another (triggering mouseover / mouseouts).</li>
  *   <li><code>[Syn.prototype.drag drag]</code> - a mousedown, followed by mousemoves, and a mouseup.</li>
  * </ul>
- * All actions run asynchronously.  
- * Click on the links above for more 
+ * All actions run asynchronously.
+ * Click on the links above for more
  * information on how to use the specific action.
  * <h2>Asynchronous Callbacks</h2>
- * Actions don't complete immediately. This is almost 
- * entirely because <code>focus()</code> 
+ * Actions don't complete immediately. This is almost
+ * entirely because <code>focus()</code>
  * doesn't run immediately in IE.
- * If you provide a callback function to Syn, it will 
+ * If you provide a callback function to Syn, it will
  * be called after the action is completed.
- * <br/>The following checks that "Hello World" was entered correctly: 
+ * <br/>The following checks that "Hello World" was entered correctly:
 @codestart
 Syn.click({},'description')
   .type("Hello World", function(){
-  
-  ok("Hello World" == document.getElementById('description').value)  
+
+  ok("Hello World" == document.getElementById('description').value)
 })
 @codeend
 <h2>Asynchronous Chaining</h2>
-<p>You might have noticed the [Syn.prototype.then then] method.  It provides chaining 
-so you can do a sequence of events with a single (final) callback.  
+<p>You might have noticed the [Syn.prototype.then then] method.  It provides chaining
+so you can do a sequence of events with a single (final) callback.
 </p><p>
 If an element isn't provided to then, it uses the previous Syn's element.
 </p>
@@ -7556,7 +7556,7 @@ If jQuery is present, Syn adds a triggerSyn helper you can use like:
 $("#description").triggerSyn("type","Hello World");
 @codeend
  * <h2>Key Event Recording</h2>
- * <p>Every browser has very different rules for dispatching key events.  
+ * <p>Every browser has very different rules for dispatching key events.
  * As there is no way to feature detect how a browser handles key events,
  * synthetic uses a description of how the browser behaves generated
  * by a recording application.  </p>
@@ -7577,10 +7577,10 @@ Syn.key.browsers["Envjs\ Resig/20070309 PilotFish/1.2.0.10\1.6"] = {
  * Syn fully supports IE 6+, FF 3+, Chrome, Safari, Opera 10+.
  * With FF 1+, drag / move events are only partially supported. They will
  * not trigger mouseover / mouseout events.<br/>
- * Safari crashes when a mousedown is triggered on a select.  Syn will not 
+ * Safari crashes when a mousedown is triggered on a select.  Syn will not
  * create this event.
  * <h2>Contributing to Syn</h2>
- * Have we missed something? We happily accept patches.  The following are 
+ * Have we missed something? We happily accept patches.  The following are
  * important objects and properties of Syn:
  * <ul>
  * 	<li><code>Syn.create</code> - contains methods to setup, convert options, and create an event of a specific type.</li>
@@ -7590,10 +7590,10 @@ Syn.key.browsers["Envjs\ Resig/20070309 PilotFish/1.2.0.10\1.6"] = {
  * </ul>
  * <h2>Roll Your Own Functional Test Framework</h2>
  * <p>Syn is really the foundation of JavaScriptMVC's functional testing framework - [FuncUnit].
- *   But, we've purposely made Syn work without any dependencies in the hopes that other frameworks or 
+ *   But, we've purposely made Syn work without any dependencies in the hopes that other frameworks or
  *   testing solutions can use it as well.
  * </p>
- * @constructor 
+ * @constructor
  * Creates a synthetic event on the element.
  * @param {Object} type
  * @param {Object} options
@@ -7601,10 +7601,10 @@ Syn.key.browsers["Envjs\ Resig/20070309 PilotFish/1.2.0.10\1.6"] = {
  * @param {Object} callback
  * @return Syn
  */
-Syn = function(type, options, element, callback){		
+Syn = function(type, options, element, callback){
 	return ( new Syn.init(type, options, element, callback) )
 }
-	
+
 if(window.addEventListener){ // Mozilla, Netscape, Firefox
 	bind = function(el, ev, f){
 		el.addEventListener(ev, f, false)
@@ -7619,10 +7619,10 @@ if(window.addEventListener){ // Mozilla, Netscape, Firefox
 	unbind = function(el, ev, f){
 		el.detachEvent("on"+ev, f)
 	}
-}	
+}
 /**
  * @Static
- */	
+ */
 extend(Syn,{
 	/**
 	 * Creates a new synthetic event instance
@@ -7637,12 +7637,12 @@ extend(Syn,{
 			self = this;
 		this.queue = [];
 		this.element = args.element;
-		
+
 		//run event
 		if(typeof this[type] == "function") {
 			this[type](args.options, args.element, function(defaults,el ){
 				args.callback && args.callback.apply(self, arguments);
-				self.done.apply(self, arguments)		
+				self.done.apply(self, arguments)
 			})
 		}else{
 			this.result = Syn.trigger(type, args.options, args.element);
@@ -7653,7 +7653,7 @@ extend(Syn,{
 		if(window.FuncUnit && window.FuncUnit.jquery){
 			return window.FuncUnit.jquery
 		} if (el){
-			return Syn.helpers.getWindow(el).jQuery || window.jQuery	
+			return Syn.helpers.getWindow(el).jQuery || window.jQuery
 		}
 		else{
 			return window.jQuery
@@ -7687,8 +7687,8 @@ extend(Syn,{
 	},
 	/**
 	 * @attribute defaults
-	 * Default actions for events.  Each default function is called with this as its 
-	 * element.  It should return true if a timeout 
+	 * Default actions for events.  Each default function is called with this as its
+	 * element.  It should return true if a timeout
 	 * should happen after it.  If it returns an element, a timeout will happen
 	 * and the next event will happen on that element.
 	 */
@@ -7698,19 +7698,19 @@ extend(Syn,{
 				var element = this,
 					nodeName = element.nodeName.toLowerCase();
 				Syn.data(element,"syntheticvalue", element.value)
-				
+
 				//TODO, this should be textarea too
 				//and this might be for only text style inputs ... hmmmmm ....
-				
-				if(nodeName == "input" || nodeName == "textarea"){ 
+
+				if(nodeName == "input" || nodeName == "textarea"){
 					bind(element, "blur", function(){
 						if( Syn.data(element,"syntheticvalue") !=  element.value){
-							
+
 							Syn.trigger("change", {}, element);
 						}
 						unbind(element,"blur", arguments.callee)
 					})
-					
+
 				}
 			}
 		},
@@ -7724,14 +7724,14 @@ extend(Syn,{
 		}
 	},
 	changeOnBlur: function( element, prop, value ) {
-		
-		bind(element, "blur", function(){		
+
+		bind(element, "blur", function(){
 			if( value !=  element[prop]){
 				Syn.trigger("change", {}, element);
 			}
 			unbind(element,"blur", arguments.callee)
 		})
-		
+
 	},
 	/**
 	 * Returns the closest element of a particular type.
@@ -7849,7 +7849,7 @@ extend(Syn,{
 				left :  (doc && doc.scrollLeft || body && body.scrollLeft || 0) + (doc.clientLeft || 0),
 				top : (doc && doc.scrollTop || body && body.scrollTop || 0) + (doc.clientTop || 0)
 			}
-				
+
 		},
 		addOffset: function( options, el ) {
 			var jq = Syn.jquery(el)
@@ -7881,11 +7881,11 @@ extend(Syn,{
 	 * @param {Object} type
 	 * @param {Object} autoPrevent
 	 */
-	dispatch : (document.documentElement.dispatchEvent ? 
+	dispatch : (document.documentElement.dispatchEvent ?
 				function(event, element, type, autoPrevent){
-					var preventDefault = event.preventDefault, 
+					var preventDefault = event.preventDefault,
 						prevents = autoPrevent ? -1 : 0;
-					
+
 					//automatically prevents the default behavior for this event
 					//this is to protect agianst nasty browser freezing bug in safari
 					if(autoPrevent){
@@ -7894,8 +7894,8 @@ extend(Syn,{
 							unbind(this, type, arguments.callee)
 						})
 					}
-					
-					
+
+
 					event.preventDefault = function(){
 						prevents++;
 						if(++prevents > 0){
@@ -7904,7 +7904,7 @@ extend(Syn,{
 					}
 					element.dispatchEvent(event)
 					return prevents <= 0;
-				} : 
+				} :
 				function(event, element, type){
 					try {window.event = event;}catch(e) {}
 					//source element makes sure element is still in the document
@@ -7921,7 +7921,7 @@ extend(Syn,{
 		page : {
 			event : document.createEvent ? function(type, options, element){
 					var event = element.ownerDocument.createEvent("Events");
-					event.initEvent(type, true, true ); 
+					event.initEvent(type, true, true );
 					return event;
 				} : createEventObject
 		},
@@ -7948,8 +7948,8 @@ extend(Syn,{
 								activeElement.blur();
 								activeElement = null;
 							}
-							
-							
+
+
 						}
 						return false
 					}
@@ -7991,7 +7991,7 @@ extend(Syn,{
 		ready : 0
 	},
 	/**
-	 * Creates a synthetic event and dispatches it on the element.  
+	 * Creates a synthetic event and dispatches it on the element.
 	 * This will run any default actions for the element.
 	 * Typically you want to use Syn, but if you want the return value, use this.
 	 * @param {String} type
@@ -8001,11 +8001,11 @@ extend(Syn,{
 	 */
 	trigger: function( type, options, element ) {
 		options || (options = {});
-		
+
 		var create = Syn.create,
 			setup = create[type] && create[type].setup,
-			kind = key.test(type) ? 
-				'key' : 
+			kind = key.test(type) ?
+				'key' :
 				( page.test(type) ?
 					"page" : "mouse" ),
 				createType = create[type] || {},
@@ -8014,52 +8014,52 @@ extend(Syn,{
 				ret,
 				autoPrevent,
 				dispatchEl = element;
-		
+
 		//any setup code?
 		Syn.support.ready == 2 && setup && setup(type, options, element);
-		
+
 		autoPrevent = options._autoPrevent;
 		//get kind
-		
+
 		delete options._autoPrevent;
-			
+
 		if(createType.event){
 			ret = createType.event(type, options, element)
 		}else{
 			//convert options
 			options = createKind.options ? createKind.options(type,options,element) : options;
-			
+
 			if(!Syn.support.changeBubbles && /option/i.test(element.nodeName)){
 				dispatchEl = element.parentNode; //jQuery expects clicks on select
 			}
-			
+
 			//create the event
 			event = createKind.event(type,options,dispatchEl)
-			
+
 			//send the event
 			ret = Syn.dispatch(event, dispatchEl, type, autoPrevent)
 		}
-		
+
 		//run default behavior
 		ret && Syn.support.ready == 2
-			&& Syn.defaults[type] 
+			&& Syn.defaults[type]
 			&& Syn.defaults[type].call(element, options, autoPrevent);
 		return ret;
 	},
-	eventSupported: function( eventName ) { 
-		var el = document.createElement("div"); 
-		eventName = "on" + eventName; 
+	eventSupported: function( eventName ) {
+		var el = document.createElement("div");
+		eventName = "on" + eventName;
 
-		var isSupported = (eventName in el); 
-		if ( !isSupported ) { 
-			el.setAttribute(eventName, "return;"); 
-			isSupported = typeof el[eventName] === "function"; 
-		} 
-		el = null; 
+		var isSupported = (eventName in el);
+		if ( !isSupported ) {
+			el.setAttribute(eventName, "return;");
+			isSupported = typeof el[eventName] === "function";
+		}
+		el = null;
 
-		return isSupported; 
+		return isSupported;
 	}
-	
+
 });
 	var h = Syn.helpers;
 /**
@@ -8078,11 +8078,11 @@ extend(Syn.init.prototype,{
 	 * @codestart
 	 * Syn('click',{},'age')
 	 *   .then('type','I am 12',function(){
-	 *   equals($('#age').val(),"12")  
+	 *   equals($('#age').val(),"12")
 	 * })
 	 * @codeend
 	 * If the element argument is undefined, then the last element is used.
-	 * 
+	 *
 	 * @param {String} type The type of event or action to create: "_click", "_dblclick", "_drag", "_type".
 	 * @param {Object} options Optiosn to pass to the event.
 	 * @param {String|HTMLElement} [element] A element's id or an element.  If undefined, defaults to the previous element.
@@ -8095,17 +8095,17 @@ extend(Syn.init.prototype,{
 		var args = Syn.args(options,element, callback),
 			self = this;
 
-		
+
 		//if stack is empty run right away
-		
+
 		//otherwise ... unshift it
 		this.queue.unshift(function(el, prevented){
-			
+
 			if(typeof this[type] == "function") {
 				this.element = args.element || el;
 				this[type](args.options, this.element, function(defaults, el){
 					args.callback && args.callback.apply(self, arguments);
-					self.done.apply(self, arguments)		
+					self.done.apply(self, arguments)
 				})
 			}else{
 				this.result = Syn.trigger(type, args.options, args.element);
@@ -8140,12 +8140,12 @@ extend(Syn.init.prototype,{
 		if(this.queue.length){
 			this.queue.pop().call(this, this.element, defaults);
 		}
-		
+
 	},
 	/**
 	 * @function click
-	 * Clicks an element by triggering a mousedown, 
-	 * mouseup, 
+	 * Clicks an element by triggering a mousedown,
+	 * mouseup,
 	 * and a click event.
 	 * <h3>Example</h3>
 	 * @codestart
@@ -8153,7 +8153,7 @@ extend(Syn.init.prototype,{
 	 *   //check something
 	 * })
 	 * @codeend
-	 * You can also provide the coordinates of the click.  
+	 * You can also provide the coordinates of the click.
 	 * If jQuery is present, it will set clientX and clientY
 	 * for you.  Here's how to set it yourself:
 	 * @codestart
@@ -8172,7 +8172,7 @@ extend(Syn.init.prototype,{
 	"_click" : function( options, element, callback, force ) {
 		Syn.helpers.addOffset(options, element);
 		Syn.trigger("mousedown", options, element);
-		
+
 		//timeout is b/c IE is stupid and won't call focus handlers
 		setTimeout(function(){
 			Syn.trigger("mouseup", options, element)
@@ -8188,7 +8188,7 @@ extend(Syn.init.prototype,{
 					callback(true)
 				},1)
 			}
-			
+
 		},1)
 	},
 	/**
@@ -8200,15 +8200,15 @@ extend(Syn.init.prototype,{
 	"_rightClick" : function( options, element, callback ) {
 		Syn.helpers.addOffset(options, element);
 		var mouseopts =  extend( extend({},Syn.mouse.browser.right.mouseup ), options)
-		
+
 		Syn.trigger("mousedown", mouseopts, element);
-		
+
 		//timeout is b/c IE is stupid and won't call focus handlers
 		setTimeout(function(){
 			Syn.trigger("mouseup", mouseopts, element)
 			if (Syn.mouse.browser.contextmenu) {
-				Syn.trigger("contextmenu", 
-					extend( extend({},Syn.mouse.browser.right.contextmenu ), options), 
+				Syn.trigger("contextmenu",
+					extend( extend({},Syn.mouse.browser.right.contextmenu ), options),
 					element)
 			}
 			callback(true)
@@ -8236,7 +8236,7 @@ extend(Syn.init.prototype,{
 					callback(true)
 				},true)
 			},2)
-			
+
 		})
 	}
 })
@@ -8270,7 +8270,7 @@ if (window.jQuery || (window.FuncUnit && window.FuncUnit.jquery)) {
 }
 
 window.Syn = Syn;
-	
+
 })(true);
 (function(){
 
@@ -8294,19 +8294,19 @@ h.extend(Syn.defaults,{
 			checked = Syn.data(element,"checked"),
 			scope = Syn.helpers.getWindow(element),
 			nodeName = element.nodeName.toLowerCase();
-		
+
 		if( (href = Syn.data(element,"href") ) ){
 			element.setAttribute('href',href)
 		}
 
-		
-		
+
+
 		//run href javascript
-		if(!Syn.support.linkHrefJS 
+		if(!Syn.support.linkHrefJS
 			&& /^\s*javascript:/.test(element.href)){
 			//eval js
 			var code = element.href.replace(/^\s*javascript:/,"")
-				
+
 			//try{
 			if (code != "//" && code.indexOf("void(0)") == -1) {
 				if(window.selenium){
@@ -8316,32 +8316,32 @@ h.extend(Syn.defaults,{
 				}
 			}
 		}
-		
+
 		//submit a form
 		if(!(Syn.support.clickSubmits) &&
-			(nodeName == "input" 
+			(nodeName == "input"
 			&& element.type == "submit"  ) ||
 			nodeName  == 'button' ){
-				
+
 			var form =  Syn.closest(element, "form");
 			if(form){
 				Syn.trigger("submit",{},form)
 			}
-			
+
 		}
 		//follow a link, probably needs to check if in an a.
-		if(nodeName == "a" 
-			&& element.href 
+		if(nodeName == "a"
+			&& element.href
 			&& !/^\s*javascript:/.test(element.href)){
-				
+
 			scope.location.href = element.href;
-			
+
 		}
-		
+
 		//change a checkbox
-		if(nodeName == "input" 
+		if(nodeName == "input"
 			&& element.type == "checkbox"){
-			
+
 			if(!Syn.support.clickChecks && !Syn.support.changeChecks){
 				element.checked = !element.checked;
 			}
@@ -8349,12 +8349,12 @@ h.extend(Syn.defaults,{
 				Syn.trigger("change",{},  element );
 			}
 		}
-		
+
 		//change a radio button
 		if(nodeName == "input" && element.type == "radio"){  // need to uncheck others if not checked
-			
+
 			if(!Syn.support.clickChecks && !Syn.support.changeChecks){
-				//do the checks manually 
+				//do the checks manually
 				if(!element.checked){ //do nothing, no change
 					element.checked = true;
 				}
@@ -8370,7 +8370,7 @@ h.extend(Syn.defaults,{
 		}
 	}
 })
-	
+
 
 //add create and setup behavior for mosue events
 h.extend(Syn.create,{
@@ -8386,28 +8386,28 @@ h.extend(Syn.create,{
 				view : window,
 				detail : 1,
 				screenX : 1, screenY : 1,
-				clientX : options.clientX || center[0] -(doc && doc.scrollLeft || body && body.scrollLeft || 0) - (doc.clientLeft || 0), 
+				clientX : options.clientX || center[0] -(doc && doc.scrollLeft || body && body.scrollLeft || 0) - (doc.clientLeft || 0),
 				clientY : options.clientY || center[1] -(doc && doc.scrollTop || body && body.scrollTop || 0) - (doc.clientTop || 0),
-				ctrlKey : !!Syn.key.ctrlKey, 
-				altKey : !!Syn.key.altKey, 
-				shiftKey : !!Syn.key.shiftKey, 
+				ctrlKey : !!Syn.key.ctrlKey,
+				altKey : !!Syn.key.altKey,
+				shiftKey : !!Syn.key.shiftKey,
 				metaKey : !!Syn.key.metaKey,
-				button : left && left.button != null ? 
-					left.button : 
-					right && right.button || (type == 'contextmenu' ? 2 : 0), 
+				button : left && left.button != null ?
+					left.button :
+					right && right.button || (type == 'contextmenu' ? 2 : 0),
 				relatedTarget : document.documentElement
 			}, options);
 		},
-		event : document.createEvent ? 
+		event : document.createEvent ?
 			function(type, defaults, element){  //Everyone Else
 				var event;
-				
+
 				try {
 					event = element.ownerDocument.createEvent('MouseEvents');
-					event.initMouseEvent(type, 
-						defaults.bubbles, defaults.cancelable, 
-						defaults.view, 
-						defaults.detail, 
+					event.initMouseEvent(type,
+						defaults.bubbles, defaults.cancelable,
+						defaults.view,
+						defaults.detail,
 						defaults.screenX, defaults.screenY,defaults.clientX,defaults.clientY,
 						defaults.ctrlKey,defaults.altKey,defaults.shiftKey,defaults.metaKey,
 						defaults.button,defaults.relatedTarget);
@@ -8416,7 +8416,7 @@ h.extend(Syn.create,{
 				}
 				event.synthetic = true;
 				return event;
-			} : 
+			} :
 			h.createEventObject
 	},
 	click : {
@@ -8424,14 +8424,14 @@ h.extend(Syn.create,{
 			try{
 				Syn.data(element,"checked", element.checked);
 			}catch(e){}
-			if( 
-				element.nodeName.toLowerCase() == "a" 
-				&& element.href  
+			if(
+				element.nodeName.toLowerCase() == "a"
+				&& element.href
 				&& !/^\s*javascript:/.test(element.href)){
-				
+
 				//save href
 				Syn.data(element,"href", element.href)
-				
+
 				//remove b/c safari/opera will open a new tab instead of changing the page
 				element.setAttribute('href','javascript://')
 			}
@@ -8475,13 +8475,13 @@ h.extend(Syn.create,{
 	window.__synthTest = function(){
 		Syn.support.linkHrefJS = true;
 	}
-	var div = document.createElement("div"), 
-		checkbox, 
-		submit, 
-		form, 
-		input, 
+	var div = document.createElement("div"),
+		checkbox,
+		submit,
+		form,
+		input,
 		select;
-		
+
 	div.innerHTML = "<form id='outer'>"+
 		"<input name='checkbox' type='checkbox'/>"+
 		"<input name='radio' type='radio' />"+
@@ -8497,7 +8497,7 @@ h.extend(Syn.create,{
 	checkbox = form.childNodes[0];
 	submit = form.childNodes[2];
 	select = form.getElementsByTagName('select')[0]
-	
+
 	checkbox.checked = false;
 	checkbox.onchange = function(){
 		Syn.support.clickChanges = true;
@@ -8507,36 +8507,36 @@ h.extend(Syn.create,{
 	Syn.support.clickChecks = checkbox.checked;
 
 	checkbox.checked = false;
-	
+
 	Syn.trigger("change", {}, checkbox);
-	
+
 	Syn.support.changeChecks = checkbox.checked;
-	
+
 	form.onsubmit = function(ev){
-		if (ev.preventDefault) 
+		if (ev.preventDefault)
 			ev.preventDefault();
 		Syn.support.clickSubmits = true;
 		return false;
 	}
 	Syn.trigger("click", {}, submit)
 
-		
-	
+
+
 	form.childNodes[1].onchange = function(){
 		Syn.support.radioClickChanges = true;
 	}
 	Syn.trigger("click", {}, form.childNodes[1])
-	
-	
+
+
 	Syn.bind(div, 'click', function(){
 		Syn.support.optionClickBubbles = true;
 		Syn.unbind(div,'click', arguments.callee)
 	})
 	Syn.trigger("click",{},select.firstChild)
-	
-	
+
+
 	Syn.support.changeBubbles = Syn.eventSupported('change');
-	
+
 	//test if mousedown followed by mouseup causes click (opera), make sure there are no clicks after this
 	var clicksCount = 0
 	div.onclick = function(){
@@ -8547,15 +8547,15 @@ h.extend(Syn.create,{
 	}
 	Syn.trigger("mousedown",{},div)
 	Syn.trigger("mouseup",{},div)
-	
+
 	//setTimeout(function(){
 	//	Syn.trigger("mousedown",{},div)
 	//	Syn.trigger("mouseup",{},div)
 	//},1)
-	
-	
+
+
 	document.documentElement.removeChild(div);
-	
+
 	//check stuff
 	window.__synthTest = oldSynth;
 	Syn.support.ready++;
@@ -8639,7 +8639,7 @@ h.extend(Syn.create,{
 			'scroll-lock':{"keydown":[null,"key"],"keyup":[null,"key"]},
 			'print':{"keyup":[null,"key"]},
 			'function':{"keydown":[null,"key"],"keyup":[null,"key"]},
-			'\r':{"keydown":[null,"key"],"keypress":[null,"key"],"keyup":[null,"key"]}	
+			'\r':{"keydown":[null,"key"],"keypress":[null,"key"],"keyup":[null,"key"]}
 		},
 		opera : {
 			'prevent':
@@ -8669,10 +8669,10 @@ h.extend(Syn.create,{
 			'function':
 			 {"keydown":[null,"key"],"keypress":[null,"key"],"keyup":[null,"key"]},
 			'\r':
-			 {"keydown":[null,"key"],"keypress":[null,"key"],"keyup":[null,"key"]}	
+			 {"keydown":[null,"key"],"keypress":[null,"key"],"keyup":[null,"key"]}
 		}
 	};
-	
+
 	Syn.mouse.browsers = {
 		webkit : {"right":{"mousedown":{"button":2,"which":3},"mouseup":{"button":2,"which":3},"contextmenu":{"button":2,"which":3}},
 		          "left":{"mousedown":{"button":0,"which":1},"mouseup":{"button":0,"which":1},"click":{"button":0,"which":1}}},
@@ -8685,9 +8685,9 @@ h.extend(Syn.create,{
 		gecko: {"left":{"mousedown":{"button":0,"which":1},"mouseup":{"button":0,"which":1},"click":{"button":0,"which":1}},
 		        "right":{"mousedown":{"button":2,"which":3},"mouseup":{"button":2,"which":3},"contextmenu":{"button":2,"which":3}}}
 	}
-	
+
 	//set browser
-	Syn.key.browser = 
+	Syn.key.browser =
 	(function(){
 		if(Syn.key.browsers[window.navigator.userAgent]){
 			return Syn.key.browsers[window.navigator.userAgent];
@@ -8699,8 +8699,8 @@ h.extend(Syn.create,{
 		}
 		return Syn.key.browsers.gecko;
 	})();
-	
-	Syn.mouse.browser = 
+
+	Syn.mouse.browser =
 	(function(){
 		if(Syn.mouse.browsers[window.navigator.userAgent]){
 			return Syn.mouse.browsers[window.navigator.userAgent];
@@ -8712,7 +8712,7 @@ h.extend(Syn.create,{
 		}
 		return Syn.mouse.browsers.gecko;
 	})();
-	
+
 })(true);
 (function(){
 
@@ -8724,9 +8724,9 @@ getSelection = function(el){
 	// use selectionStart if we can
 	if (el.selectionStart !== undefined) {
 		// this is for opera, so we don't have to focus to type how we think we would
-		if(document.activeElement 
-		 	&& document.activeElement != el 
-			&& el.selectionStart == el.selectionEnd 
+		if(document.activeElement
+		 	&& document.activeElement != el
+			&& el.selectionStart == el.selectionEnd
 			&& el.selectionStart == 0){
 			return {start: el.value.length, end: el.value.length};
 		}
@@ -8734,15 +8734,15 @@ getSelection = function(el){
 	}else{
 		//check if we aren't focused
 		//if(document.activeElement && document.activeElement != el){
-			
-			
+
+
 		//}
 		try {
 			//try 2 different methods that work differently (IE breaks depending on type)
 			if (el.nodeName.toLowerCase() == 'input') {
 				var real = h.getWindow(el).document.selection.createRange(), r = el.createTextRange();
 				r.setEndPoint("EndToStart", real);
-				
+
 				var start = r.text.length
 				return {
 					start: start,
@@ -8775,7 +8775,7 @@ getSelection = function(el){
 		}catch(e){
 			return {start: el.value.length, end: el.value.length};
 		}
-	} 
+	}
 },
 // gets all focusable elements
 getFocusable = function(el){
@@ -8784,13 +8784,13 @@ getFocusable = function(el){
 
 	var els = document.getElementsByTagName('*'),
 		len = els.length;
-		
+
 	for(var i=0;  i< len; i++){
 		Syn.isFocusable(els[i]) && els[i] != document.documentElement && res.push(els[i])
 	}
 	return res;
-	
-	
+
+
 };
 
 /**
@@ -8803,12 +8803,12 @@ h.extend(Syn,{
 	 * You can add type keys with
 	 * @codestart
 	 * Syn('key','delete','title');
-	 * 
-	 * //or 
-	 * 
+	 *
+	 * //or
+	 *
 	 * Syn('type','One Two Three[left][left][delete]','title')
 	 * @codeend
-	 * 
+	 *
 	 * The following are a list of keys you can type:
 	 * @codestart text
 	 * \b        - backspace
@@ -8840,16 +8840,16 @@ h.extend(Syn,{
 	keycodes: {
 		//backspace
 		'\b':'8',
-		
+
 		//tab
 		'\t':'9',
-		
+
 		//enter
 		'\r':'13',
-		
+
 		//special
 		'shift':'16','ctrl':'17','alt':'18',
-		
+
 		//weird
 		'pause-break':'19',
 		'caps':'20',
@@ -8857,11 +8857,11 @@ h.extend(Syn,{
 		'num-lock':'144',
 		'scroll-lock':'145',
 		'print' : '44',
-		
+
 		//navigation
 		'page-up':'33','page-down':'34','end':'35','home':'36',
 		'left':'37','up':'38','right':'39','down':'40','insert':'45','delete':'46',
-		
+
 		//normal characters
 		' ':'32',
 		'0':'48','1':'49','2':'50','3':'51','4':'52','5':'53','6':'54','7':'55','8':'56','9':'57',
@@ -8883,18 +8883,18 @@ h.extend(Syn,{
 		'\\':'220',
 		']':'221',
 		"'":'222',
-		
+
 		//ignore these, you shouldn't use them
 		'left window key':'91','right window key':'92','select key':'93',
-		
-		
+
+
 		'f1':'112','f2':'113','f3':'114','f4':'115','f5':'116','f6':'117',
 		'f7':'118','f8':'119','f9':'120','f10':'121','f11':'122','f12':'123'
 	},
-	
+
 	// what we can type in
 	typeable : /input|textarea/i,
-	
+
 	// selects text on an element
 	selectText: function( el, start, end ) {
 		if(el.setSelectionRange){
@@ -8911,9 +8911,9 @@ h.extend(Syn,{
 			r.moveStart('character', start);
 			end = end || start;
 			r.moveEnd('character', end - el.value.length);
-			
+
 			r.select();
-		} 
+		}
 	},
 	getText: function( el ) {
 		//first check if the el has anything selected ..
@@ -8950,7 +8950,7 @@ h.extend(Syn.key,{
 		}
 		return S.key.browser.character
 	},
-	
+
 	//returns the special key if special
 	isSpecial: function( keyCode ) {
 		var specials = S.key.kinds.special;
@@ -8968,16 +8968,16 @@ h.extend(Syn.key,{
 	 */
 	options: function( key, event ) {
 		var keyData = Syn.key.data(key);
-		
+
 		if(!keyData[event]){
 			//we shouldn't be creating this event
 			return null;
 		}
-			
+
 		var	charCode = keyData[event][0],
 			keyCode = keyData[event][1],
 			result = {};
-			
+
 		if(keyCode == 'key'){
 			result.keyCode = Syn.keycodes[key]
 		} else if (keyCode == 'char'){
@@ -8985,14 +8985,14 @@ h.extend(Syn.key,{
 		}else{
 			result.keyCode = keyCode;
 		}
-		
+
 		if(charCode == 'char'){
 			result.charCode = key.charCodeAt(0)
 		}else if(charCode !== null){
 			result.charCode = charCode;
 		}
-		
-		
+
+
 		return result
 	},
 	//types of event keys
@@ -9021,18 +9021,18 @@ h.extend(Syn.key,{
 			if(/num\d+/.test(key)){
 				key = key.match(/\d+/)[0]
 			}
-			
+
 			if(force || (!S.support.keyCharacters && Syn.typeable.test(this.nodeName))){
 				var current = this.value,
 					before = current.substr(0,sel.start),
 					after = current.substr(sel.end),
 					character = key;
-				
+
 				this.value = before+character+after;
 				//handle IE inserting \r\n
 				var charLength = character == "\n" && S.support.textareaCarriage ? 2 : character.length;
 				Syn.selectText(this, before.length + charLength)
-			}		
+			}
 		},
 		'c' : function( options, scope, key, force, sel ) {
 			if(Syn.key.ctrlKey){
@@ -9096,7 +9096,7 @@ h.extend(Syn.key,{
 				var current = this.value,
 					before = current.substr(0,sel.start),
 					after = current.substr(sel.end);
-					
+
 				if(sel.start == sel.end && sel.start > 0){
 					//remove a character
 					this.value = before.substring(0, before.length - 1)+after
@@ -9105,9 +9105,9 @@ h.extend(Syn.key,{
 					this.value = before+after;
 					Syn.selectText(this, sel.start)
 				}
-				
+
 				//set back the selection
-			}	
+			}
 		},
 		'delete' : function( options, scope, key, force, sel ) {
 			if(!S.support.backspaceWorks && Syn.typeable.test(this.nodeName)){
@@ -9118,13 +9118,13 @@ h.extend(Syn.key,{
 					this.value = before+after.substring(1)
 				}else{
 					this.value = before+after;
-					
+
 				}
 				Syn.selectText(this, sel.start)
-			}		
+			}
 		},
 		'\r' : function( options, scope, key, force, sel ) {
-			
+
 			var nodeName = this.nodeName.toLowerCase()
 			// submit a form
 			if(!S.support.keypressSubmits && nodeName == 'input'){
@@ -9132,7 +9132,7 @@ h.extend(Syn.key,{
 				if(form){
 					Syn.trigger("submit", {}, form);
 				}
-					
+
 			}
 			//newline in textarea
 			if(!S.support.keyCharacters && nodeName == 'textarea'){
@@ -9143,14 +9143,14 @@ h.extend(Syn.key,{
 				Syn.trigger("click", {}, this);
 			}
 		},
-		// 
+		//
 		// Gets all focusable elements.  If the element (this)
 		// doesn't have a tabindex, finds the next element after.
-		// If the element (this) has a tabindex finds the element 
+		// If the element (this) has a tabindex finds the element
 		// with the next higher tabindex OR the element with the same
 		// tabindex after it in the document.
 		// @return the next element
-		// 
+		//
 		'\t' : function( options, scope ) {
 				// focusable elements
 			var focusEls = getFocusable(this),
@@ -9163,7 +9163,7 @@ h.extend(Syn.key,{
 				// set to true once we found 'this' element
 				found = false,
 				i = 0,
-				el, 
+				el,
 				//the tabindex of the tabable element we are looking at
 				elIndex,
 				firstNotIndexed,
@@ -9205,10 +9205,10 @@ h.extend(Syn.key,{
 							current = orders[focusEls.length-1][0]
 						}
 					}
-					
+
 				}
 			}
-			
+
 			//restart if we didn't find anything
 			if(!current){
 				current = firstNotIndexed;
@@ -9232,11 +9232,11 @@ h.extend(Syn.key,{
 				}else{
 					Syn.selectText(this, sel.end+1 > this.value.length ? this.value.length  : sel.end+1)
 				}
-			}	
+			}
 		},
 		'up' : function() {
 			if(/select/i.test(this.nodeName)){
-				
+
 				this.selectedIndex = this.selectedIndex ? this.selectedIndex-1 : 0;
 				//set this to change on blur?
 			}
@@ -9275,32 +9275,32 @@ h.extend(Syn.create,{
 		options: function( type, options, element ) {
 			//check if options is character or has character
 			options = typeof options != "object" ? {character : options} : options;
-			
+
 			//don't change the orignial
 			options = h.extend({}, options)
 			if(options.character){
 				h.extend(options, S.key.options(options.character, type));
 				delete options.character;
 			}
-			
+
 			options = h.extend({
 				ctrlKey: !!Syn.key.ctrlKey,
 				altKey: !!Syn.key.altKey,
 				shiftKey: !!Syn.key.shiftKey,
 				metaKey: !!Syn.key.metaKey
 			}, options)
-			
+
 			return options;
 		},
 		// creates a key event
-		event : document.createEvent ? 
+		event : document.createEvent ?
 			function(type, options, element){  //Everyone Else
 				var event;
-				
+
 				try {
-		
+
 					event = element.ownerDocument.createEvent("KeyEvents");
-					event.initKeyEvent(type, true, true, window, 
+					event.initKeyEvent(type, true, true, window,
 						options.ctrlKey, options.altKey, options.shiftKey, options.metaKey,
 						options.keyCode, options.charCode );
 				} catch(e) {
@@ -9309,7 +9309,7 @@ h.extend(Syn.create,{
 				event.synthetic = true;
 				return event;
 
-			} : 
+			} :
 			function(type, options, element){
 				var event = h.createEventObject.apply(this,arguments);
 				h.extend(event, options)
@@ -9334,9 +9334,9 @@ h.extend(Syn.init.prototype,
 	/**
 	 * @function key
 	 * Types a single key.  The key should be
-	 * a string that matches a 
+	 * a string that matches a
 	 * [Syn.static.keycodes].
-	 * 
+	 *
 	 * The following sends a carridge return
 	 * to the 'name' element.
 	 * @codestart
@@ -9351,32 +9351,32 @@ h.extend(Syn.init.prototype,
 	 */
 	_key: function( options, element, callback ) {
 		//first check if it is a special up
-		if(/-up$/.test(options) 
+		if(/-up$/.test(options)
 			&& h.inArray(options.replace("-up",""),Syn.key.kinds.special )!= -1){
 			Syn.trigger('keyup',options.replace("-up",""), element )
 			callback(true, element);
 			return;
 		}
-		
-		
+
+
 		var caret = Syn.typeable.test(element.nodeName) && getSelection(element),
 			key = convert[options] || options,
 			// should we run default events
 			runDefaults = Syn.trigger('keydown',key, element ),
-			
+
 			// a function that gets the default behavior for a key
 			getDefault = Syn.key.getDefault,
-			
+
 			// how this browser handles preventing default events
 			prevent = Syn.key.browser.prevent,
-			
+
 			// the result of the default event
 			defaultResult,
-			
+
 			// options for keypress
 			keypressOptions = Syn.key.options(key, 'keypress')
-		
-		
+
+
 		if(runDefaults){
 			//if the browser doesn't create keypresses for this key, run default
 			if(!keypressOptions){
@@ -9397,7 +9397,7 @@ h.extend(Syn.init.prototype,
 		if(defaultResult && defaultResult.nodeName){
 			element = defaultResult
 		}
-		
+
 		if(defaultResult !== null){
 			setTimeout(function(){
 				Syn.trigger('keyup',Syn.key.options(key, 'keyup'), element )
@@ -9406,14 +9406,14 @@ h.extend(Syn.init.prototype,
 		}else{
 			callback(runDefaults, element)
 		}
-		
-		
+
+
 		//do mouseup
-		
+
 		return element;
 		// is there a keypress? .. if not , run default
 		// yes -> did we prevent it?, if not run ...
-		
+
 	},
 	/**
 	 * @function type
@@ -9421,14 +9421,14 @@ h.extend(Syn.init.prototype,
 	 * character is typed, one at a type.
 	 * Multi-character keys like 'left' should be
 	 * enclosed in square brackents.
-	 * 
+	 *
 	 * The following types 'JavaScript MVC' then deletes the space.
 	 * @codestart
 	 * Syn.type('JavaScript MVC[left][left][left]\b','name')
 	 * @codeend
-	 * 
-	 * Type is able to handle (and move with) tabs (\t).  
-	 * The following simulates tabing and entering values in a form and 
+	 *
+	 * Type is able to handle (and move with) tabs (\t).
+	 * The following simulates tabing and entering values in a form and
 	 * eventually submitting the form.
 	 * @codestart
 	 * Syn.type("Justin\tMeyer\t27\tjustinbmeyer@gmail.com\r")
@@ -9454,9 +9454,9 @@ h.extend(Syn.init.prototype,
 				}
 				self._key(part, el, runNextPart)
 			}
-		
+
 		runNextPart();
-		
+
 	}
 });
 
@@ -9468,15 +9468,15 @@ h.extend(Syn.init.prototype,
 		return;
 	}
 
-	var div = document.createElement("div"), 
-		checkbox, 
-		submit, 
-		form, 
-		input, 
+	var div = document.createElement("div"),
+		checkbox,
+		submit,
+		form,
+		input,
 		submitted = false,
 		anchor,
 		textarea;
-		
+
 	div.innerHTML = "<form id='outer'>"+
 		"<input name='checkbox' type='checkbox'/>"+
 		"<input name='radio' type='radio' />"+
@@ -9487,7 +9487,7 @@ h.extend(Syn.init.prototype,
 		"<a href='#abc'></a>"+
 		"<textarea>1\n2</textarea>"
 		"</form>";
-		
+
 	document.documentElement.appendChild(div);
 	form = div.firstChild;
 	checkbox = form.childNodes[0];
@@ -9495,51 +9495,51 @@ h.extend(Syn.init.prototype,
 	anchor = form.getElementsByTagName("a")[0];
 	textarea = form.getElementsByTagName("textarea")[0]
 	form.onsubmit = function(ev){
-		if (ev.preventDefault) 
+		if (ev.preventDefault)
 			ev.preventDefault();
 		S.support.keypressSubmits = true;
 		ev.returnValue = false;
 		return false;
 	}
 	Syn.trigger("keypress", "\r", form.childNodes[3]);
-	
-	
+
+
 	Syn.trigger("keypress", "a", form.childNodes[3]);
 	S.support.keyCharacters = form.childNodes[3].value == "a";
-	
-	
+
+
 	form.childNodes[3].value = "a"
 	Syn.trigger("keypress", "\b", form.childNodes[3]);
 	S.support.backspaceWorks = form.childNodes[3].value == "";
-	
-		
-	
+
+
+
 	form.childNodes[3].onchange = function(){
 		S.support.focusChanges = true;
 	}
 	form.childNodes[3].focus();
 	Syn.trigger("keypress", "a", form.childNodes[3]);
 	form.childNodes[5].focus();
-	
+
 	//test keypress \r on anchor submits
 	S.bind(anchor,"click",function(ev){
-		if (ev.preventDefault) 
+		if (ev.preventDefault)
 			ev.preventDefault();
 		S.support.keypressOnAnchorClicks = true;
 		ev.returnValue = false;
 		return false;
 	})
 	Syn.trigger("keypress", "\r", anchor);
-	
+
 	S.support.textareaCarriage = textarea.value.length == 4
 	document.documentElement.removeChild(div);
-	
+
 	S.support.ready++;
 })();
 
 
 
-	
+
 })(true);
 (function(){
 	// document body has to exists for this test
@@ -9574,15 +9574,15 @@ h.extend(Syn.init.prototype,
 		document.body.removeChild(div);
 		document.body.scrollTop = 0;
 	})();
-	
-	
+
+
 	//gets an element from a point
 	var elementFromPoint = function(point, element){
-		var clientX = point.clientX, 
-			clientY = point.clientY, 
+		var clientX = point.clientX,
+			clientY = point.clientY,
 			win = Syn.helpers.getWindow(element),
 			el;
-		
+
 		if (Syn.support.elementFromPage) {
 			var off = Syn.helpers.scrollOffset(win);
 			clientX = clientX + off.left; //convert to pageX
@@ -9609,23 +9609,23 @@ h.extend(Syn.init.prototype,
 			options.relatedTarget = last;
 			Syn.trigger("mouseover", options, el);
 		}
-		
+
 		Syn.trigger("mousemove", point, el || element)
 		return el;
 	}, // start and end are in clientX, clientY
 	startMove = function(start, end, duration, element, callback){
-		var startTime = new Date(), 
-			distX = end.clientX - start.clientX, 
-			distY = end.clientY - start.clientY, 
-			win = Syn.helpers.getWindow(element), 
-			current = elementFromPoint(start, element), 
+		var startTime = new Date(),
+			distX = end.clientX - start.clientX,
+			distY = end.clientY - start.clientY,
+			win = Syn.helpers.getWindow(element),
+			current = elementFromPoint(start, element),
 			cursor = win.document.createElement('div'),
 			calls = 0;
 		move = function(){
 			//get what fraction we are at
-			var now = new Date(), 
-				scrollOffset = Syn.helpers.scrollOffset(win), 
-				fraction = ( calls == 0 ? 0 : now - startTime) / duration, 
+			var now = new Date(),
+				scrollOffset = Syn.helpers.scrollOffset(win),
+				fraction = ( calls == 0 ? 0 : now - startTime) / duration,
 				options = {
 					clientX: distX * fraction + start.clientX,
 					clientY: distY * fraction + start.clientY
@@ -9655,7 +9655,7 @@ h.extend(Syn.init.prototype,
 		})
 		win.document.body.appendChild(cursor)
 		move();
-	}, 
+	},
 	startDrag = function(start, end, duration, element, callback){
 		createEventAtPoint("mousedown", start, element);
 		startMove(start, end, duration, element, function(){
@@ -9715,11 +9715,11 @@ h.extend(Syn.init.prototype,
 	}
 /**
  * @add Syn prototype
- */	
+ */
 Syn.helpers.extend(Syn.init.prototype,{
 	/**
 	 * @function move
-	 * Moves the cursor from one point to another.  
+	 * Moves the cursor from one point to another.
 	 * <h3>Quick Example</h3>
 	 * The following moves the cursor from (0,0) in
 	 * the window to (100,100) in 1 second.
@@ -9734,7 +9734,7 @@ Syn.helpers.extend(Syn.init.prototype,{
 	 * @codeend
 	 * <h2>Options</h2>
 	 * There are many ways to configure the endpoints of the move.
-	 * 
+	 *
 	 * <h3>PageX and PageY</h3>
 	 * If you pass pageX or pageY, these will get converted
 	 * to client coordinates.
@@ -9776,41 +9776,41 @@ Syn.helpers.extend(Syn.init.prototype,{
 	 *        to: "#trash"
 	 *      },
 	 *      document.document)
-	 * @codeend   
+	 * @codeend
 	 * <h3>No From</h3>
 	 * If you don't provide a from, the element argument passed to Syn is used.
 	 * @codestart
 	 * Syn.move(
 	 *      { to: "#trash" },
 	 *      'myrecipe')
-	 * @codeend  
+	 * @codeend
 	 * @param {Object} options
 	 * @param {HTMLElement} from
 	 * @param {Function} callback
 	 */
 	_move: function( options, from, callback ) {
 		//need to convert if elements
-		var win = Syn.helpers.getWindow(from), 
-			fro = convertOption(options.from || from, win), 
+		var win = Syn.helpers.getWindow(from),
+			fro = convertOption(options.from || from, win),
 			to = convertOption(options.to || options, win);
-		
+
 		startMove(fro, to, options.duration || 500, from, callback);
 	},
 	/**
 	 * @function drag
-	 * Creates a mousedown and drags from one point to another.  
+	 * Creates a mousedown and drags from one point to another.
 	 * Check out [Syn.prototype.move move] for API details.
-	 * 
+	 *
 	 * @param {Object} options
 	 * @param {Object} from
 	 * @param {Object} callback
 	 */
 	_drag: function( options, from, callback ) {
 		//need to convert if elements
-		var win = Syn.helpers.getWindow(from), 
-			fro = convertOption(options.from || from, win, from), 
+		var win = Syn.helpers.getWindow(from),
+			fro = convertOption(options.from || from, win, from),
 			to = convertOption(options.to || options, win, from);
-		
+
 		startDrag(fro, to, options.duration || 500, from, callback);
 	}
 })
@@ -9851,7 +9851,7 @@ $.fn.prettySelector= function() {
 		selector += "."+target.className.split(" ")[0]
 	}
 	var others = $(selector, getWindow(target).document); //jquery should take care of the #foo if there
-	
+
 	if(others.length > 1){
 		return selector+":eq("+others.index(target)+")";
 	}else{

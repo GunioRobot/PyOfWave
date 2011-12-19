@@ -5,9 +5,9 @@ Wave is a combination of existing communication technologies (eMail, forums, wik
 Server
 =====
 
-The server provides protocols around some core functionality (authentication, profiles, "document" access, and sending and recieving "deltas"). These protocols are documented in docs/protocols. 
+The server provides protocols around some core functionality (authentication, profiles, "document" access, and sending and recieving "deltas"). These protocols are documented in docs/protocols.
 
-The client and server acts as 2 different programs. The server is a customizable application while the client is some CGI and "static" web files. 
+The client and server acts as 2 different programs. The server is a customizable application while the client is some CGI and "static" web files.
 
 Dependancies
 --------------------
@@ -24,7 +24,7 @@ Dependancies
 Client
 ====
 
-The client provides a dynamic web based interface to PyOfWave_server, using the Wave Simple Data Protocol. It is designed to be embedded in the frame of your site and delivers great customizability and ease.  
+The client provides a dynamic web based interface to PyOfWave_server, using the Wave Simple Data Protocol. It is designed to be embedded in the frame of your site and delivers great customizability and ease.
 
 It is written using the JavaScriptMVC library and jQuery, both of which are included in this project.
 
@@ -43,7 +43,7 @@ Used jQuery Plugins
 
 - JSON plugin encoder (derived for easy access, http://www.ramirezcobos.com/2009/12/30/json-jquery-plugin/)
 
-P. S. 
+P. S.
 ====
 
-Tasks are currently being rostered off of the roster.rst file. A few additional scripts modules will be added over the next few days as described by the file, and then I'll put this project on Mozilla Drumbeat. 
+Tasks are currently being rostered off of the roster.rst file. A few additional scripts modules will be added over the next few days as described by the file, and then I'll put this project on Mozilla Drumbeat.

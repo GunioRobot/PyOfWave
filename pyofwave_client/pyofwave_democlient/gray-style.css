@@ -73,7 +73,7 @@ section.blip {
 /* ----------activity-------------- */
 :focus {
 	outline: red solid 1px;
-}	
+}
 /* -----------hyperlink---------- */
 a {
 	color: #600;

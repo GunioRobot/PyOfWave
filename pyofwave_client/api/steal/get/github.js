@@ -1,6 +1,6 @@
 /*  This is a port to JavaScript of Rail's plugin functionality.  It uses the following
  * license:
- *  This is Free Software, copyright 2005 by Ryan Tomayko (rtomayko@gmail.com) 
+ *  This is Free Software, copyright 2005 by Ryan Tomayko (rtomayko@gmail.com)
      and is licensed MIT: (http://www.opensource.org/licenses/mit-license.php)
  */
 
@@ -19,20 +19,20 @@ steal(function( steal ) {
 			arguments[0] = url = url.replace("http:","https:");
 			steal.get.getter.prototype.init.apply(this, arguments);
 			this.orig_cwd = this.cwd;
-			
+
 			this.ignore.push(".gitignore", "dist");
 
 			var split = url.split("/");
 			this.username = split[3];
 			this.project = split[4];
 			this.branch = options.tag || "master";
-			
+
 			//we probably gave something like : http://github.com/secondstory/secondstoryjs-router instead
 			// of http://github.com/secondstory/secondstoryjs-router/tree/master/
 			if(! url.match(/\/tree\//) ){
 				this.url = this.url+"tree/master/"
 			}
-			
+
 		},
 		get_latest_commit: function() {
 			// http://github.com/api/v2/json/commits/list/jupiterjs/steal/master
@@ -64,12 +64,12 @@ steal(function( steal ) {
 		//returns a bunch of links to folders
 		links: function( base_url, contents ) {
 			var links = [],
-				newLink, 
+				newLink,
 				anchors = contents.match(/href\s*=\s*\"*[^\">]*/ig),
 				ignore = this.ignore,
 				self = this,
 				base = this.url + this.cwd.replace(this.orig_cwd + "/", "");
-			
+
 			anchors.forEach(function( link ) {
 				link = link.replace(/href="/i, "");
 				newLink = base_url + (/\/$/.test(base_url) ? "" : "/") + link;
@@ -103,9 +103,9 @@ steal(function( steal ) {
 				steal.print(pstar+"Error "+f);
 				return;
 			}
-			
-			
-			
+
+
+
 				if ( oldsrc ) {
 					var trim = /\s+$/gm,
 						jar = /\.jar$/.test(f);
@@ -135,7 +135,7 @@ steal(function( steal ) {
 				// change to the raw url
 				// http://github.com/jupiterjs/jquerymx/
 				// http://github.com/jupiterjs/jquerymx/tree/master/controller?raw=true
-				var rawUrl, 
+				var rawUrl,
 					contents;
 
 				if(url.match(/\/tree\/\w/)){
@@ -143,9 +143,9 @@ steal(function( steal ) {
 				}else{
 					rawUrl = this.url + "tree/" + this.branch + "/" + url.replace(this.url, "") + "?raw=true"
 				}
-		
+
 				contents = readUrl(rawUrl);
-				
+
 				this.fetch(this.links(url, contents));
 			}
 			if ( this.level > 0 ) {

@@ -1,6 +1,6 @@
 /* Provides functions managing each section of the UI. */
 
-// TODO: fill in utilities. 
+// TODO: fill in utilities.
 function search(query) {
    sendOperations("robot.search", {
       query : query,
@@ -21,7 +21,7 @@ $.Controller('table', {
    init : function(el, ops) {
       $.table = this;
       this.headers = {};
-      for (var header in ops.headers) 
+      for (var header in ops.headers)
          this.headers[header] = ops.headers[header].split('?');
       this.rowHeight = $(el, 'tr').style('height');
 
@@ -103,7 +103,7 @@ function inboxes() {
       });
       return el;
    }
-   // Load the root inbox. 
+   // Load the root inbox.
    var el = $('<ul>').treeview();
    sendOperations(
       ["robot.fetchFolders", {}, function(response) {
@@ -123,7 +123,7 @@ function waves() {
       }).scroll(function(evt) {
          sendOperations(["robot.search", {query : $('#client-search').serialize()['search'],
                index : $.table.top(),
-               numResults : $.table.height()}, 
+               numResults : $.table.height()},
             function(response) {
                $.table.setRows(response.results, index, numResults);
             }]
@@ -168,5 +168,5 @@ wave.toolbar = [
    $('<img>').attr('href', "playback.png").click(playback).class('left'),
    $('<img>').attr('href', "rss.png").click(follow("RSS")).class('left'),
    $('<img>').attr('href', "popout.png").click(follow('HTML')).class('left')
-] 
+]
 ]

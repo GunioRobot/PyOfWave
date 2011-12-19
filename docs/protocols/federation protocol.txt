@@ -1,25 +1,25 @@
 Federation Protocal
 -----------------
 
-Job: To sync documents containing waves between servers. 
-Existing Standards: XMPP (XML, TCP/IP), pubsub, TLS, Cryptographic keys & signatures. 
+Job: To sync documents containing waves between servers.
+Existing Standards: XMPP (XML, TCP/IP), pubsub, TLS, Cryptographic keys & signatures.
 	Relax-NG (illustrative)
 Overview
 ---
-Architecturally, a wave provider functions as a gateway to each wave. If the user creates a new wave, than it gets stored by their wave provider which is called the host for that wave, and if they add a participant to the wave who uses a different provider, this standard is used by the other host to access and keep updated the original wave. 
-This standard is a TLS-secured XMPP extension used by providers to access and update waves not from the provider, and to serve waves. It is designed to be more powerful and collaborative than the client APIs, so as to scale more easily. 
+Architecturally, a wave provider functions as a gateway to each wave. If the user creates a new wave, than it gets stored by their wave provider which is called the host for that wave, and if they add a participant to the wave who uses a different provider, this standard is used by the other host to access and keep updated the original wave.
+This standard is a TLS-secured XMPP extension used by providers to access and update waves not from the provider, and to serve waves. It is designed to be more powerful and collaborative than the client APIs, so as to scale more easily.
 
 Connection
 ---
-This standard expects a bi-directional TLS secured stream, set up by the XMPP standard. Certain stanzas (XMPP concept) requires cryptographic keys and signatures. 
+This standard expects a bi-directional TLS secured stream, set up by the XMPP standard. Certain stanzas (XMPP concept) requires cryptographic keys and signatures.
 
 Documents and Operations
 ---
-This standard works, once a secure connection has been made, by requesting/serving documents and updating them with operations. This section documents what goes into these documents and operators. 
+This standard works, once a secure connection has been made, by requesting/serving documents and updating them with operations. This section documents what goes into these documents and operators.
 
 Document
 --
-Although the stanzas don't communicate the document, the operators they do work on a specific data model. These documents are identified by an ID inside it's wavelet. The document is made up of a sequence of tags which can be a start tag, end tag, or content which contain a hashtable or simalor of attributes and a name. To simplify matters, think of this like XML, although storage is up to the server/provider. 
+Although the stanzas don't communicate the document, the operators they do work on a specific data model. These documents are identified by an ID inside it's wavelet. The document is made up of a sequence of tags which can be a start tag, end tag, or content which contain a hashtable or simalor of attributes and a name. To simplify matters, think of this like XML, although storage is up to the server/provider.
 
 Operator
 --
@@ -28,13 +28,13 @@ This standard communicates documents and changes to documents as a sequence of o
  Operator		Input Doc		Output Doc
  --------		---------		----------
  retain(itemCount)	moves cursor itemcount.	Copies input content.
- replaceAttributes(	Moves cursor one over 	Copies tag type into output 
-   oldAttributes,	start tag with		and assigns attrs to 
+ replaceAttributes(	Moves cursor one over 	Copies tag type into output
+   oldAttributes,	start tag with		and assigns attrs to
    newAttributes)	oldAttributes.		newAttribrutes.
  updateAttributes(	(More succinct version of replaceAttributes where
    attributesUpdate)	attributes is a hashtable of (oldAttr, newAttr).)
  charactors(charactors) Retains cursor position. Inserts charactors.
- elementStart(type,	Retains cursor position. Inserts start tag with 
+ elementStart(type,	Retains cursor position. Inserts start tag with
    attrs)					type and attrs.
  elementEnd		Retains cursor position. Inserts end tag.
  deleteCharactors(	Moves cursor over 	Retains cursor position.
@@ -44,14 +44,14 @@ This standard communicates documents and changes to documents as a sequence of o
 			attrs.
  deleteElementEnd	Moves cursor one over 	Retains cursor position.
 			end tag.
- annotationsBoundary(	moves curser one.	Ends end annotations and 
-   ends, changes)				alters annotations 
-						according to changes, 
+ annotationsBoundary(	moves curser one.	Ends end annotations and
+   ends, changes)				alters annotations
+						according to changes,
 					    applies like updateAttributes()
 
 Security
 ---
-Once a secure connection is made, both servers exchange cryptographic keys before the client server may update waves. This is important because this standard does not require authentication of the user to view waves out of necessity, which means without cryptography, this protocol would be a big loophole for malicious software to view private waves. 
+Once a secure connection is made, both servers exchange cryptographic keys before the client server may update waves. This is important because this standard does not require authentication of the user to view waves out of necessity, which means without cryptography, this protocol would be a big loophole for malicious software to view private waves.
 
 Stanzas
 ---
@@ -61,38 +61,38 @@ Wave provides a number of stanzas serving mostly on a request-response basis but
  -------	-----------------	-----------
  delta-history				Calls for a historical wave using operations.
 		wavelet-name		The wavelet name as descussed previously.
-		start-version		Version number (inclusive) from which to 
-					retrieve the wavelet's history. (Note that 
-					the start version MUST fall on a delta 
+		start-version		Version number (inclusive) from which to
+					retrieve the wavelet's history. (Note that
+					the start version MUST fall on a delta
 					boundary).
 		start-version-hash	The hash for the associated start version.
-		end-version		Ending version number (exclusive) up to which 
-					to retrieve the wavelet's history. (Note that 
-					the end version MUST fall on a delta 
+		end-version		Ending version number (exclusive) up to which
+					to retrieve the wavelet's history. (Note that
+					the end version MUST fall on a delta
 					boundary).
 		end-version-hash	The hash for the associated end version.
-		response-length-limit	OPTIONAL, Advice from the requester about the 
-					preferred response limit, measured as the 
-					aggregate number of characters in the XML 
-					serialization of the applied deltas in the 
-					response. The responder is advised but not 
-					required to respect the limit. Moreover, the 
-					responder may operate with a lower limit of 
-					its own and send back a smaller message than 
-					requested. When the responder exercises 
-					either its own or the requester's limit, it 
-					will return only a prefix of the requested 
-					wavelet deltas. Unless the version range is 
-					empty, the responder will always return a 
-					minimum of one wavelet delta (the first) even 
-					if its length exceeds the responders or 
+		response-length-limit	OPTIONAL, Advice from the requester about the
+					preferred response limit, measured as the
+					aggregate number of characters in the XML
+					serialization of the applied deltas in the
+					response. The responder is advised but not
+					required to respect the limit. Moreover, the
+					responder may operate with a lower limit of
+					its own and send back a smaller message than
+					requested. When the responder exercises
+					either its own or the requester's limit, it
+					will return only a prefix of the requested
+					wavelet deltas. Unless the version range is
+					empty, the responder will always return a
+					minimum of one wavelet delta (the first) even
+					if its length exceeds the responders or
 					requester's limits.
  submit-request				Applies an update to the document.
-		<delta/>		The update to apply as a delta, discussed 
+		<delta/>		The update to apply as a delta, discussed
 					previously.
  submit-response			Returned from a submit-request.
 		operations-applied	The number of operations applied by host.
-		application-timestamp	The Unix timestamp of time the delta was 
+		application-timestamp	The Unix timestamp of time the delta was
 					applied.
 		error-message		OPTIONAL, error encountered.
 		<hashed-version/>	The version and history hash of the wavelet.
@@ -107,11 +107,11 @@ Wave provides a number of stanzas serving mostly on a request-response basis but
  signature				The server's certificate(s).
 		domain			The server's domain.
 		algorithm		The algorithm for the certificate encoding.
-		<certificate/>+		Contains the certificate stripped of the 
+		<certificate/>+		Contains the certificate stripped of the
 					BEGIN CERTIFICATE and END CERTIFICATE.
- signature-response			Sent by server to show acceptance of the 
+ signature-response			Sent by server to show acceptance of the
 					client's signature.
- 
+
 XML
 ---
 The stanzas above use a lot of the same XML. This section documents that XML.
@@ -122,20 +122,20 @@ Elements
  -------	-----------------	-----------
  hashed-version				Current history information.
 		version			The incremental version of the wavelet.
-		history-hash		Hash computed as H(n) = SHA256( H(n-1) + 
+		history-hash		Hash computed as H(n) = SHA256( H(n-1) +
 					delta )[0..20]. (the + means concatenate)
- commit-notice				Varient of hashed version used to indicate 
+ commit-notice				Varient of hashed version used to indicate
 					that there's nothing more recent.
 		version			The incremental version of the wavelet.
  delta					Stores a delta to a document.
 		wavelet-name		The wavelet's name.
 		<operation/>*		The operations applied in order.
- applied-delta				Varient of delta used to indicate it has been 
+ applied-delta				Varient of delta used to indicate it has been
 					applied.
 		<operation/>*		The operations applied.
- operation				An operation as described in Documents and 
-					Operations:Operations. Contains comma 
-					seperated string values of args. (hashes and 
+ operation				An operation as described in Documents and
+					Operations:Operations. Contains comma
+					seperated string values of args. (hashes and
 					arrays are as in JSON).
 		op			The operation's name.
 

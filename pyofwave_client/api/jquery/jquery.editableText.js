@@ -16,11 +16,11 @@
          if (window.getSelection) {
             var selObj = window.getSelection();
             var selRange = selObj.getRangeAt(0);
-            cursorPos = 
-            findNode(selObj.anchorNode.parentNode.childNodes, 
+            cursorPos =
+            findNode(selObj.anchorNode.parentNode.childNodes,
                            selObj.anchorNode) + selObj.anchorOffset;
             /* FIXME the following works wrong in Opera when the
-            document 
+            document
             is longer than 32767 chars */
             return cursorPos;
          }
@@ -28,9 +28,9 @@
             var range = document.selection.createRange();
             var bookmark = range.getBookmark();
             /* FIXME the following works wrong when the document is
-            longer 
+            longer
             than 65535 chars */
-            cursorPos = bookmark.charCodeAt(2) - 11; 
+            cursorPos = bookmark.charCodeAt(2) - 11;
                   /* Undocumented function [3] */
             return cursorPos;
          }

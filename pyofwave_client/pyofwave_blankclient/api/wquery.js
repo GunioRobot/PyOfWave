@@ -1,6 +1,6 @@
 /*API to work with the Simple Data Protocal and Event Protocal.
   TODO: Provide development alternative which just sends back what you send.*/
-cons OPERATIONS_URL, EVENTS_URL, EVENTS_PORT; //providers should assign values, but left blank here. 
+cons OPERATIONS_URL, EVENTS_URL, EVENTS_PORT; //providers should assign values, but left blank here.
 
 steal('kvo.js', 'events.js', '../../api/jquery/json.js').then(function() {
 /*Sends a Wave Simple Data Protocol operation to the server.
@@ -20,7 +20,7 @@ function sendOperations() {
    });
 }
 
-//keep track of wavelets and blips for event handling use. 
+//keep track of wavelets and blips for event handling use.
 var wavelets = {};
 var blips = {}
 
@@ -47,7 +47,7 @@ var eventStream = Orbitted.TCPStream();
 eventStream.onClose = function() {this.open(EVENTS_URL, EVENTS_PORT);}
 eventStream.onRead = function(msg) {
    msg = $.json(msg);
-   
+
    //read message
    wavelet(msg.wavelet);
    for (var blipID in msg.blips) {blip(msg.blips[blipID]);}
